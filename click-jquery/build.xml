@@ -86,7 +86,7 @@
                     <exclude name="**/package.html"/>
                 </fileset>
             </copy>
-            <delete dir="@{name}-examples/webapp/WEB-INF/lib"/>
+            <delete dir="@{name}-examples/webapp/WEB-INF/lib" defaultexcludes="true"/>
             <mkdir dir="@{name}-examples/webapp/WEB-INF/lib"/>
             <copy todir="@{name}-examples/webapp/WEB-INF/lib">
                 <fileset dir="lib">
