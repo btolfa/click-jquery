@@ -18,6 +18,7 @@ import java.util.List;
 import net.sf.click.jquery.behavior.JQBehavior;
 import net.sf.click.jquery.examples.util.JQUILibrary;
 import org.apache.click.element.CssImport;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.extras.control.DateField;
 import org.apache.click.util.HtmlStringBuffer;
@@ -58,9 +59,9 @@ public class UICalendarField extends DateField {
      * @return the list of head elements
      */
     @Override
-    public List getHeadElements() {
+    public List<Element> getHeadElements() {
         if (headElements == null) {
-            headElements = new ArrayList(0);
+            headElements = new ArrayList<Element>(0);
 
             CssImport cssImport = new CssImport(JQUILibrary.jqueryUICssPath);
             cssImport.setAttribute("media", "screen");

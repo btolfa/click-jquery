@@ -33,6 +33,7 @@ import org.apache.click.Control;
 import org.apache.click.Partial;
 import org.apache.click.ajax.AjaxBehavior;
 import org.apache.click.control.AbstractControl;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import org.apache.click.util.HtmlStringBuffer;
@@ -101,7 +102,7 @@ public class JSTree extends AbstractControl {
     }
 
     @Override
-    public List getHeadElements() {
+    public List<Element> getHeadElements() {
         if (headElements == null) {
             headElements = super.getHeadElements();
 

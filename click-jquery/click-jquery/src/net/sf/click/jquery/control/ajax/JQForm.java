@@ -17,6 +17,7 @@ import java.util.List;
 import net.sf.click.jquery.behavior.JQFormBehavior;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsScript;
 import org.apache.click.util.HtmlStringBuffer;
 import org.apache.commons.lang.StringUtils;
@@ -148,7 +149,7 @@ public class JQForm extends Form {
      * from this form can be identified.
      */
     protected void addIdField() {
-        // Add the Form ID as a HiddeField to trigger Ajax callback
+        // Add the Form ID as a HiddenField to trigger Ajax callback
         String id = getId();
         if (getField(id) == null) {
             add(new HiddenField(id, "1"));
@@ -161,7 +162,7 @@ public class JQForm extends Form {
      * @return the JQForm HEAD elements
      */
     @Override
-    public List getHeadElements() {
+    public List<Element> getHeadElements() {
         if (headElements == null) {
             headElements = super.getHeadElements();
 

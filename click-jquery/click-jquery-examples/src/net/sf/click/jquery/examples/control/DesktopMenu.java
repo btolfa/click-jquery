@@ -79,7 +79,7 @@ public class DesktopMenu extends Menu {
         }
 
         if (headElements == null) {
-            headElements = new ArrayList(3);
+            headElements = new ArrayList<org.apache.click.element.Element>(3);
 
             headElements.add(new CssImport(cssImport));
 

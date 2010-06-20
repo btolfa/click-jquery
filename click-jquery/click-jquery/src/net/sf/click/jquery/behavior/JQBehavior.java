@@ -326,7 +326,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     /**
-     * Set the type of the Ajax reques eg GET or POST.
+     * Set the type of the Ajax request, e.g. GET or POST.
      *
      * @param type the type of the Ajax request
      */

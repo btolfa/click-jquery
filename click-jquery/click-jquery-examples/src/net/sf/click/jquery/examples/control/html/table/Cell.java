@@ -72,7 +72,7 @@ public class Cell extends AbstractContainer {
 
     /**
      * Set the content of this cell to the given
-     * {@link net.sf.clickclick.control.Text} object.
+     * {@link net.sf.click.jquery.examples.control.html.Text} object.
      *
      * @param text the Text object
      */

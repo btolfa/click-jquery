@@ -21,7 +21,7 @@ import org.apache.click.util.HtmlStringBuffer;
  * String is rendered.
  * <p/>
  * The following example shows how to use a Text control to render text inside
- * a {@link net.sf.clickclick.control.html.Div}.
+ * a {@link net.sf.click.jquery.examples.control.html.Div}.
  * <p/>
  * Given the Page <tt>MyPage.java</tt>:
  *

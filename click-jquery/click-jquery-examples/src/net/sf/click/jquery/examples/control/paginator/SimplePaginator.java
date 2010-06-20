@@ -19,6 +19,7 @@ import org.apache.click.control.AbstractLink;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Table;
 import org.apache.click.element.CssImport;
+import org.apache.click.element.Element;
 import org.apache.click.util.HtmlStringBuffer;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -287,7 +288,7 @@ public class SimplePaginator extends AbstractControl implements Paginator {
      * @return the head elements of the paginator
      */
     @Override
-    public List getHeadElements() {
+    public List<Element> getHeadElements() {
         if (headElements == null) {
             headElements = super.getHeadElements();
             CssImport cssImport = new CssImport("/clickclick/example/paginator/SimplePaginator.css");

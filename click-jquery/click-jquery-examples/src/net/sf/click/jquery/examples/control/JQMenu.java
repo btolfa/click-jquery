@@ -235,7 +235,7 @@ public class JQMenu extends Menu {
     @Override
     public List<Element> getHeadElements() {
         if (headElements == null) {
-            headElements = new ArrayList();
+            headElements = new ArrayList<Element>();
 
             headElements.add(new CssImport(menuCssImport));
 

@@ -291,7 +291,7 @@ public class Grid extends HtmlTable {
         /**
          * Add the control at the given column + 1.
          * <p/>
-         * This method delegates to {@link #insert(net.sf.clickclick.control.html.table.Cell, int)}.
+         * This method delegates to {@link #insert(net.sf.click.jquery.examples.control.html.table.Cell, int)}.
          *
          * @param control the control to add
          * @param column the column to add the control to

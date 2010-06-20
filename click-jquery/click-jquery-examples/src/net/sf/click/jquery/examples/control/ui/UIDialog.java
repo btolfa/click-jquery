@@ -18,6 +18,7 @@ import net.sf.click.jquery.behavior.JQBehavior;
 import net.sf.click.jquery.examples.control.html.Div;
 import net.sf.click.jquery.examples.util.JQUILibrary;
 import org.apache.click.element.CssImport;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 
 /**
@@ -56,7 +57,7 @@ public class UIDialog extends Div {
      * @return the list of head elements
      */
     @Override
-    public List getHeadElements() {
+    public List<Element> getHeadElements() {
         if (headElements == null) {
             headElements = super.getHeadElements();
 

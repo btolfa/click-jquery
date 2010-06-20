@@ -220,7 +220,7 @@ public abstract class AbstractTablePanel extends SimplePanel {
     }
 
     /**
-     * Return the parent {@link net.sf.clickclick.control.html.table.Row} that
+     * Return the parent {@link net.sf.click.jquery.examples.control.html.table.Row} that
      * contains the given control.
      *
      * @param control the control which parent row to retrieve
@@ -235,7 +235,7 @@ public abstract class AbstractTablePanel extends SimplePanel {
     }
 
     /**
-     * Return the parent {@link net.sf.clickclick.control.html.table.Cell} that
+     * Return the parent {@link net.sf.click.jquery.examples.control.html.table.Cell} that
      * contains the given control.
      *
      * @param control the control which parent cell to retrieve

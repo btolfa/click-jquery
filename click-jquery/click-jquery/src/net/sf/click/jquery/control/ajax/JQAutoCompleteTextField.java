@@ -20,7 +20,7 @@ import org.apache.click.control.TextField;
 /**
  * Provide an AutoCompleteTextField control.
  * <p/>
- * <b>Please note:</b> JQAutoCompleteTextField uses {@link net.sf.clickclick.jquery.helper.JQHelper}
+ * <b>Please note:</b> JQAutoCompleteTextField uses {@link net.sf.click.jquery.behavior.JQAutoCompleteBehavior}
  * to provide the Ajax functionality.
  * <p/>
  * Below is an example showing how to use the auto-complete text field:
