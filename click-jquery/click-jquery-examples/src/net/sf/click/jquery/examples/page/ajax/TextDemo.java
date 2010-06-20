@@ -1,0 +1,58 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package net.sf.click.jquery.examples.page.ajax;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import net.sf.click.jquery.JQEvent;
+import net.sf.click.jquery.behavior.JQBehavior;
+import net.sf.click.jquery.examples.control.html.HtmlLabel;
+import net.sf.click.jquery.examples.page.BorderPage;
+import net.sf.click.jquery.taconite.JQTaconite;
+import org.apache.click.Context;
+import org.apache.click.Control;
+import org.apache.click.Partial;
+import org.apache.click.control.ActionLink;
+
+public class TextDemo extends BorderPage {
+
+	private static final long serialVersionUID = 1L;
+
+    private ActionLink link = new ActionLink("update", "Request server time");
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    private HtmlLabel label = new HtmlLabel("label", "Server time : " + dateFormat.format(new Date()));
+
+    public TextDemo() {
+        addControl(link);
+        link.setId("updateId");
+
+        addControl(label);
+
+        link.addBehavior(new JQBehavior() {
+
+            @Override
+            public Partial onAction(Control source, JQEvent event) {
+                JQTaconite partial = new JQTaconite();
+
+                // Using a CSS selector to replace the Label content with the latest
+                // Date
+                label.setLabel("Current time : " + dateFormat.format(new Date()));
+                partial.replace(label);
+                return partial;
+            }
+        });
+    }
+}
