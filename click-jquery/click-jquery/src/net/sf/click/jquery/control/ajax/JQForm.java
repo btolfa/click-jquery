@@ -24,7 +24,7 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Provide an Ajax enabled Form control.
  * <p/>
- * <b>Please note:</b> JQForm uses {@link net.sf.clickclick.jquery.helper.JQHelper}
+ * <b>Please note:</b> JQForm uses {@link net.sf.click.jquery.behavior.JQFormBehavior}
  * to provide the Ajax functionality.
  * <p/>
  * Below is an example showing how to use the JQForm:

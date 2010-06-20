@@ -120,7 +120,7 @@ public class JQFormBehavior extends JQBehavior {
 
     /**
      * The JQuery Form plugin (http://www.malsup.com/jquery/form/):
-     * "<tt>/clickclick/jquery/form/jquery-form.js</tt>".
+     * "<tt>/click/jquery/form/jquery.form.js</tt>".
      */
     public static String jqueryFormPath = "/click/jquery/form/jquery.form.js";
 
@@ -141,9 +141,7 @@ public class JQFormBehavior extends JQBehavior {
     // ----------------------------------------------------------- Constructors
 
     /**
-     * Create a JQFormHelper for the given target Form.
-     *
-     * @param form the helper target Form
+     * Create a JQFormBehavior for the given target Form.
      */
     public JQFormBehavior() {
         setData("X-Requested-With", "XMLHttpRequest");
