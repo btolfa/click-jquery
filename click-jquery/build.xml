@@ -228,9 +228,7 @@
        <antcall target="get-deps"/>
     </target>
 
-    <target name="build-distribution"
-            depends="clean"
-            description="build distribution ZIP file">
+    <target name="build-distribution" depends="clean" description="build distribution ZIP file">
         <fail>'build-distribution' not implemented yet!</fail>
     </target>
 
@@ -280,10 +278,10 @@
     </target>
 
     <target name="build-all" depends="clean, build, build-examples, javadoc"
-            description="build all JARs and examples"/>
+            description="build all - the JAR and the examples"/>
 
     <target name="build-sources"
-            description="build source ZIP files for use with IDEs">
+            description="build source ZIP file for use with IDEs">
         <!-- zip jquery -->
         <zip destfile="dist/click-jquery-${version}-src.zip">
             <fileset dir="jquery/src">
@@ -305,6 +303,7 @@ Main targets:
     build-sources         build source ZIP file for use with IDEs
     get-deps              download JAR dependencies
     get-deps-proxy        download JAR dependencies via proxy
+    checkstyle            run checkstyle report on Java source
     help                  display the Help message
     javadoc               create Javadoc HTML files
 
