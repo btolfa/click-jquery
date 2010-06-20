@@ -10,6 +10,7 @@
     <property name="jar.log4j" value="log4j-${log4j.version}.jar"/>
     <property name="jar.servlet" value="servlet-api-${servlet-api.version}.jar"/>
     <property name="jar.junit" value="junit-${junit.version}.jar"/>
+    <property name="jar.checkstyle" value="checkstyle-all-${checkstyle.version}.jar"/>
     <property name="javac.source" value="1.5"/>
     <property name="repository" value="http://repo1.maven.org"/>
 
@@ -94,6 +95,7 @@
                 <fileset dir="lib">
                     <exclude name="junit*"/>
                     <exclude name="servlet*"/>
+                    <exclude name="checkstyle*"/>
                 </fileset>
                 <fileset dir="dist">
                     <include name="@{name}*.jar"/>
@@ -151,7 +153,7 @@
         <pathelement location="lib/${jar.servlet}"/>
     </path>
 
-    <path id="jquery.classpath">
+    <path id="classpath.jquery">
         <!--<pathelement id="classpath"/>-->
         <pathelement location="jquery/classes"/>
         <pathelement location="dist/click-jquery-${version}.jar"/>
@@ -163,6 +165,13 @@
         <pathelement location="lib/${jar.servlet}"/>
     </path>
 
+    <path id="classpath.checkstyle">
+       <pathelement location="click-jquery/classes"/>
+       <fileset dir="lib">
+          <include name="**/*.jar"/>
+       </fileset>
+    </path>
+    
     <!-- Target Definitions -->
     <target name="clean">
         <delete dir="dist" quiet="false"/>
@@ -177,7 +186,10 @@
         <downloadMacro name="${jar.log4j}" path="log4j/log4j/${log4j.version}"/>
         <downloadMacro name="${jar.junit}" path="junit/junit/${junit.version}"/>
         <downloadMacro name="${jar.servlet}" path="javax/servlet/servlet-api/${servlet-api.version}"/>
-        
+        <get src="http://clickclick.googlecode.com/svn/trunk/checkstyle/${jar.checkstyle}"
+ 	       dest="lib/${jar.checkstyle}"
+ 	       verbose="true"
+ 	       usetimestamp="true"/>
         <!-- Check if downloading Click JARs was possible. Otherwise require manual build&download -->
         <available file="lib/${jar.click}" property="isClickJarAvail"/>
         <available file="lib/${jar.click-extras}" property="isClickExtrasJarAvail"/>
@@ -192,6 +204,23 @@
         <fail if="failed">
             Click JARs can't be downloaded automatically. This is probably due to the fact that Click-jQuery depends on an unreleased Click version, so you need to build the Click JARs yourself and copy them to this 'lib' directory. See http://click.apache.org/docs/developer-guide/building.html for more details on how to build the Click JARs.
         </fail>
+    </target>
+
+    <target name="checkstyle" description="run checkstyle report on Java source">
+       <available file="lib/${jar.checkstyle}" property="isJarAvail"/>
+       <fail message="The Checkstyle JAR is not on the classpath. To resolve this download the JAR dependencies with 'ant get-deps'.">
+          <condition>
+               <or><isfalse value="${isJarAvail}"/></or>
+            </condition>
+       </fail>
+
+       <taskdef resource="checkstyletask.properties"
+           classpath="lib/${jar.checkstyle}"/>
+
+       <checkstyle config="checkstyle-checks.xml">
+          <fileset dir="click-jquery/src/" includes="**/*.java"/>
+          <classpath refid="classpath.checkstyle"/>
+       </checkstyle>
     </target>
 
     <target name="get-deps-proxy" description="download JAR dependencies">
@@ -227,7 +256,7 @@
     <target name="build-examples" depends="build" description="build Click-jQuery examples">
         <!-- build click-jQuery examples-->
         <delete file="dist/click-jquery-examples.war"/>
-        <buildWarMacro name="click-jquery" cp="jquery.classpath"/>
+        <buildWarMacro name="click-jquery" cp="classpath.jquery"/>
     </target>
     
     <target name="javadoc" description="create Javadoc HTML files">
@@ -239,7 +268,7 @@
                     destdir="docs/click-jquery-api"
                     windowtitle="Click jQuery API"
                     doctitle="Click jQuery API"
-                    classpath="jquery.classpath"
+                    classpath="classpath.jquery"
                     overview="docs/jquery-overview.html"/>
         <copy file="docs/javadoc-stylesheet.css" overwrite="true"
             tofile="docs/click-jquery-api/stylesheet.css"/>
