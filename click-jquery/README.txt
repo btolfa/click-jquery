@@ -24,5 +24,8 @@ Building with Maven
   > cd click-jquery
 3. run
   > mvn clean install
-
-The result should be in the 'target' directory.
+    -> to build the click-jquery.jar. The result should be in the 'target' directory.
+       This JAR has the required pom.xml in it's META-INF so it can be upload to a public Maven Repo.
+4. run (optional)
+  > mvn site:site
+    -> to generate the Maven based site.
