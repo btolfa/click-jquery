@@ -25,7 +25,7 @@ Usage:
 var pollopts = {
   //A random name will be assigned if you don't assign one
   name: 'name-of-poll',
-  //minimum wait between calls in msec, defaults to 1000
+  //minimum wait between calls in msec, defaults to 5000
   min_wait: 6000,
   //maximum wait between calls in msec, defaults to 30000
   max_wait: 12000,
@@ -70,7 +70,7 @@ mypoll.setAjaxOptions(ajaxopts);
     var Poller = function(ajaxopt, pollopt) {
         this.setAjaxOptions(ajaxopt);
         this.name = (typeof(pollopt.name) != 'undefined') ? pollopt.name : randomString(4);
-        this.min_wait = (typeof(pollopt.min_wait) != 'undefined') ? pollopt.min_wait : 1000;
+        this.min_wait = (typeof(pollopt.min_wait) != 'undefined') ? pollopt.min_wait : 5000;
         this.max_wait = (typeof(pollopt.max_wait) != 'undefined') ? pollopt.max_wait : 30000;
         this.current_wait = this.min_wait;
         this.wait_multiplier = (typeof(pollopt.wait_multiplier) != 'undefined') ? pollopt.wait_multiplier: 2;
