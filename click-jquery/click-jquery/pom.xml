@@ -50,9 +50,14 @@
     <build>
         <sourceDirectory>src</sourceDirectory>
         <resources>
+<!--
             <resource>
                 <directory>src/META-INF</directory>
                 <targetPath>META-INF</targetPath>
+            </resource>
+-->
+            <resource>
+                <directory>src</directory>                
             </resource>
         </resources>
         <plugins>
