@@ -96,6 +96,7 @@
                     <exclude name="junit*"/>
                     <exclude name="servlet*"/>
                     <exclude name="checkstyle*"/>
+                    <exclude name="click-dev-tasks*"/>
                 </fileset>
                 <fileset dir="dist">
                     <include name="@{name}*.jar"/>
@@ -131,6 +132,26 @@
                   overwrite="true"
                   tofile="@{name}-examples/webapp/javadoc/stylesheet.css"/>
             <mkdir dir="dist"/>
+
+            <taskdef name="deploy"
+                     classname="org.apache.click.tools.deploy.DeployTask"
+                     classpath="lib/click-dev-tasks-1.1.jar"/>
+            <deploy todir="${dir.webapp}">
+              <fileset dir="${dir.webapp}/WEB-INF">
+                  <include name="**/classes"/>
+                  <include name="**/*.jar"/>
+              </fileset>
+<!--
+              <fileset dir="lib">
+                  <include name="${jar.click}"/>
+                  <include name="${jar.click-extras}"/>
+              </fileset>
+              <fileset dir="dist">
+                    <include name="click-jquery-${version}.jar"/>
+              </fileset>
+-->
+            </deploy>
+
             <war destfile="dist/@{name}-examples.war"
                  webxml="@{name}-examples/webapp/WEB-INF/web.xml">
                 <manifest>
@@ -174,8 +195,11 @@
     
     <!-- Target Definitions -->
     <target name="clean">
-        <delete dir="dist" quiet="false"/>
+        <delete dir="dist" quiet="false" failonerror="false"/>
         <mkdir dir="dist"/>
+        <delete failonerror="false">
+            <fileset dir="${basedir}" includes="deployed*.html"/>            
+        </delete>
     </target>
 
     <target name="get-deps" description="download JAR dependencies">
