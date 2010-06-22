@@ -1,7 +1,7 @@
             ------
             Download
             ------
-            Apache Click Team
+            Click Community
             ------
             2010-06-21
 
@@ -27,17 +27,16 @@ Download
 ----
 <repositories>
   <repository>
-    <id>apache.org</id>
-    <name>Apache.org Maven2 Repository</name>
-    <url>https://repository.apache.org/</url>
+    <id>net.sf</id>
+    <name>Maven2 Repository</name>
   </repository>
 </repositories>
 
 <dependencies>
   <dependency>
-    <groupId>org.apache.click</groupId>
+    <groupId>net.sf.click</groupId>
     <artifactId>click-jquery</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
   </dependency>
 </dependencies>
 ----
