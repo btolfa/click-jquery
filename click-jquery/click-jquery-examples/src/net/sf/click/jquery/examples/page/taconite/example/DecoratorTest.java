@@ -20,6 +20,7 @@ import org.apache.click.control.ActionLink;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQCommand;
 import net.sf.click.jquery.taconite.JQTaconite;
+import org.apache.click.Context;
 import org.apache.click.Partial;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -32,35 +33,29 @@ public class DecoratorTest extends BorderPage {
 
     final String cssSelector = "a.test";
 
-    public ActionLink button = new ActionLink("button", "Counter: 0") {
+    public ActionLink link = new ActionLink("button", "Counter: 0") {
         @Override
         public String getCssSelector() {
             return cssSelector;
         }
     };
 
-    //public ActionLink button2 = new ActionLink("button2", "Counter: 0");
-
     @Override
     public void onInit() {
-        button.setAttribute("class", "test");
-        //button2.setAttribute("class", "test");
+        link.setAttribute("class", "test");
 
-        button.addBehavior(new JQBehavior(JQEvent.CLICK) {
+        link.addBehavior(new JQBehavior(JQEvent.CLICK) {
 
             @Override
             public Partial onAction(Control source, JQEvent eventType) {
                 JQTaconite partial = new JQTaconite();
-                int count = NumberUtils.toInt(button.getParameter("count"));
-                ++count;
-                button.setParameter("count", Integer.toString(count));
-                button.setLabel("Counter: " + Integer.toString(count));
-                JQCommand command = new JQCommand(JQTaconite.REPLACE, cssSelector, button).characterData(true);
+                Context context = getContext();
+                int count = NumberUtils.toInt(context.getRequestParameter("count"));
+                count++;
+                link.setParameter("count", count);
+                link.setLabel("Counter: " + count);
+                JQCommand command = new JQCommand(JQTaconite.REPLACE, cssSelector, link).characterData(true);
 
-                // link normally contian '&' which breaks XML parsing. TODO update
-                // Click Link's to use &amp; instead
-
-                //command.add(button2);
                 partial.add(command);
                 return partial;
             }

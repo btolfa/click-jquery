@@ -44,14 +44,11 @@ public class Counter extends BorderPage {
             @Override
             public Partial onAction(Control source, JQEvent eventType) {
                 JQTaconite partial = new JQTaconite();
-                int count = NumberUtils.toInt(link.getParameter("count"));
+                int count = NumberUtils.toInt(getContext().getRequestParameter("count"));
                 ++count;
-                link.setParameter("count", Integer.toString(count));
-                link.setLabel("Counter: " + Integer.toString(count));
+                link.setParameter("count", count);
+                link.setLabel("Counter: " + count);
                 JQCommand command = new JQCommand("replace", link).characterData(true);
-
-                // link normally contian '&' which breaks XML parsing. TODO update
-                // Click Link's to use &amp; instead
 
                 partial.add(command);
                 return partial;

@@ -46,12 +46,12 @@ public class TableTest extends BorderPage {
             @Override
             public Partial onAction(Control source, JQEvent eventType) {
                 JQTaconite partial = new JQTaconite();
-                int count = NumberUtils.toInt(link.getParameter("count"));
+                int count = NumberUtils.toInt(getContext().getRequestParameter("count"));
                 ++count;
 
                 // After the link is added, we can change the href parameters.
-                link.setParameter("count", Integer.toString(count));
-                link.setLabel("Counter: " + Integer.toString(count));
+                link.setParameter("count", count);
+                link.setLabel("Counter: " + count);
                 partial.replace(link);
                 partial.remove(link2);
                 partial.after(link, link2);

@@ -311,7 +311,7 @@ public class SimplePaginator extends AbstractControl implements Paginator {
         controlLink.onProcess();
 
         if (controlLink.isClicked()) {
-            String page = controlLink.getParameter(PAGE);
+            String page = getContext().getRequestParameter(PAGE);
             if (NumberUtils.isNumber(page)) {
                 return Integer.parseInt(page);
             }
