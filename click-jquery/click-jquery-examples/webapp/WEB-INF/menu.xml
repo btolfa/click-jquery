@@ -59,10 +59,4 @@
         <menu label="Pie Chart" path="charts/pie/pie-chart.htm"/>
         <menu label="Bar Chart" path="charts/bar/bar-chart.htm"/>
     </menu>
-     <menu label="Repeater" path="#">
-        <menu label="Repeater demo" path="repeater/basic-repeater.htm"/>
-        <menu label="Repeat Field" path="repeater/repeat-field.htm"/>
-        <menu label="Repeat Form" path="repeater/repeat-form.htm"/>
-        <menu label="Repeat Table rows" path="repeater/table-repeater.htm"/>
-    </menu>
 </menu>
