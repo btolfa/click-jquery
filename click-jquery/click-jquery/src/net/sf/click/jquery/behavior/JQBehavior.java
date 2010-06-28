@@ -37,7 +37,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- *
+ * TODO: Describe how to set a custom setupScript.
  */
 public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
@@ -312,8 +312,22 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
         return setupScript;
     }
 
+    /**
+     * Set a custom setup script which override the default rendered script.
+     * <p/>
+     * The Behavior {@link #createTemplateModel(org.apache.click.Page, org.apache.click.Control, org.apache.click.Context) model}
+     * values will be passed to the JsScript if the script {@link org.apache.click.element.JsScript#setTemplate(java.lang.String) template}
+     * is set.
+     * <p/>
+     * <b>Please note:</b> specifying your own setup script implies that the
+     * Behavior {@link #templatesPath} should not be rendered and thus the
+     * {@link #templatesPath} will be set to null by this method.
+     *
+     * @param setupScript the behavior setup script to render
+     */
     public void setSetupScript(JsScript setupScript) {
-         this.setupScript = setupScript;
+        this.setupScript = setupScript;
+        setTemplatesPath(null);
     }
 
     /**
