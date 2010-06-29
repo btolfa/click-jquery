@@ -16,17 +16,12 @@ package net.sf.click.jquery.examples.page.controls.dialog;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import net.sf.click.jquery.examples.control.grid.Grid;
-import net.sf.click.jquery.examples.control.html.Text;
-import net.sf.click.jquery.examples.control.html.table.Cell;
-import net.sf.click.jquery.examples.control.html.table.HeaderCell;
-import net.sf.click.jquery.examples.control.html.table.HtmlTable;
-import net.sf.click.jquery.examples.control.html.table.Row;
 import net.sf.click.jquery.examples.control.ui.UIDialog;
 import net.sf.click.jquery.examples.page.BorderPage;
+import org.apache.click.control.ActionLink;
 import org.apache.click.control.Button;
-import org.apache.click.control.Checkbox;
-import org.apache.click.control.Label;
+import org.apache.click.control.Form;
+import org.apache.click.control.TextField;
 
 import org.apache.click.element.CssStyle;
 import org.apache.click.element.JsScript;
@@ -37,7 +32,11 @@ public class DialogDemo extends BorderPage {
 
     @Override
     public void onInit() {
-        addControl(buildTable());
+        ActionLink link = new ActionLink("login", "Click here to login");
+        link.setId("login-link");
+
+        addControl(link);
+
         addControl(buildDialog());
     }
 
@@ -46,7 +45,7 @@ public class DialogDemo extends BorderPage {
         if (headElements == null) {
             headElements = super.getHeadElements();
 
-            Map model = new HashMap();
+            Map<String, Object> model = new HashMap<String, Object>();
             JsScript jsInclude = new JsScript("controls/dialog/dialog-demo.js", model);
             headElements.add(jsInclude);
 
@@ -58,77 +57,22 @@ public class DialogDemo extends BorderPage {
 
     // -------------------------------------------------------- Private Methods
 
-    private HtmlTable buildTable() {
-        HtmlTable table = new HtmlTable("table");
-        table.addStyleClass("complex");
-        buildHeaders(table);
-        buildBody(table);
-        return table;
-    }
-
-    private void buildHeaders(HtmlTable table) {
-        Row row = new Row();
-        table.add(row);
-
-        HeaderCell header = new HeaderCell();
-        header.add(new Text("Firstname"));
-        row.add(header);
-
-        header = new HeaderCell();
-        header.add(new Text("Lastname"));
-        row.add(header);
-
-        header = new HeaderCell();
-        header.add(new Text("Age"));
-        row.add(header);
-
-        header = new HeaderCell();
-        header.add(new Text("Street"));
-        row.add(header);
-    }
-
-    private void buildBody(HtmlTable table) {
-        Row row = new Row();
-        row.addStyleClass("odd");
-        table.add(row);
-
-        Cell cell = new Cell();
-        cell.add(new Text("Steve"));
-        row.add(cell);
-
-        cell = new Cell();
-        cell.add(new Text("Jones"));
-        row.add(cell);
-
-
-        cell = new Cell();
-        cell.add(new Text("21"));
-        row.add(cell);
-
-
-        cell = new Cell();
-        cell.add(new Text("15 Short street"));
-        row.add(cell);
-    }
-
     private UIDialog buildDialog() {
         UIDialog dialog = new UIDialog("dialog");
+        Form form = new Form("form");
+        TextField loginNameField = new TextField("loginName");
+        form.add(loginNameField);
 
-        Grid grid = new Grid("grid");
-        grid.insert(new Label("Hide Firstname"), 1, 1);
-        Checkbox chk = new Checkbox("chk_firstname");
-        grid.insert(chk, 1, 2);
-        grid.insert(new Label("Hide Lastname"), 2, 1);
-        grid.insert(new Checkbox("chk_lastname"), 2, 2);
-        grid.insert(new Label("Hide Age"), 3, 1);
-        grid.insert(new Checkbox("chk_age"), 3, 2);
-        grid.insert(new Label("Hide Street"), 4, 1);
-        grid.insert(new Checkbox("chk_street"), 4, 2);
-        dialog.add(grid);
+        TextField passwordField = new TextField("password");
+        form.add(passwordField);
 
-        Button button = new Button("close");
-        button.setAttribute("onclick", "jQuery('#dialog').dialog('close');");
-        dialog.add(button);
+        Button submit = new Button("login");
+        Button close = new Button("close");
+
+        form.add(submit);
+        form.add(close);
+
+        dialog.add(form);
 
         return dialog;
     }

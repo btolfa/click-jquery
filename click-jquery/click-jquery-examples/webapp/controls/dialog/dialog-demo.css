@@ -25,3 +25,9 @@ table.complex td {
 	padding: 2px 4px 2px 4px;
 	text-align: left;
 }
+div.ui-dialog div.ui-dialog-titlebar  {
+    padding: 0.2em 0.2em 0.1em 1em;
+}
+#dialog {
+    display: none;
+}
