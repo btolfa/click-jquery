@@ -72,34 +72,34 @@ public class JQMenu extends Menu {
      * "<tt>/clickclick/jquery/superfish/css/superfish.css</tt>".
      */
     public static String menuCssImport =
-        "/clickclick/example/superfish/css/superfish.css";
+        "/click/jquery/example/superfish/css/superfish.css";
 
     /**
      * The vertical JQMenu CSS import:
      * "<tt>/clickclick/jquery/superfish/css/superfish-vertical.css</tt>".
      */
-    public static String  menuCssVerticalImport = "/clickclick/example/superfish/css/superfish-vertical.css";
+    public static String  menuCssVerticalImport = "/click/jquery/example/superfish/css/superfish-vertical.css";
 
     /**
      * The JQMenu JS library:
      * "<tt>/clickclick/jquery/superfish/js/superfish.js</tt>".
      */
     public static String menuJsImport =
-        "/clickclick/example/superfish/js/superfish.js";
+        "/click/jquery/example/superfish/js/superfish.js";
 
     /**
      * The JQMenu Hover-Intent plugin import:
      * "<tt>/clickclick/jquery/superfish/js/hoverIntent.js</tt>".
      */
     public static String hoverIntentImport =
-        "/clickclick/example/superfish/js/hoverIntent.js";
+        "/click/jquery/example/superfish/js/hoverIntent.js";
 
     /**
      * The JQMenu BGI-Frame plugin import:
      * "<tt>/clickclick/jquery/superfish/js/bgiframe.js</tt>".
      */
     public static String bgiFrameImport =
-        "/clickclick/example/superfish/js/bgiframe.js";
+        "/click/jquery/example/superfish/js/bgiframe.js";
 
     // -------------------------------------------------------------- Variables
 
@@ -110,7 +110,7 @@ public class JQMenu extends Menu {
      * The menu JavaScript template:
      * "<tt>/clickclick/jquery/template/superfish/jquery.menu.template.js</tt>".
      */
-    protected String template = "/clickclick/example/template/superfish/jquery.menu.template.js";
+    protected String template = "/click/jquery/example/template/superfish/jquery.menu.template.js";
 
     /** The menu JavaScript template model. */
     protected Map jsModel;

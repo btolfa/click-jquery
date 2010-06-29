@@ -16,19 +16,12 @@ package net.sf.click.jquery.examples.page.basic.tooltip2;
 import java.util.HashMap;
 import java.util.List;
 import net.sf.click.jquery.behavior.JQBehavior;
-import net.sf.click.jquery.examples.control.html.Div;
-import net.sf.click.jquery.examples.control.html.HtmlLabel;
-import net.sf.click.jquery.examples.control.html.Text;
-import net.sf.click.jquery.examples.control.html.list.HtmlList;
-import net.sf.click.jquery.examples.control.html.list.ListItem;
 import net.sf.click.jquery.examples.page.BorderPage;
-import org.apache.click.control.Field;
 import org.apache.click.control.Form;
 import org.apache.click.control.TextField;
 import org.apache.click.element.CssImport;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
-import org.apache.click.extras.control.HtmlForm;
 
 /**
  *
@@ -39,20 +32,19 @@ public class TooltipPage extends BorderPage {
 
     @Override
     public void onInit() {
-        Form form = new HtmlForm("form");
-        HtmlList container = new HtmlList();
-        form.add(container);
+        Form form = new Form("form");
 
         TextField field = new TextField("firstname");
-        addFieldAndTip(container, field, "Enter your firstname.");
+        form.add(field);
+        field.setTitle("Enter your firstname");
 
         field = new TextField("lastname");
         form.add(field);
-        addFieldAndTip(container, field, "Enter your lastname.");
+        field.setTitle("Enter your lastname");
 
         field = new TextField("age");
         form.add(field);
-        addFieldAndTip(container, field, "Enter your age.");
+        field.setTitle("Enter your age");
 
         addControl(form);
     }
@@ -64,22 +56,10 @@ public class TooltipPage extends BorderPage {
 
             // Import jquery.js, basic.js and basic.css
             headElements.add(new JsImport(JQBehavior.jqueryPath));
-            headElements.add(new JsImport("/clickclick/example/tooltip2/jquery.tools.min.js"));
+            headElements.add(new JsImport("/click/jquery/example/tooltip2/jquery.tools.js"));
             headElements.add(new JsScript("/basic/tooltip2/tooltip.js", new HashMap()));
             headElements.add(new CssImport("/basic/tooltip2/tooltip.css"));
        }
        return headElements;
-    }
-
-    private void addFieldAndTip(HtmlList list, Field field, String text) {
-        ListItem item = new ListItem();
-        list.add(item);
-        item.add(new HtmlLabel(field));
-        item.add(field);
-
-        Div tip = new Div();
-        tip.add(new Text(text));
-        tip.setAttribute("class", "tooltip");
-        item.add(tip);
     }
 }

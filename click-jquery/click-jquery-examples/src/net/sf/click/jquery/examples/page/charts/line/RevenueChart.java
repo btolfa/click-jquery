@@ -37,7 +37,7 @@ public class RevenueChart extends BorderPage {
             headElements = super.getHeadElements();
 
             // Import excanvas.js for Internet Explorer which doesn't support the canvas element
-            JsImport jsImport = new JsImport("/clickclick/example/jqplot/excanvas.min.js");
+            JsImport jsImport = new JsImport("/click/jquery/example/jqplot/excanvas.min.js");
             jsImport.setConditionalComment(JsImport.IF_IE);
             headElements.add(jsImport);
 
@@ -45,10 +45,10 @@ public class RevenueChart extends BorderPage {
             headElements.add(new JsImport(JQBehavior.jqueryPath));
 
             // Import JQPlot libraries
-            headElements.add(new JsImport("/clickclick/example/jqplot/jquery.jqplot.min.js"));
-            headElements.add(new JsImport("/clickclick/example/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"));
-            headElements.add(new JsImport("/clickclick/example/jqplot/plugins/jqplot.canvasTextRenderer.min.js"));
-            headElements.add(new JsImport("/clickclick/example/jqplot/plugins/jqplot.dateAxisRenderer.min.js"));
+            headElements.add(new JsImport("/click/jquery/example/jqplot/jquery.jqplot.min.js"));
+            headElements.add(new JsImport("/click/jquery/example/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"));
+            headElements.add(new JsImport("/click/jquery/example/jqplot/plugins/jqplot.canvasTextRenderer.min.js"));
+            headElements.add(new JsImport("/click/jquery/example/jqplot/plugins/jqplot.dateAxisRenderer.min.js"));
 
             // Render Chart Page JavaScript template
             Map jsModel = new HashMap();
@@ -56,7 +56,7 @@ public class RevenueChart extends BorderPage {
             jsModel.put("label", "Revenue for first quarter : " + Calendar.getInstance().get(Calendar.YEAR));
             headElements.add(new JsScript("/charts/line/revenue-chart.js", jsModel));
 
-            headElements.add(new CssImport("/clickclick/example/jqplot/jquery.jqplot.min.css"));
+            headElements.add(new CssImport("/click/jquery/example/jqplot/jquery.jqplot.min.css"));
         }
         return headElements;
     }

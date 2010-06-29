@@ -112,19 +112,19 @@ public class JSTree extends AbstractControl {
             jsImport = new JsImport(JQBehavior.jqueryClickPath);
             headElements.add(jsImport);
 
-            jsImport = new JsImport("/clickclick/example/jstree/jquery.tree.js");
+            jsImport = new JsImport("/click/jquery/example/jstree/jquery.tree.js");
             headElements.add(jsImport);
 
             if (isContextMenuEnabled()) {
-                jsImport = new JsImport("/clickclick/example/jstree/plugins/jquery.tree.contextmenu.js");
+                jsImport = new JsImport("/click/jquery/example/jstree/plugins/jquery.tree.contextmenu.js");
                 headElements.add(jsImport);
             }
 
             /*
-            jsImport = new JsImport("/clickclick/example/jstree/lib/jquery.cookie.js");
+            jsImport = new JsImport("/click/jquery/example/jstree/lib/jquery.cookie.js");
             headElements.add(jsImport);
 
-            jsImport = new JsImport("/clickclick/example/jstree/plugins/jquery.tree.cookie.js");
+            jsImport = new JsImport("/click/jquery/example/jstree/plugins/jquery.tree.cookie.js");
             headElements.add(jsImport);
             */
 
@@ -388,7 +388,7 @@ public class JSTree extends AbstractControl {
         StringBuilder sb = new StringBuilder();
         addSelectedNodeIds(getRootNode(), sb);
         model.put("selected", sb.toString());
-        JsScript jsScript = new JsScript("/clickclick/example/template/jquery.jstree.template.js", model);
+        JsScript jsScript = new JsScript("/click/jquery/example/template/jquery.jstree.template.js", model);
         return jsScript;
     }
 

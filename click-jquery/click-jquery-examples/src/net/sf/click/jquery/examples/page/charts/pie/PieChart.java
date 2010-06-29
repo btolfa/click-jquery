@@ -37,7 +37,7 @@ public class PieChart extends BorderPage {
             headElements = super.getHeadElements();
 
             // Import excanvas.js for Internet Explorer which doesn't support the canvas element
-            JsImport jsImport = new JsImport("/clickclick/example/jqplot/excanvas.min.js");
+            JsImport jsImport = new JsImport("/click/jquery/example/jqplot/excanvas.min.js");
             jsImport.setConditionalComment(JsImport.IF_IE);
             headElements.add(jsImport);
 
@@ -45,8 +45,8 @@ public class PieChart extends BorderPage {
             headElements.add(new JsImport(JQBehavior.jqueryPath));
 
             // Import JQPlot libraries
-            headElements.add(new JsImport("/clickclick/example/jqplot/jquery.jqplot.min.js"));
-            headElements.add(new JsImport("/clickclick/example/jqplot/plugins/jqplot.pieRenderer.min.js"));
+            headElements.add(new JsImport("/click/jquery/example/jqplot/jquery.jqplot.min.js"));
+            headElements.add(new JsImport("/click/jquery/example/jqplot/plugins/jqplot.pieRenderer.min.js"));
 
             // Render PieChart Page JavaScript
             Map<String, Object> jsModel = new HashMap<String, Object>();
@@ -54,7 +54,7 @@ public class PieChart extends BorderPage {
             jsModel.put("label", "Browser usage % for " + Calendar.getInstance().get(Calendar.YEAR));
             headElements.add(new JsScript("/charts/pie/pie-chart.js", jsModel));
 
-            headElements.add(new CssImport("/clickclick/example/jqplot/jquery.jqplot.min.css"));
+            headElements.add(new CssImport("/click/jquery/example/jqplot/jquery.jqplot.min.css"));
         }
         return headElements;
     }

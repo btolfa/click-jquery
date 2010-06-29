@@ -65,7 +65,7 @@ public class JqueryValidation2Demo extends BorderPage {
         msgHolder.add(textMsg);
 
         JsScript script = new JsScript();
-        script.setTemplate("/clickclick/example/template/jquery.validate2.template.js");
+        script.setTemplate("/click/jquery/example/template/jquery.validate2.template.js");
         form.getJQBehavior().setSetupScript(script);
 
         // Setup fields
@@ -156,7 +156,7 @@ public class JqueryValidation2Demo extends BorderPage {
             headElements = super.getHeadElements();
 
             // Import JQuery validate plugin
-            headElements.add(new JsImport("/clickclick/example/validate2/jquery.validate.js"));
+            headElements.add(new JsImport("/click/jquery/example/validate2/jquery.validate.js"));
         }
         return headElements;
     }

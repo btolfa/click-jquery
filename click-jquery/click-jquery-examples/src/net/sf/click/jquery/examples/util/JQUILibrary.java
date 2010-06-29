@@ -33,11 +33,11 @@ public class JQUILibrary {
      * Return the JQuery UI CSS:
      * "<tt>/clickclick/jquery/ui/smoothness/jquery-ui-1.7.1.custom.css</tt>".
      */
-    public static String jqueryUICssPath = "/clickclick/example/ui/" + style + "/jquery-ui-1.7.1.custom.css";
+    public static String jqueryUICssPath = "/click/jquery/example/ui/" + style + "/jquery-ui-1.7.1.custom.css";
 
     /**
      * Return the JQuery UI JavaScript:
      * "<tt>/clickclick/jquery/ui/jquery-ui-1.7.1.custom.min.js</tt>".
      */
-    public static String jqueryUIJsPath = "/clickclick/example/ui/jquery-ui-1.7.1.custom.min.js";
+    public static String jqueryUIJsPath = "/click/jquery/example/ui/jquery-ui-1.7.1.custom.min.js";
 }

@@ -70,7 +70,7 @@ public class JqueryValidation1Demo extends BorderPage {
         msgHolder.add(textMsg);
 
         JsScript script = new JsScript();
-        script.setTemplate("/clickclick/example/template/jquery.validate1.template.js");
+        script.setTemplate("/click/jquery/example/template/jquery.validate1.template.js");
         form.getJQBehavior().setSetupScript(script);
 
         // Setup fields
@@ -171,8 +171,8 @@ public class JqueryValidation1Demo extends BorderPage {
             headElements = super.getHeadElements();
 
             // Import JQuery inline validate plugin
-            headElements.add(new JsImport("/clickclick/example/validate1/jquery.validationEngine.js"));
-            headElements.add(new CssImport("/clickclick/example/validate1/jquery.validationEngine.css"));
+            headElements.add(new JsImport("/click/jquery/example/validate1/jquery.validationEngine.js"));
+            headElements.add(new CssImport("/click/jquery/example/validate1/jquery.validationEngine.css"));
             headElements.add(new CssStyle("input[type=text], textarea, select {width: 200px;} select[name=cardType] {width: 100px;}"));
         }
         return headElements;

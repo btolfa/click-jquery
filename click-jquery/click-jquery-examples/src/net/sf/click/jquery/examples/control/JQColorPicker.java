@@ -52,21 +52,21 @@ public class JQColorPicker extends TextField {
      * "<tt>/clickclick/jquery/colorpicker/js/colorpicker.js</tt>".
      */
     public static String colorPickerJsImport =
-        "/clickclick/example/colorpicker/js/colorpicker.js";
+        "/click/jquery/example/colorpicker/js/colorpicker.js";
 
     /**
      * The ColorPicker default CSS:
      * "<tt>/clickclick/jquery/colorpicker/css/colorpicker.css</tt>".
      */
     public static String colorPickerCssImport =
-        "/clickclick/example/colorpicker/css/colorpicker.css";
+        "/click/jquery/example/colorpicker/css/colorpicker.css";
 
     /**
      * The ColorPicker CSS Template:
      * "<tt>/clickclick/jquery/colorpicker/jquery.colorpicker.style.css</tt>".
      */
     public static String colorPickerStyleImport =
-        "/clickclick/example/colorpicker/jquery.colorpicker.style.css";
+        "/click/jquery/example/colorpicker/jquery.colorpicker.style.css";
 
     // -------------------------------------------------------------- Variables
 
@@ -77,7 +77,7 @@ public class JQColorPicker extends TextField {
      * The ColorPicker JavaScript template:
      * "<tt>/clickclick/jquery/template/colorpicker/jquery.colorpicker.template.js</tt>".
      */
-    protected String template = "/clickclick/example/template/colorpicker/jquery.colorpicker.template.js";
+    protected String template = "/click/jquery/example/template/colorpicker/jquery.colorpicker.template.js";
 
     /** The color picker JavaScript template model. */
     protected Map jsModel;
