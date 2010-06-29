@@ -70,17 +70,6 @@ public class Div extends AbstractContainer {
         }
     }
 
-    /**
-     * Create a div element with the given name and id.
-     *
-     * @param name the div name
-     * @param id the div id
-     */
-    public Div(String name, String id) {
-        this(name);
-        setAttribute("id", id);
-    }
-
     // ------------------------------------------------------ Public Properties
 
     /**
@@ -93,6 +82,17 @@ public class Div extends AbstractContainer {
     @Override
     public final String getTag() {
         return "div";
+    }
+
+    /**
+     * Set the HTML id attribute for the control with the given value.
+     *
+     * @param id the element HTML id attribute value to set
+     * @return this control instance
+     */
+    public Div id(String id) {
+        setId(id);
+        return this;
     }
 
     /**

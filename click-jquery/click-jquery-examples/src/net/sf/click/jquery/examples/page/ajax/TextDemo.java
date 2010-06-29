@@ -17,10 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import net.sf.click.jquery.JQEvent;
 import net.sf.click.jquery.behavior.JQBehavior;
-import net.sf.click.jquery.examples.control.html.HtmlLabel;
+import net.sf.click.jquery.examples.control.html.Span;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
-import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Partial;
 import org.apache.click.control.ActionLink;
@@ -33,12 +32,13 @@ public class TextDemo extends BorderPage {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    private HtmlLabel label = new HtmlLabel("label", "Server time : " + dateFormat.format(new Date()));
+    private Span label = new Span("label");
 
     public TextDemo() {
         addControl(link);
         link.setId("updateId");
 
+        label.setText("Server time : " + dateFormat.format(new Date()));
         addControl(label);
 
         link.addBehavior(new JQBehavior() {
@@ -49,7 +49,7 @@ public class TextDemo extends BorderPage {
 
                 // Using a CSS selector to replace the Label content with the latest
                 // Date
-                label.setLabel("Current time : " + dateFormat.format(new Date()));
+                label.setText("Current time : " + dateFormat.format(new Date()));
                 partial.replace(label);
                 return partial;
             }
