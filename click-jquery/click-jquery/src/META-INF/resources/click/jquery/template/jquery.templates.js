@@ -47,7 +47,7 @@
     var callback=ajaxTemplateCallback;
     if(options.event) {
       if(options.delay) {
-        callback=Click.jq,debounce(ajaxTemplateCallback, options.delay);
+        callback=Click.jq.debounce(ajaxTemplateCallback, options.delay);
       }
       $(options.cssSelector).die(options.event).live(options.event, options, callback);
     } else {
