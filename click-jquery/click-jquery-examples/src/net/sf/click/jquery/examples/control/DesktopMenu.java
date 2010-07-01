@@ -35,7 +35,7 @@ public class DesktopMenu extends Menu {
 
     // -------------------------------------------------------- Variables
 
-    protected String cssImport = "/click/jquery/example/desktopmenu/desktopmenu.css";
+    protected String cssImport = "/click-jquery/example/desktopmenu/desktopmenu.css";
 
     // -------------------------------------------------------- Constructor
 
@@ -86,7 +86,7 @@ public class DesktopMenu extends Menu {
             JsImport jsImport = new JsImport(JQBehavior.jqueryPath);
             headElements.add(jsImport);
 
-            jsImport = new JsImport("/click/jquery/example/desktopmenu/jquery.menu.js");
+            jsImport = new JsImport("/click-jquery/example/desktopmenu/jquery.menu.js");
             headElements.add(jsImport);
 
             Context context = getContext();
@@ -130,7 +130,7 @@ public class DesktopMenu extends Menu {
         Map model = new HashMap();
         model.put("context", context.getRequest().getContextPath());
         model.put("selector", ".desktopmenu");
-        JsScript jsScript = new JsScript("/click/jquery/example/template/desktopmenu.template.js", model);
+        JsScript jsScript = new JsScript("/click-jquery/example/template/desktopmenu.template.js", model);
         return jsScript;
     }
 

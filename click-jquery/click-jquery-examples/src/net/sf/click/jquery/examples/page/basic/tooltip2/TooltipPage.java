@@ -56,7 +56,7 @@ public class TooltipPage extends BorderPage {
 
             // Import jquery.js, basic.js and basic.css
             headElements.add(new JsImport(JQBehavior.jqueryPath));
-            headElements.add(new JsImport("/click/jquery/example/tooltip2/jquery.tools.js"));
+            headElements.add(new JsImport("/click-jquery/example/tooltip2/jquery.tools.js"));
             headElements.add(new JsScript("/basic/tooltip2/tooltip.js", new HashMap()));
             headElements.add(new CssImport("/basic/tooltip2/tooltip.css"));
        }

@@ -36,7 +36,7 @@ public class LineChart extends BorderPage {
             headElements = super.getHeadElements();
 
             // Import excanvas.js for Internet Explorer which doesn't support the canvas element
-            JsImport jsImport = new JsImport("/click/jquery/example/jqplot/excanvas.min.js");
+            JsImport jsImport = new JsImport("/click-jquery/example/jqplot/excanvas.min.js");
             jsImport.setConditionalComment(JsImport.IF_IE);
             headElements.add(jsImport);
 
@@ -44,7 +44,7 @@ public class LineChart extends BorderPage {
             headElements.add(new JsImport(JQBehavior.jqueryPath));
 
             // Import JQPlot libraries
-            headElements.add(new JsImport("/click/jquery/example/jqplot/jquery.jqplot.min.js"));
+            headElements.add(new JsImport("/click-jquery/example/jqplot/jquery.jqplot.min.js"));
 
             // Render InteractiveChart JavaScript template
             Map jsModel = new HashMap();
@@ -52,7 +52,7 @@ public class LineChart extends BorderPage {
             jsModel.put("label", "Employee count");
             headElements.add(new JsScript("/charts/line/line-chart.js", jsModel));
 
-            headElements.add(new CssImport("/click/jquery/example/jqplot/jquery.jqplot.min.css"));
+            headElements.add(new CssImport("/click-jquery/example/jqplot/jquery.jqplot.min.css"));
         }
         return headElements;
     }

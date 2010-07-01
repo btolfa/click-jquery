@@ -69,37 +69,37 @@ public class JQMenu extends Menu {
 
     /**
      * The JQMenu CSS import:
-     * "<tt>/click/jquery/example/superfish/css/superfish.css</tt>".
+     * "<tt>/click-jquery/example/superfish/css/superfish.css</tt>".
      */
     public static String menuCssImport =
-        "/click/jquery/example/superfish/css/superfish.css";
+        "/click-jquery/example/superfish/css/superfish.css";
 
     /**
      * The vertical JQMenu CSS import:
-     * "<tt>/click/jquery/example/superfish/css/superfish-vertical.css</tt>".
+     * "<tt>/click-jquery/example/superfish/css/superfish-vertical.css</tt>".
      */
-    public static String  menuCssVerticalImport = "/click/jquery/example/superfish/css/superfish-vertical.css";
+    public static String  menuCssVerticalImport = "/click-jquery/example/superfish/css/superfish-vertical.css";
 
     /**
      * The JQMenu JS library:
-     * "<tt>/click/jquery/example/superfish/js/superfish.js</tt>".
+     * "<tt>/click-jquery/example/superfish/js/superfish.js</tt>".
      */
     public static String menuJsImport =
-        "/click/jquery/example/superfish/js/superfish.js";
+        "/click-jquery/example/superfish/js/superfish.js";
 
     /**
      * The JQMenu Hover-Intent plugin import:
-     * "<tt>/click/jquery/example/superfish/js/hoverIntent.js</tt>".
+     * "<tt>/click-jquery/example/superfish/js/hoverIntent.js</tt>".
      */
     public static String hoverIntentImport =
-        "/click/jquery/example/superfish/js/hoverIntent.js";
+        "/click-jquery/example/superfish/js/hoverIntent.js";
 
     /**
      * The JQMenu BGI-Frame plugin import:
-     * "<tt>/click/jquery/example/superfish/js/bgiframe.js</tt>".
+     * "<tt>/click-jquery/example/superfish/js/bgiframe.js</tt>".
      */
     public static String bgiFrameImport =
-        "/click/jquery/example/superfish/js/bgiframe.js";
+        "/click-jquery/example/superfish/js/bgiframe.js";
 
     // -------------------------------------------------------------- Variables
 
@@ -108,9 +108,9 @@ public class JQMenu extends Menu {
 
     /**
      * The menu JavaScript template:
-     * "<tt>/click/jquery/example/template/superfish/jquery.menu.template.js</tt>".
+     * "<tt>/click-jquery/example/template/superfish/jquery.menu.template.js</tt>".
      */
-    protected String template = "/click/jquery/example/template/superfish/jquery.menu.template.js";
+    protected String template = "/click-jquery/example/template/superfish/jquery.menu.template.js";
 
     /** The menu JavaScript template model. */
     protected Map jsModel;
