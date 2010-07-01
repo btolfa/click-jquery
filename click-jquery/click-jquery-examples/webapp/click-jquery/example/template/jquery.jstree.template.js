@@ -25,14 +25,14 @@ jQuery(document).ready(function(){
                     creatable : true,
                     valid_children : [ "none" ],
                     icon : {
-                        image : "$context/click/jquery/example/jstree/images/file.png"
+                        image : "$context/click-jquery/example/jstree/images/file.png"
                     }
            },
            "drive" : {
                     creatable : true,
                     valid_children : [ "driver" ],
                     icon : {
-                        image : "$context/click/jquery/example/jstree/images/drive.png"
+                        image : "$context/click-jquery/example/jstree/images/drive.png"
                     }
            }
         },
