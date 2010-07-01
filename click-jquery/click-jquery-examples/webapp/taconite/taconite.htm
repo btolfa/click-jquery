@@ -10,7 +10,7 @@ $link
             // Check if jQuery is defined before using it
             if (typeof jQuery != 'undefined') {
                 // If jQuery is defined dynamically load blockUI
-                jQuery.getScript( '${context}/clickclick/jquery/blockui/jquery.blockUI.js', function() {
+                jQuery.getScript( '${context}/click/jquery/blockui/jquery.blockUI.2.31.js', function() {
                     // Setup blockUI to popup before all ajax calls
                     jQuery().ajaxStart(jQuery.blockUI).ajaxStop(jQuery.unblockUI);
                 });
