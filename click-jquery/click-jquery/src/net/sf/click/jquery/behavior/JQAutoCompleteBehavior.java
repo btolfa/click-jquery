@@ -165,25 +165,19 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
 
     /**
      * The JQuery Autocomplete plugin JavaScript import (http://bassistance.de/jquery-plugins/jquery-plugin-autocomplete/):
-     * "<tt>/clickclick/jquery/autocomplete/jquery.autocomplete.js</tt>".
+     * "<tt>/click-jquery/autocomplete/jquery.autocomplete.js</tt>".
      */
     public static String jqueryAutoCompleteJsPath
-        = "/click/jquery/autocomplete/jquery.autocomplete.js";
+        = "/click-jquery/autocomplete/jquery.autocomplete.js";
 
     /**
      * The JQuery Autocomplete plugin CSS import (http://bassistance.de/jquery-plugins/jquery-plugin-autocomplete/):
-     * "<tt>/clickclick/jquery/autocomplete/jquery.autocomplete.css</tt>".
+     * "<tt>/click-jquery/autocomplete/jquery.autocomplete.css</tt>".
      */
     public static String jqueryAutocompleteCssPath
-        = "/click/jquery/autocomplete/jquery.autocomplete.css";
+        = "/click-jquery/autocomplete/jquery.autocomplete.css";
 
     // -------------------------------------------------------------- Variables
-
-    /**
-     * The path of the AutoComplete template to render:
-     * "<tt>/clickclick/jquery/template/jquery.autocomplete.template.js</tt>".
-     */
-    //protected String template = "/click/jquery/template/jquery.autocomplete.template.js";
 
     /**
      * The Autocomplete options. Autocomplete options are outlined
@@ -210,7 +204,6 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
     public JQAutoCompleteBehavior() {
         super(JQEvent.KEYUP);
         setShowBusyIndicator(false);
-        //setTemplates(template);
     }
 
     // Behavior Methods -------------------------------------------------------

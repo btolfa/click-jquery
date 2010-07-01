@@ -42,26 +42,26 @@ public abstract class AbstractJQBehavior extends AjaxBehavior implements Seriali
 
     /**
      * The JQuery library (http://jquery.com/):
-     * "<tt>/click/jquery/jquery-1.4.2.js</tt>".
+     * "<tt>/click-jquery/jquery-1.4.2.js</tt>".
      */
-    public static String jqueryPath = "/click/jquery/jquery-1.4.2.js";
+    public static String jqueryPath = "/click-jquery/jquery-1.4.2.js";
 
     /**
      * The JQuery Click library:
-     * "<tt>/click/jquery/jquery.click.js</tt>".
+     * "<tt>/click-jquery/jquery.click.js</tt>".
      * <p/>
      * This library includes JQuery Taconite plugin
      * (http://www.malsup.com/jquery/taconite/), JQuery LiveQuery plugin
      * (http://docs.jquery.com/Plugins/livequery)
      * and utility JavaScript functions.
      */
-    public static String jqueryClickPath = "/click/jquery/jquery.click.js";
+    public static String jqueryClickPath = "/click-jquery/jquery.click.js";
 
     /**
      * The JQuery blockUI plugin (http://malsup.com/jquery/block/):
-     * "<tt>/click/jquery/blockui/jquery.blockUI.2.31.js</tt>".
+     * "<tt>/click-jquery/blockui/jquery.blockUI.2.31.js</tt>".
      */
-    public static String blockUIPath = "/click/jquery/blockui/jquery.blockUI.2.31.js";
+    public static String blockUIPath = "/click-jquery/blockui/jquery.blockUI.2.31.js";
 
     // Variables --------------------------------------------------------------
 

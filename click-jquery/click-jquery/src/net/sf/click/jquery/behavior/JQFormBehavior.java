@@ -120,17 +120,11 @@ public class JQFormBehavior extends JQBehavior {
 
     /**
      * The JQuery Form plugin (http://www.malsup.com/jquery/form/):
-     * "<tt>/click/jquery/form/jquery.form.js</tt>".
+     * "<tt>/click-jquery/form/jquery.form.js</tt>".
      */
-    public static String jqueryFormPath = "/click/jquery/form/jquery.form.js";
+    public static String jqueryFormPath = "/click-jquery/form/jquery.form.js";
 
     // -------------------------------------------------------------- Variables
-
-    /**
-     * The path of the template to render:
-     * "<tt>/clickclick/jquery/template/jquery.form.template.js</tt>".
-     */
-    //protected String template = "/click/jquery/template/jquery.form.template.js";
 
     protected boolean resetForm;
 

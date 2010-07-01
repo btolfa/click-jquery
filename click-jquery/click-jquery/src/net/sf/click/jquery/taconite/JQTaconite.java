@@ -132,7 +132,7 @@ import org.apache.commons.lang.StringUtils;
  *
  * <h3>JavaScript and CSS resource handling</h3>
  *
- * JQTaconite uses the JavaScript, "<tt>/clickclick/jquery/jquery.click.js</tt>",
+ * JQTaconite uses the JavaScript, "<tt>/click-jquery/jquery.click.js</tt>",
  * to enable smooth integration with Apache Click.
  * <p/>
  * The "<tt>jquery.click.js</tt>" library includes the following JQuery plugins:

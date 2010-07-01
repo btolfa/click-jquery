@@ -47,18 +47,18 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     /**
      * The path of the default jQuery templates:
-     * "<tt>/clickclick/jquery/template/jquery.templates.js</tt>".
+     * "<tt>/click-jquery/template/jquery.templates.js</tt>".
      * <p/>
      * These templates can be customized to suite your needs. You can even
      * replace these templates with your own version.
      */
-    public static String defaultTemplatesPath = "/click/jquery/template/jquery.templates.js";
+    public static String defaultTemplatesPath = "/click-jquery/template/jquery.templates.js";
 
     /**
      * The path to the {@value #defaultTemplatesPath} language packs, default
-     * value is <tt>"/click/jquery/template/lang/"</tt>.
+     * value is <tt>"/click-jquery/template/lang/"</tt>.
      */
-    public static String defaultTemplatesLangFolder = "/click/jquery/template/lang/";
+    public static String defaultTemplatesLangFolder = "/click-jquery/template/lang/";
 
     // Variables --------------------------------------------------------------
 
@@ -176,9 +176,9 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      * packs will be looked up from this folder based on the request's
      * {@link org.apache.click.Context#getLocale() Context locale}.
      * <p/>
-     * For example if templatesLangPath is <tt>"/click/jquery/templates/"</tt>
+     * For example if templatesLangPath is <tt>"/click-jquery/templates/"</tt>
      * and the Context locale is German (de), the behavior language pack will
-     * be loaded from <tt>"/click/jquery/templates/de.js"</tt>.
+     * be loaded from <tt>"/click-jquery/templates/de.js"</tt>.
      *
      * @param templatesLangPath the path of the template language pack to render
      */

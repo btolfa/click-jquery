@@ -185,16 +185,7 @@ import org.apache.click.util.HtmlStringBuffer;
  */
 public class JQPollBehavior extends JQBehavior {
 
-      /**
-     * The JQuery Click library:
-     * "<tt>/clickclick/jquery/jquery.click.js</tt>".
-     * <p/>
-     * This library includes JQuery Taconite plugin
-     * (http://www.malsup.com/jquery/taconite/), JQuery LiveQuery plugin
-     * (http://docs.jquery.com/Plugins/livequery)
-     * and utility JavaScript functions.
-     */
-    public static String jqueryPollPath = "/click/jquery/poll/jquery.poll.js";
+    public static String jqueryPollPath = "/click-jquery/poll/jquery.poll.js";
 
     private static final int DEFAULT_WAIT_TIME = 5000;
 
