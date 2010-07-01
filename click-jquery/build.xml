@@ -296,7 +296,7 @@
             tofile="docs/click-jquery-api/stylesheet.css"/>
 
         <copy todir="docs/click-jquery-api/js/template" overwrite="true">
-            <fileset dir="click-jquery/src/META-INF/resources/click/jquery/template"/>
+            <fileset dir="click-jquery/src/META-INF/resources/click-jquery/template"/>
             <globmapper from="*.js" to="*.js.txt"/>
         </copy>
     </target>
