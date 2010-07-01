@@ -74,9 +74,9 @@ public class UISliderField extends Field {
 
     /**
      * Return the JQDialog resources:
-     * {@link net.sf.clickclick.jquery.helper.JQHelper#jqueryImport},
-     * {@link net.sf.clickclick.jquery.util.UIUtils#jqueryUICssImport},
-     * {@link net.sf.clickclick.jquery.util.UIUtils#jqueryUIJsImport}.
+     * {@link net.sf.click.jquery.behavior.AbstractJQBehavior#jqueryPath},
+     * {@link net.sf.click.jquery.examples.util.JQUILibrary#jqueryUICssPath},
+     * {@link net.sf.click.jquery.examples.util.JQUILibrary#jqueryUIJsPath}.
      *
      * @return the list of head elements
      */

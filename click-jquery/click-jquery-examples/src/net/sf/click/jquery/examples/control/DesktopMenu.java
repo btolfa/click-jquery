@@ -94,7 +94,6 @@ public class DesktopMenu extends Menu {
             headElements.add(jsScript);
 
             jsImport = new JsImport("/click/menu-fix-ie6.js");
-            //jsImport = new JsImport("/clickclick/core/menu/menu-fix-ie6.js");
             jsImport.setConditionalComment(JsImport.IF_LESS_THAN_IE7);
             headElements.add(jsImport);
         }

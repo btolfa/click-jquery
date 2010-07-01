@@ -69,34 +69,34 @@ public class JQMenu extends Menu {
 
     /**
      * The JQMenu CSS import:
-     * "<tt>/clickclick/jquery/superfish/css/superfish.css</tt>".
+     * "<tt>/click/jquery/example/superfish/css/superfish.css</tt>".
      */
     public static String menuCssImport =
         "/click/jquery/example/superfish/css/superfish.css";
 
     /**
      * The vertical JQMenu CSS import:
-     * "<tt>/clickclick/jquery/superfish/css/superfish-vertical.css</tt>".
+     * "<tt>/click/jquery/example/superfish/css/superfish-vertical.css</tt>".
      */
     public static String  menuCssVerticalImport = "/click/jquery/example/superfish/css/superfish-vertical.css";
 
     /**
      * The JQMenu JS library:
-     * "<tt>/clickclick/jquery/superfish/js/superfish.js</tt>".
+     * "<tt>/click/jquery/example/superfish/js/superfish.js</tt>".
      */
     public static String menuJsImport =
         "/click/jquery/example/superfish/js/superfish.js";
 
     /**
      * The JQMenu Hover-Intent plugin import:
-     * "<tt>/clickclick/jquery/superfish/js/hoverIntent.js</tt>".
+     * "<tt>/click/jquery/example/superfish/js/hoverIntent.js</tt>".
      */
     public static String hoverIntentImport =
         "/click/jquery/example/superfish/js/hoverIntent.js";
 
     /**
      * The JQMenu BGI-Frame plugin import:
-     * "<tt>/clickclick/jquery/superfish/js/bgiframe.js</tt>".
+     * "<tt>/click/jquery/example/superfish/js/bgiframe.js</tt>".
      */
     public static String bgiFrameImport =
         "/click/jquery/example/superfish/js/bgiframe.js";
@@ -108,7 +108,7 @@ public class JQMenu extends Menu {
 
     /**
      * The menu JavaScript template:
-     * "<tt>/clickclick/jquery/template/superfish/jquery.menu.template.js</tt>".
+     * "<tt>/click/jquery/example/template/superfish/jquery.menu.template.js</tt>".
      */
     protected String template = "/click/jquery/example/template/superfish/jquery.menu.template.js";
 
@@ -226,7 +226,7 @@ public class JQMenu extends Menu {
     /**
      * Return the JQColorPicker resources: {@link #menuCssImport},
      * {@link #menuCssVerticalImport},
-     * {@link net.sf.clickclick.jquery.helper.JQHelper#jqueryImport},
+     * {@link net.sf.click.jquery.behavior.AbstractJQBehavior#jqueryPath},
      * {@link #hoverIntentImport}, {@link #bgiFrameImport},
      * {@link #menuJsImport}.
      *
@@ -276,7 +276,7 @@ public class JQMenu extends Menu {
     // ------------------------------------------------------ Protected Methods
 
     /**
-     * @see net.sf.clickclick.control.menu.FlexiMenu#renderMenuClassAttribute(org.apache.click.util.HtmlStringBuffer, org.apache.click.extras.control.Menu, int)
+     * @see org.apache.click.extras.control.Menu#renderMenuListAttributes(org.apache.click.util.HtmlStringBuffer, org.apache.click.extras.control.Menu, int)
      *
      * @param buffer the buffer to render the class attribute to
      * @param menu the menu to render

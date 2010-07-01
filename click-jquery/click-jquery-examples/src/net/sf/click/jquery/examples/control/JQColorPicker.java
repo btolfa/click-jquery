@@ -49,21 +49,21 @@ public class JQColorPicker extends TextField {
 
     /**
      * The ColorPicker JS library:
-     * "<tt>/clickclick/jquery/colorpicker/js/colorpicker.js</tt>".
+     * "<tt>/click/jquery/example/colorpicker/js/colorpicker.js</tt>".
      */
     public static String colorPickerJsImport =
         "/click/jquery/example/colorpicker/js/colorpicker.js";
 
     /**
      * The ColorPicker default CSS:
-     * "<tt>/clickclick/jquery/colorpicker/css/colorpicker.css</tt>".
+     * "<tt>/click/jquery/example/colorpicker/css/colorpicker.css</tt>".
      */
     public static String colorPickerCssImport =
         "/click/jquery/example/colorpicker/css/colorpicker.css";
 
     /**
      * The ColorPicker CSS Template:
-     * "<tt>/clickclick/jquery/colorpicker/jquery.colorpicker.style.css</tt>".
+     * "<tt>/click/jquery/example/colorpicker/jquery.colorpicker.style.css</tt>".
      */
     public static String colorPickerStyleImport =
         "/click/jquery/example/colorpicker/jquery.colorpicker.style.css";
@@ -75,7 +75,7 @@ public class JQColorPicker extends TextField {
 
     /**
      * The ColorPicker JavaScript template:
-     * "<tt>/clickclick/jquery/template/colorpicker/jquery.colorpicker.template.js</tt>".
+     * "<tt>/click/jquery/example/template/colorpicker/jquery.colorpicker.template.js</tt>".
      */
     protected String template = "/click/jquery/example/template/colorpicker/jquery.colorpicker.template.js";
 
@@ -168,7 +168,7 @@ public class JQColorPicker extends TextField {
 
     /**
      * Return the JQColorPicker resources: {@link #colorPickerCssImport},
-     * {@link net.sf.clickclick.jquery.helper.JQHelper#jqueryImport},
+     * {@link net.sf.click.jquery.behavior.AbstractJQBehavior#jqueryPath},
      * {@link #colorPickerJsImport},
      * {@link #template} and
      * {@link #colorPickerStyleImport}.
