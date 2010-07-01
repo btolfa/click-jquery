@@ -149,7 +149,7 @@ import org.apache.click.util.HtmlStringBuffer;
  * <li>Click.refresh.update(refreshId, interval); - updates to the new interval</li>
  * </ul>
  *
- * In order to invoke these methods use the {@link net.sf.clickclick.jquery.Taconite#eval(java.lang.String)}
+ * In order to invoke these methods use the {@link net.sf.click.jquery.taconite.JQTaconite#eval(java.lang.String)}
  * command to execute raw JavaScript in the browser. For example:
  *
  * <pre class="prettyprint">

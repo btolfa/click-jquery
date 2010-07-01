@@ -1540,9 +1540,8 @@ public class JQTaconite extends Partial {
     /**
      * Return the CSS selector for the given control.
      * <p/>
-     * This method delegates to
-     * {@link net.sf.clickclick.util.AjaxUtils#getCssSelector(org.apache.click.Control)}
-     * in order to retrieve the selector for the given control.
+     * This method delegates to {@link org.apache.click.Control#getCssSelector()}
+     * to retrieve the CSS selector for the given control.
      *
      * @param control the control to lookup a CSS selector for
      * @return the CSS selector for the given control

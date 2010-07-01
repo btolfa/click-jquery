@@ -119,7 +119,7 @@ public class JQForm extends Form {
     // --------------------------------------------------------- Public Methods
 
     /**
-     * Register the link with the {@link net.sf.clickclick.AjaxControlRegistry}.
+     * Add the {@link #getJQBehavior()} to the control.
      */
     @Override
     public void onInit() {

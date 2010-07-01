@@ -112,8 +112,6 @@
             <delete quiet="true" failonerror="false">
                 <fileset dir="@{name}-examples/webapp/javadoc" includes="**/*"/>
             </delete>
-            <!--<delete dir="@{name}-examples/webapp/click"/>-->
-            <!--<delete dir="@{name}-examples/webapp/clickclick"/>-->
             <javadoc sourcepath="@{name}-examples/src"
                      destdir="@{name}-examples/webapp/javadoc"
                      author="true"
@@ -315,7 +313,7 @@
         </zip>
     </target>
     <target name="help" description="display the Help message">
-      <echo>ClickClick ${version} extensions
+      <echo>Click jQuery ${version} extensions
 ===================================
 
 Main targets:
