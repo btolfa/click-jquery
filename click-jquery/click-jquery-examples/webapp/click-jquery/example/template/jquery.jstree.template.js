@@ -242,7 +242,7 @@ jQuery(document).ready(function(){
         },
 
         plugins: {
-            #if(${tree.isContextMenuEnabled()})
+            #if(${jstree.isContextMenuEnabled()})
               contextmenu: {
                 items : {
                     create : {
@@ -254,7 +254,6 @@ jQuery(document).ready(function(){
                 }
             }
             #end
-            //,cookie : { prefix : "jstree_" }
         }
     });
 
