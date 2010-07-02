@@ -30,6 +30,7 @@ input, label, td {
 	position: absolute;
 	right: 5px;
 	bottom: 3px;
+  white-space: nowrap;
 }
 
 #container { 
