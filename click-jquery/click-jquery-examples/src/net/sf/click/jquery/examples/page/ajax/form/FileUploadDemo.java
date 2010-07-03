@@ -60,7 +60,8 @@ public class FileUploadDemo extends BorderPage {
             public Partial onAction(Control source) {
                 System.out.println("Save Clicked - Ajax");
                 JQTaconite partial = new JQTaconite();
-                //partial.replace(ajaxForm);
+
+                // Might want to return a success message
                 return partial;
             }
         });
@@ -88,8 +89,6 @@ public class FileUploadDemo extends BorderPage {
             System.out.println("Upload Clicked - Ajax");
             JQTaconite partial = new JQTaconite();
 
-            //partial.replace(ajaxForm);
-
             if (ajaxForm.isValid()) {
 
                 if (ajaxFileField.getFileItem() == null) {
@@ -97,9 +96,6 @@ public class FileUploadDemo extends BorderPage {
                 }
 
                 FileItem fileItem = ajaxFileField.getFileItem();
-
-                // Empty form error div
-                //partial.empty("#" + ajaxForm.getId() + "-errorsDiv");
 
                 // Update FileItem data
                 partial.replaceContent("#ajax-fileitem-name", fileItem.getName());
