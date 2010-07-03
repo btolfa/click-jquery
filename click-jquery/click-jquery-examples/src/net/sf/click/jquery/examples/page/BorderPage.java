@@ -78,10 +78,13 @@ public class BorderPage extends Page {
                 buffer.appendAttribute("href", contextPath + "/source-viewer.htm?filename=WEB-INF/classes/" + srcPath);
             }
         };
-        pageJavaMenu.setImageSrc("/assets/images/lightbulb1.png");
-        pageJavaMenu.setTitle("Page Java source");
-        pageJavaMenu.setTarget("_blank");
-        rootMenu.add(pageJavaMenu);
+
+        if (!rootMenu.contains(pageJavaMenu)) {
+            pageJavaMenu.setImageSrc("/assets/images/lightbulb1.png");
+            pageJavaMenu.setTitle("Page Java source");
+            pageJavaMenu.setTarget("_blank");
+            rootMenu.add(pageJavaMenu);
+        }
 
         // Add menu for Html Source code
         DesktopMenu pageHtmlMenu = new DesktopMenu("pageHtml", " Page HTML") {
@@ -91,9 +94,12 @@ public class BorderPage extends Page {
                 buffer.appendAttribute("href", contextPath + "/source-viewer.htm?filename=" + BorderPage.this.getPath());
             }
         };
-        rootMenu.add(pageHtmlMenu);
-        pageHtmlMenu.setTitle("Page Content source");
-        pageHtmlMenu.setTarget("_blank");
-        pageHtmlMenu.setImageSrc("/assets/images/lightbulb2.png");
+
+        if (!rootMenu.contains(pageHtmlMenu)) {
+            pageHtmlMenu.setTitle("Page Content source");
+            pageHtmlMenu.setTarget("_blank");
+            pageHtmlMenu.setImageSrc("/assets/images/lightbulb2.png");
+            rootMenu.add(pageHtmlMenu);
+        }
     }
 }
