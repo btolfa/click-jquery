@@ -13,14 +13,16 @@
  */
 package net.sf.click.jquery.examples.page.charts.dashboard;
 
+import java.util.HashMap;
+import java.util.Map;
 import net.sf.click.jquery.JQEvent;
 import net.sf.click.jquery.behavior.JQBehavior;
 import net.sf.click.jquery.examples.control.Window;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
+import net.sf.click.jquery.util.Options;
 import org.apache.click.Control;
 import org.apache.click.Partial;
-import org.apache.click.util.HtmlStringBuffer;
 
 /**
  *
@@ -32,13 +34,15 @@ public class DashboardPage extends BorderPage {
     @Override
     public void onInit() {
         final Window dashboard = new Window("dashboard");
-        dashboard.setWidth(700);
+        dashboard.setWidth(800);
         dashboard.setHeight(250);
 
         // Set the event to DOMREADY, meaning the Ajax request is invoked
         // as soon as the browser DOM is available
         JQBehavior behavior = new JQBehavior(JQEvent.DOMREADY) {
-            public Partial onAjaxAction(Control source) {
+
+            @Override
+            public Partial onAction(Control source, JQEvent event) {
                 JQTaconite taconite = new JQTaconite();
                 taconite.append("#dashboard-content", new RevenueChart("chart"));
                 taconite.append("#dashboard-content", new RevenueChart("chart1"));
@@ -48,39 +52,36 @@ public class DashboardPage extends BorderPage {
         };
 
         dashboard.addBehavior(behavior);
-        setupHelper(behavior, dashboard);
+        setupBehavior(behavior, dashboard);
         addControl(dashboard);
     }
 
     // -------------------------------------------------------- Private Methods
 
-    private void setupHelper(JQBehavior behavior, Control indicatorTarget) {
+    private void setupBehavior(JQBehavior behavior, Control indicatorTarget) {
         // Set the target of the Ajax indicator (busy indicator)
-        //helper.setBusyIndicatorTarget(indicatorTarget);
+        behavior.setBusyIndicatorTarget(indicatorTarget.getCssSelector());
 
-        HtmlStringBuffer buffer = new HtmlStringBuffer();
         String contextPath = getContext().getRequest().getContextPath();
 
         // Set a custom indicator message that displays an animated gif
-        /*
-        helper.setIndicatorMessage("<b>Loading...&nbsp;</b> <img src=\""
+        behavior.setBusyIndicatorMessage("<b>Loading...&nbsp;</b> <img src=\""
             + contextPath + "/assets/images/ajax-loader.gif\"/>");
-         */
 
+        Options options = new Options();
         // Set indicator options to align the message box in the upper left
         // hand corner
-        buffer.append("centerX: false,");
-        buffer.append("centerY: false,");
-        buffer.append("css: {");
-        buffer.append("  textAlign: 'right',");
-        buffer.append("  padding: 5,");
-        buffer.append("  width: '',");
-        buffer.append("  top:  '5px',");
-        buffer.append("  left: '5px'");
-        buffer.append("}");
+        options.put("centerX","false");
+        options.put("centerY", "false");
+        options.put("showOverlay", "true");
+        Map css = new HashMap();
+        css.put("textAlign", "right");
+        css.put("padding", "5px");
+        css.put("width", "''");
+        css.put("top", "5px");
+        css.put("left", "5px");
+        options.put("css", css);
 
-        //helper.setIndicatorOptions(buffer.toString());
-
-        //helper.ajaxify();
+        behavior.setBusyIndicatorOptions(options);
     }
 }

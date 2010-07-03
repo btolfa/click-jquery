@@ -29,13 +29,14 @@ import org.apache.click.util.HtmlStringBuffer;
  */
 public class RevenueChart extends AbstractControl {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public RevenueChart(String name) {
+    public RevenueChart(String name) {
         super(name);
-        setAttribute("style", "float:left; margin-top:5px; margin-left:20px; width:200px; height:200px;");;
+        setAttribute("style", "float:left; margin:5px 30px; width:200px; height:200px;");
     }
 
+    @Override
     public String getTag() {
         return "div";
     }

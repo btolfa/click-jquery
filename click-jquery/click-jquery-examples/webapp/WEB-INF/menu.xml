@@ -58,5 +58,7 @@
         <menu label="Interactive Line Chart" path="charts/line/interactive-chart.htm"/>
         <menu label="Pie Chart" path="charts/pie/pie-chart.htm"/>
         <menu label="Bar Chart" path="charts/bar/bar-chart.htm"/>
+        <menu separator="true"/>
+        <menu label="Dashboard Demo" path="charts/dashboard/dashboard.htm"/>
     </menu>
 </menu>
