@@ -23,7 +23,7 @@ import org.apache.click.control.Button;
 import org.apache.click.control.Form;
 import org.apache.click.control.Submit;
 
-public class JQHelperDemo extends BorderPage {
+public class JQBehaviorDemo extends BorderPage {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,7 +41,7 @@ public class JQHelperDemo extends BorderPage {
 
     private JQBehavior behavior = new JQBehavior(JQEvent.CLICK);// ("helper-id")
 
-    public JQHelperDemo() {
+    public JQBehaviorDemo() {
         // Bind any element with the callback class to the click event
         //helper.bind(".callback", JQEvent.CLICK);
 
