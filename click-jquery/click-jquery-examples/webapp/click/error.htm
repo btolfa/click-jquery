@@ -6,25 +6,25 @@ $imports
 </head>
 
 <body>
- 
+
   <div id="header">
   	<span id="title">jquery-example :: $title</span>
   </div>
-  
-#if ($rootMenu) 
+
+#if ($rootMenu)
   $rootMenu
 #end
 
   <div id="container">
-  
+
 <h3 class="title">$title</h3>
-  
-#if ($errorReport) 
+
+#if ($errorReport)
  The application encountered an unexpected error.
  <p/>
  To return to the application click <a href="$context">here</a>.
  <p/>
- 
+
  #if ($mode != "production")
    To view the error details click <a href="#" onclick="displayError();">here</a>.
    <p/>
@@ -34,6 +34,6 @@ $imports
 #end
 
   </div>
- 
+
 </body>
 </html>
