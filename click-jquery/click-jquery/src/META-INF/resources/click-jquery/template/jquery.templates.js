@@ -26,7 +26,6 @@
   Click.jq.lang={
     noCssSelector:'ERROR: No CSS selector found. A CSS selector specifies which element to ajaxify',
     unknownError:'Unknown error',
-    status0:'You are offline!!\n Please Check Your Network.',
     status404:'Requested URL not found.',
     status500:'Internel Server Error.',
     parseError:'Error.\nParsing Request failed.',
@@ -355,10 +354,10 @@
   function handleError(xhr, textStatus, errorThrown, opts) {
     if(xhr.readyState==4){ // 4 == DONE
       try{
-        Click.jq.log('handleError: ', 'textStatus=', textStatus, ', errorThrown=', errorThrown, ', xhr.responseText=', xhr.responseText);
+        Click.jq.log('handleError: ', 'textStatus=', textStatus, 'xhr.status=', xhr.status, 'errorThrown=', errorThrown, ', xhr.responseText=', xhr.responseText);
 
         if(xhr.status==0){
-          alert(Click.jq.lang.status0);
+            // Might be offline. Ignore
         }else if(xhr.status==404){
           alert(Click.jq.lang.status404);
         }else if(xhr.status==500){
