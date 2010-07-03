@@ -29,60 +29,27 @@ public class JQBehaviorDemo extends BorderPage {
 
     private Form form = new Form("form");
 
-    private Button start = new Button("start") {
-
-        @Override
-        public String getCssSelector() {
-            return ".callback";
-        }
-    };
+    private Button start = new Button("start");
 
     private Submit end = new Submit("end");
 
-    private JQBehavior behavior = new JQBehavior(JQEvent.CLICK);// ("helper-id")
-
     public JQBehaviorDemo() {
-        // Bind any element with the callback class to the click event
-        //helper.bind(".callback", JQEvent.CLICK);
 
-        // Disable further bindings
-        //behavior.setBindingDisabled(true);
+        JQBehavior behavior = new JQBehavior() {
 
-        // Replace JQActionButton helper with a custom helper
+            @Override
+            public Partial onAction(Control source, JQEvent event) {
+                JQTaconite taconite = new JQTaconite();
+                taconite.after(form, "<div>" + source.getName() + " clicked!</div>");
+                return taconite;
+            }
+        };
+
         start.addBehavior(behavior);
-
-        start.addBehavior(new JQBehavior() {
-
-            @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite taconite = new JQTaconite();
-                taconite.after(form, "<div>Start clicked!</div>");
-                return taconite;
-            }
-        });
-        start.setAttribute("class", "callback");
-
-        end.addBehavior(new JQBehavior() {
-            @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite taconite = new JQTaconite();
-                taconite.after(form, "<div>End clicked!</div>");
-                return taconite;
-            }
-        });
-        end.setAttribute("class", "callback");
+        end.addBehavior(behavior);
 
         form.add(start);
         form.add(end);
         addControl(form);
     }
-
-    /*
-    public List getHeadElements() {
-        if (headElements == null) {
-            headElements = super.getHeadElements();
-            helper.addHeadElements(headElements);
-        }
-        return headElements;
-    }*/
 }
