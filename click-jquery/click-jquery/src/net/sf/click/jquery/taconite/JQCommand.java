@@ -23,6 +23,7 @@ import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.element.Element;
 import org.apache.click.element.JsScript;
+import org.apache.click.util.ClickUtils;
 import org.apache.click.util.HtmlStringBuffer;
 
 /**
@@ -621,7 +622,7 @@ public class JQCommand {
      * @return the control CSS selector
      */
     protected String getCssSelector(Control control) {
-        String selector = control.getCssSelector();
+        String selector = ClickUtils.getCssSelector(control);
         if (selector == null) {
             throw new IllegalArgumentException("No selector could be found for"
                 + " the control: " + control.getClass().getName() + "#"

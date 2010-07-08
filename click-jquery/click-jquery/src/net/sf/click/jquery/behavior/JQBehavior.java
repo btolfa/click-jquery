@@ -121,9 +121,16 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     protected int timeoutRetryLimit = 3;
 
+    /**
+     * The CSS Selector for the behavior, defaults to the Controls CSS selector
+     * returned by {@link org.apache.click.util.ClickUtils#getCssSelector(org.apache.click.Control)}.
+     */
+    protected String cssSelector;
+
     // ----------------------------------------------------------- Constructors
 
     public JQBehavior(String eventType) {
+        // EventType is immutable and cannot be changed at a later stage
         this.eventType = eventType;
     }
 
@@ -132,10 +139,24 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     // Public Method ----------------------------------------------------------
 
-    /*
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }*/
+    /**
+     * Return the CSS Selector for the behavior, defaults to the Controls CSS selector
+     * returned by {@link org.apache.click.util.ClickUtils#getCssSelector(org.apache.click.Control)}.
+     *
+     * @return the behavior CSS Selector
+     */
+    public String getCssSelector() {
+        return cssSelector;
+    }
+
+    /**
+     * Set the CSS Selector for the behavior.
+     *
+     * @return the behavior CSS Selector
+     */
+    public void setCssSelector(String cssSelector) {
+        this.cssSelector = cssSelector;
+    }
 
     public String getEventType() {
         return eventType;
@@ -603,7 +624,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
             addModel(templateModel, "event", eventType, page, context);
         }
 
-        addModel(templateModel, "cssSelector", source.getCssSelector(), page, context);
+        addModel(templateModel, "cssSelector", getCssSelector(), page, context);
 
         String busyIndicatorMessage = getBusyIndicatorMessage();
 
@@ -750,13 +771,17 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     protected void setupScript(JsScript script, Control source) {
 
-        String cssSelector = source.getCssSelector();
+        String cssSelector = getCssSelector();
         if (cssSelector == null) {
-            throw new IllegalStateException("Control {"
-                + source.getClass().getSimpleName() + ":"
-                + source.getName()
-                + "} has no css selector defined. Either set a proper CSS"
-                + " selector or set JQBehavior.setSkipSetup(true).");
+            cssSelector = ClickUtils.getCssSelector(source);
+            if (cssSelector == null) {
+                throw new IllegalStateException("Control {"
+                    + source.getClass().getSimpleName() + ":"
+                    + source.getName()
+                    + "} has no css selector defined. Either set a proper CSS"
+                    + " selector or set JQBehavior.setSkipSetup(true).");
+            }
+            setCssSelector(cssSelector);
         }
 
         Map templateModel = createTemplateModel(page, source, getContext());

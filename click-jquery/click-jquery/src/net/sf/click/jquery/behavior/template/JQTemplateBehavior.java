@@ -61,12 +61,37 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
     /** The Ajax request url. */
     protected String url;
 
+    /**
+     * The CSS Selector for the behavior, defaults to the Controls CSS selector
+     * returned by {@link org.apache.click.util.ClickUtils#getCssSelector(org.apache.click.Control)}.
+     */
+    protected String cssSelector;
+
     // Constructors -----------------------------------------------------------
 
     public JQTemplateBehavior() {
     }
 
     // Public Properties ------------------------------------------------------
+
+    /**
+     * Return the CSS Selector for the behavior, defaults to the Controls CSS selector
+     * returned by {@link org.apache.click.util.ClickUtils#getCssSelector(org.apache.click.Control)}.
+     *
+     * @return the behavior CSS Selector
+     */
+    public String getCssSelector() {
+        return cssSelector;
+    }
+
+    /**
+     * Set the CSS Selector for the behavior.
+     *
+     * @return the behavior CSS Selector
+     */
+    public void setCssSelector(String cssSelector) {
+        this.cssSelector = cssSelector;
+    }
 
     /**
      * Return the data model for the JavaScript {@link #template}.
@@ -192,9 +217,12 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
         }
         addModel(templateModel, "messages", getMessages(), page, context);
 
-        // TODO remove the following models which depends on source. source must
-        // be passed through #addSetupScript
-        addModel(templateModel, "cssSelector", source.getCssSelector(), page, context);
+        String cssSelector = getCssSelector();
+        if (cssSelector == null) {
+            cssSelector = ClickUtils.getCssSelector(source);
+        }
+
+        addModel(templateModel, "cssSelector", cssSelector, page, context);
         addModel(templateModel, "control", source, page, context);
 
         return templateModel;

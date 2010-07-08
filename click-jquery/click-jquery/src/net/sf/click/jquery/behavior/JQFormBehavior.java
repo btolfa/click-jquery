@@ -24,6 +24,7 @@ import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
+import org.apache.click.util.ClickUtils;
 import org.apache.click.util.HtmlStringBuffer;
 
 /**
@@ -231,14 +232,17 @@ public class JQFormBehavior extends JQBehavior {
     protected void setupScript(JsScript script, Control source) {
         // Cast should be ok here
         Form form = (Form) source;
-
-        String cssSelector = form.getCssSelector();
+        String cssSelector = getCssSelector();
         if (cssSelector == null) {
-            throw new IllegalStateException("Form {"
-                + form.getClass().getSimpleName() + ":"
-                + form.getName()
-                + "} has no css selector defined. Either set a proper CSS"
-                + " selector or set JQBehavior.setSkipSetup(true).");
+            cssSelector = ClickUtils.getCssSelector(form);
+            if (cssSelector == null) {
+                throw new IllegalStateException("Form {"
+                    + form.getClass().getSimpleName() + ":"
+                    + form.getName()
+                    + "} has no css selector defined. Either set a proper CSS"
+                    + " selector or set JQBehavior.setSkipSetup(true).");
+            }
+            setCssSelector(cssSelector);
         }
 
         Map templateModel = createTemplateModel(page, form, getContext());

@@ -301,7 +301,7 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
 
         Map<String, Object> templateModel = new HashMap<String, Object>();
 
-        addModel(templateModel, "cssSelector", source.getCssSelector(), page, context);
+        addModel(templateModel, "cssSelector", getCssSelector(), page, context);
 
         String url = getUrl();
         if (url != null) {
@@ -385,14 +385,18 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
 
     @Override
     protected void setupScript(JsScript script, Control source) {
-        String cssSelector = source.getCssSelector();
 
+        String cssSelector = getCssSelector();
         if (cssSelector == null) {
-            throw new IllegalStateException("Control {"
-                + source.getClass().getSimpleName() + ":"
-                + source.getName()
-                + "} has no css selector defined. Either set a proper CSS"
-                + " selector or set JQBehavior.setSkipSetup(true).");
+            cssSelector = ClickUtils.getCssSelector(source);
+            if (cssSelector == null) {
+                throw new IllegalStateException("Control {"
+                    + source.getClass().getSimpleName() + ":"
+                    + source.getName()
+                    + "} has no css selector defined. Either set a proper CSS"
+                    + " selector or set JQBehavior.setSkipSetup(true).");
+            }
+            setCssSelector(cssSelector);
         }
 
         Map templateModel = createTemplateModel(page, source, getContext());

@@ -24,6 +24,7 @@ import org.apache.click.util.HtmlStringBuffer;
 import org.apache.click.element.CssStyle;
 import org.apache.click.element.Element;
 import org.apache.click.element.JsScript;
+import org.apache.click.util.ClickUtils;
 import org.apache.click.util.PageImports;
 import org.apache.commons.lang.StringUtils;
 
@@ -1547,7 +1548,7 @@ public class JQTaconite extends Partial {
      * @return the CSS selector for the given control
      */
     protected String getCssSelector(Control control) {
-        String selector = control.getCssSelector();
+        String selector = ClickUtils.getCssSelector(control);
         if (selector == null) {
             throw new IllegalArgumentException("No selector could be found for"
                 + " the control: " + control.getClass().getName() + "#"
