@@ -55,13 +55,7 @@ public class DynamicFormBasic extends BorderPage {
 
     private String cssSelector = ".callback";
 
-    private Submit start = new Submit("start") {
-
-        @Override
-        public String getCssSelector() {
-            return cssSelector;
-        }
-    };
+    private Submit start = new Submit("start");
 
     private Submit save = new Submit("save");
 
@@ -69,7 +63,7 @@ public class DynamicFormBasic extends BorderPage {
         // Note: Page is set to stateful
         setStateful(true);
 
-        start.addBehavior(new JQBehavior(JQEvent.CLICK) {
+        JQBehavior behavior = new JQBehavior(JQEvent.CLICK) {
 
             @Override
             public Partial onAction(Control source, JQEvent event) {
@@ -81,8 +75,9 @@ public class DynamicFormBasic extends BorderPage {
                 }
                 return taconite;
             }
-        });
-
+        };
+        behavior.setCssSelector(cssSelector);
+        start.addBehavior(behavior);
         start.setAttribute("class", "callback");
 
         form.add(start);

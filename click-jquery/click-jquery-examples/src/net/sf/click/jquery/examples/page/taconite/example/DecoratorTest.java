@@ -33,18 +33,13 @@ public class DecoratorTest extends BorderPage {
 
     final String cssSelector = "a.test";
 
-    public ActionLink link = new ActionLink("button", "Counter: 0") {
-        @Override
-        public String getCssSelector() {
-            return cssSelector;
-        }
-    };
+    public ActionLink link = new ActionLink("button", "Counter: 0");
 
     @Override
     public void onInit() {
         link.setAttribute("class", "test");
 
-        link.addBehavior(new JQBehavior(JQEvent.CLICK) {
+        JQBehavior behavior = new JQBehavior(JQEvent.CLICK) {
 
             @Override
             public Partial onAction(Control source, JQEvent eventType) {
@@ -59,6 +54,8 @@ public class DecoratorTest extends BorderPage {
                 partial.add(command);
                 return partial;
             }
-        });
+        };
+        behavior.setCssSelector(cssSelector);
+        link.addBehavior(behavior);
     }
 }

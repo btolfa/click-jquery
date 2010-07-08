@@ -23,6 +23,7 @@ import net.sf.click.jquery.taconite.JQTaconite;
 import net.sf.click.jquery.util.Options;
 import org.apache.click.Control;
 import org.apache.click.Partial;
+import org.apache.click.util.ClickUtils;
 
 /**
  *
@@ -60,7 +61,7 @@ public class DashboardPage extends BorderPage {
 
     private void setupBehavior(JQBehavior behavior, Control indicatorTarget) {
         // Set the target of the Ajax indicator (busy indicator)
-        behavior.setBusyIndicatorTarget(indicatorTarget.getCssSelector());
+        behavior.setBusyIndicatorTarget(ClickUtils.getCssSelector(indicatorTarget));
 
         String contextPath = getContext().getRequest().getContextPath();
 
