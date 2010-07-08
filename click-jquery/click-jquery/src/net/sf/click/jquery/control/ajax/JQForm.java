@@ -166,8 +166,6 @@ public class JQForm extends Form {
         if (headElements == null) {
             headElements = super.getHeadElements();
 
-            //getJQBehavior().addHeadElements(headElements);
-
             if (getContext().isAjaxRequest()) {
                 focusScript = new JsScript();
                 headElements.add(focusScript);
@@ -177,18 +175,6 @@ public class JQForm extends Form {
     }
 
     /**
-     * Set the JavaScript client side form validation flag.
-     *
-     * @param validate the JavaScript client side validation flag
-     */
-    /*
-    @Override
-    public void setJavaScriptValidation(boolean validate) {
-        super.setJavaScriptValidation(validate);
-        getJQBehavior().getModel().put("javascriptValidate", validate);
-    }*/
-
-    /**
      * Render the Form field focus JavaScript to the string buffer.
      *
      * @param buffer the StringBuffer to render to
@@ -196,9 +182,7 @@ public class JQForm extends Form {
      */
     @Override
     protected void renderFocusJavaScript(HtmlStringBuffer buffer, List formFields) {
-        if (!getContext().isAjaxRequest()) {
-            super.renderFocusJavaScript(buffer, formFields);
-        } else {
+        if (getContext().isAjaxRequest()) {
             HtmlStringBuffer tempBuf = new HtmlStringBuffer();
             super.renderFocusJavaScript(tempBuf, formFields);
             String temp = tempBuf.toString();
@@ -211,6 +195,8 @@ public class JQForm extends Form {
             int end = temp.indexOf(suffix);
             temp = temp.substring(0, end);
             focusScript.setContent(temp);
+        } else {
+            super.renderFocusJavaScript(buffer, formFields);
         }
     }
 
@@ -225,7 +211,7 @@ public class JQForm extends Form {
     protected void renderHeader(HtmlStringBuffer buffer, List formFields) {
         if (isJavaScriptValidation()) {
             // The default implementation renders an inline onsubmit handler on form.
-            // Here we skip rendering that inilne onsubmit handler which is instead
+            // Here we skip rendering that inline onsubmit handler which is instead
             // handled by the jquery.form.template.js
             setJavaScriptValidation(false);
             super.renderHeader(buffer, formFields);
