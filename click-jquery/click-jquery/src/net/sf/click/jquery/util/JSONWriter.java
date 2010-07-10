@@ -27,9 +27,7 @@ import java.util.Map;
  * down on some extra characters</li>
  * </ul>
  *
- * <p/>
- * Copied from : http://www.stringtree.org/stringtree-json.html
- * and http://code.google.com/p/xon/
+ * Original code adapter from : http://www.stringtree.org/stringtree-json.html
  */
 public class JSONWriter {
 
