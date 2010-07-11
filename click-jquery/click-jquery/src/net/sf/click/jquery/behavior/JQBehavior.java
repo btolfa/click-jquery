@@ -581,7 +581,9 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      */
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getEventType()).toHashCode();
+        int result = 17;
+        result = 37 * result + (getEventType() == null ? 0 : getEventType().hashCode());
+        return result;
     }
 
     // Protected methods ------------------------------------------------------
