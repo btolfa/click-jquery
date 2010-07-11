@@ -510,6 +510,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     // Callback Methods -------------------------------------------------------
 
+    @Override
     public final Partial onAction(Control source) {
         Context context = getContext();
         String whichTypeParam = context.getRequestParameter("which");
@@ -564,9 +565,9 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
         //3. Cast the argument to the correct type.
         JQBehavior that = (JQBehavior) o;
 
-        String eventType = getEventType();
+        String localEventType = getEventType();
         String thatEventType = that.getEventType();
-        return eventType == null ? thatEventType == null : eventType.equals(thatEventType);
+        return localEventType == null ? thatEventType == null : localEventType.equals(thatEventType);
     }
 
     /**
@@ -617,19 +618,19 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
         Map<String, Object> templateModel = new HashMap<String, Object>(getModel());
 
-        String eventType = getEventType();
-        boolean bindableEvent = JQEvent.isBindableEvent(eventType);
+        String localEventType = getEventType();
+        boolean bindableEvent = JQEvent.isBindableEvent(localEventType);
 
         if (bindableEvent) {
-            addModel(templateModel, "event", eventType, page, context);
+            addModel(templateModel, "event", localEventType, page, context);
         }
 
         addModel(templateModel, "cssSelector", getCssSelector(), page, context);
 
-        String busyIndicatorMessage = getBusyIndicatorMessage();
+        String localBusyIndicatorMessage = getBusyIndicatorMessage();
 
-        if (busyIndicatorMessage != null) {
-            getBusyIndicatorOptions().put("message", busyIndicatorMessage);
+        if (localBusyIndicatorMessage != null) {
+            getBusyIndicatorOptions().put("message", localBusyIndicatorMessage);
         }
 
         if (!isShowBusyIndicator()) {
@@ -642,9 +643,9 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
             addModel(templateModel, "busyIndicatorTarget", getBusyIndicatorTarget(), page, context);
         }
 
-        String url = getUrl();
-        if (url != null) {
-            addModel(templateModel, "url", url, page, context);
+        String localUrl = getUrl();
+        if (localUrl != null) {
+            addModel(templateModel, "url", localUrl, page, context);
         }
         if (!"GET".equals(getType())) {
             addModel(templateModel, "type", getType(), page, context);
@@ -771,17 +772,17 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     protected void setupScript(JsScript script, Control source) {
 
-        String cssSelector = getCssSelector();
-        if (cssSelector == null) {
-            cssSelector = ClickUtils.getCssSelector(source);
-            if (cssSelector == null) {
+        String localCssSelector = getCssSelector();
+        if (localCssSelector == null) {
+            localCssSelector = ClickUtils.getCssSelector(source);
+            if (localCssSelector == null) {
                 throw new IllegalStateException("Control {"
                     + source.getClass().getSimpleName() + ":"
                     + source.getName()
                     + "} has no css selector defined. Either set a proper CSS"
                     + " selector or set JQBehavior.setSkipSetup(true).");
             }
-            setCssSelector(cssSelector);
+            setCssSelector(localCssSelector);
         }
 
         Map templateModel = createTemplateModel(page, source, getContext());
