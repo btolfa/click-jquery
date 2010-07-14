@@ -1,9 +1,17 @@
 Click-jQuery
 ============
 
+Click-jQuery depends on Click 2.3.0-M1 or greater. At the time of this writing
+Click 2.3.0-M1 has not been released yet, so you need to either:
+
+- build Click from trunk
+- use a nightly build from http://hudson.zones.apache.org/hudson/view/Click/job/Click/ws/
+
 Building with ANT
 -----------------
-1. build Click from trunk, and copy manually click.jar and click-extras.jar to /click-jquery/lib
+1. build Click from trunk (or grab a nightly copy), and copy manually click.X.X.X.jar, click-extras.X.X.X.jar and click-mock.X.X.X.jar to /click-jquery/lib
+   (X.X.X must be 2.3.0-M1 or greater)
+
 2. run
  > ant get-deps
    -> to get all the required dependencies
@@ -16,10 +24,11 @@ Building with ANT
 
 Building with Maven
 -------------------
-1. Since Click-jQuery is still using Click directly from trunk, you need to build Click from trunk
-   and install it in your local maven repo, using:
-     mvn install:install-file -Dfile=c:\click-2.3.0-M1.jar -DgroupId=org.apache.click -DartifactId=click -Dversion=2.3.0-M1 -Dpackaging=jar
-     mvn install:install-file -Dfile=c:\click-extras-2.3.0-M1.jar -DgroupId=org.apache.click -DartifactId=click-extras -Dversion=2.3.0-M1 -Dpackaging=jar
+1. Since Click-jQuery is still using Click directly from trunk, you need to build Click from trunk (or grab a nightly copy)
+   and install it in your local maven repo, using (X.X.X must be 2.3.0-M1 or greater):
+     mvn install:install-file -Dfile=c:\click-X.X.X.jar -DgroupId=org.apache.click -DartifactId=click -Dversion=X.X.X -Dpackaging=jar
+     mvn install:install-file -Dfile=c:\click-extras-X.X.X.jar -DgroupId=org.apache.click -DartifactId=click-extras -Dversion=X.X.X -Dpackaging=jar
+     mvn install:install-file -Dfile=c:\click-mock-X.X.X.jar -DgroupId=org.apache.click -DartifactId=click-mock -Dversion=X.X.X -Dpackaging=jar
 2. run
   > cd click-jquery
 3. run
