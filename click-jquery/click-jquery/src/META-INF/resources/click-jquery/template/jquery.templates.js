@@ -354,7 +354,7 @@
   function handleError(xhr, textStatus, errorThrown, opts) {
     if(xhr.readyState==4){ // 4 == DONE
       try{
-        Click.jq.log('handleError: ', 'textStatus=', textStatus, 'xhr.status=', xhr.status, 'errorThrown=', errorThrown, ', xhr.responseText=', xhr.responseText);
+        Click.jq.log('handleError: ', 'textStatus=', textStatus, ', xhr.status=', xhr.status, ', errorThrown=', errorThrown, ', xhr.responseText=', xhr.responseText);
 
         if(xhr.status==0){
             // Might be offline. Ignore
