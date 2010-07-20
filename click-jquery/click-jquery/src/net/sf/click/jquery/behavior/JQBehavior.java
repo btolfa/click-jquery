@@ -34,7 +34,6 @@ import org.apache.click.service.LogService;
 import org.apache.click.util.ClickUtils;
 import org.apache.click.util.HtmlStringBuffer;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
  * TODO: Describe how to set a custom setupScript.
@@ -121,12 +120,6 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     protected int timeoutRetryLimit = 3;
 
-    /**
-     * The CSS Selector for the behavior, defaults to the Controls CSS selector
-     * returned by {@link org.apache.click.util.ClickUtils#getCssSelector(org.apache.click.Control)}.
-     */
-    protected String cssSelector;
-
     // ----------------------------------------------------------- Constructors
 
     public JQBehavior(String eventType) {
@@ -138,25 +131,6 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     // Public Method ----------------------------------------------------------
-
-    /**
-     * Return the CSS Selector for the behavior, defaults to the Controls CSS selector
-     * returned by {@link org.apache.click.util.ClickUtils#getCssSelector(org.apache.click.Control)}.
-     *
-     * @return the behavior CSS Selector
-     */
-    public String getCssSelector() {
-        return cssSelector;
-    }
-
-    /**
-     * Set the CSS Selector for the behavior.
-     *
-     * @return the behavior CSS Selector
-     */
-    public void setCssSelector(String cssSelector) {
-        this.cssSelector = cssSelector;
-    }
 
     public String getEventType() {
         return eventType;
@@ -627,7 +601,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
             addModel(templateModel, "event", localEventType, page, context);
         }
 
-        addModel(templateModel, "cssSelector", getCssSelector(), page, context);
+        addModel(templateModel, "cssSelector", ClickUtils.getCssSelector(source), page, context);
 
         String localBusyIndicatorMessage = getBusyIndicatorMessage();
 
@@ -774,17 +748,13 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     protected void setupScript(JsScript script, Control source) {
 
-        String localCssSelector = getCssSelector();
+        String localCssSelector = ClickUtils.getCssSelector(source);
         if (localCssSelector == null) {
-            localCssSelector = ClickUtils.getCssSelector(source);
-            if (localCssSelector == null) {
-                throw new IllegalStateException("Control {"
-                    + source.getClass().getSimpleName() + ":"
-                    + source.getName()
-                    + "} has no css selector defined. Either set a proper CSS"
-                    + " selector or set JQBehavior.setSkipSetup(true).");
-            }
-            setCssSelector(localCssSelector);
+            throw new IllegalStateException("Control {"
+                + source.getClass().getSimpleName() + ":"
+                + source.getName()
+                + "} has no css selector defined. Either set a proper CSS"
+                + " selector or set JQBehavior.setSkipSetup(true).");
         }
 
         Map templateModel = createTemplateModel(page, source, getContext());
