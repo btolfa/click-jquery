@@ -42,6 +42,22 @@ public class StatefulTableDemo extends BorderPage {
 
         buildTable();
 
+        table.setDataProvider(new PagingDataProvider() {
+
+            public List<Customer> getData() {
+                int start = table.getFirstRow();
+                int count = table.getPageSize();
+                String sortColumn = table.getSortedColumn();
+                boolean ascending = table.isSortedAscending();
+
+                return getCustomerService().getCustomersForPage(start, count, sortColumn, ascending);
+            }
+
+            public int size() {
+                return getCustomerService().getNumberOfCustomers();
+            }
+        });
+
         addControl(link);
         link.setId("linkId");
 
@@ -98,24 +114,6 @@ public class StatefulTableDemo extends BorderPage {
         @Override
         public Partial onAction(Control source, JQEvent event) {
             JQTaconite partial = new JQTaconite();
-
-            table.setDataProvider(new PagingDataProvider() {
-
-                public List<Customer> getData() {
-                    int start = table.getFirstRow();
-                    int count = table.getPageSize();
-                    String sortColumn = table.getSortedColumn();
-                    boolean ascending = table.isSortedAscending();
-
-                    return getCustomerService().getCustomersForPage(start, count, sortColumn, ascending);
-                }
-
-                public int size() {
-                    return getCustomerService().getNumberOfCustomers();
-                }
-            });
-
-            //table.setRowList(getCustomerService().getCustomers());
 
             // Note: table must be processed in order to update paging and
             // sorting

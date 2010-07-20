@@ -13,14 +13,17 @@
  */
 package net.sf.click.jquery.examples.page.ajax;
 
+import java.util.List;
 import net.sf.click.jquery.JQEvent;
 import net.sf.click.jquery.behavior.JQBehavior;
+import net.sf.click.jquery.examples.domain.Customer;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
 import org.apache.click.Partial;
 import org.apache.click.control.Column;
 import org.apache.click.control.Table;
+import org.apache.click.dataprovider.DataProvider;
 import org.apache.click.extras.control.TableInlinePaginator;
 
 public class TableDemo extends BorderPage {
@@ -35,6 +38,13 @@ public class TableDemo extends BorderPage {
 
         addControl(table);
 
+        table.setDataProvider(new DataProvider() {
+
+            public List<Customer> getData() {
+                return getCustomerService().getCustomers();
+            }
+        });
+
         table.getControlLink().addBehavior(new JQBehavior() {
 
             @Override
@@ -44,10 +54,6 @@ public class TableDemo extends BorderPage {
                 // Note: table must be processed in order to update paging and
                 // sorting state
                 table.onProcess();
-
-                // Note: there is no onRender event during Ajax calls, so we
-                // set the table rows explicitly here
-                table.setRowList(getCustomerService().getCustomers());
 
                 // If an external Table Paginator was used, we should remove any leftover paginator elements
                 // partial.remove(".pagelinks, .pagebanner, .pagelinks-nobanner");
