@@ -122,6 +122,7 @@ public class FormValidationDemo extends BorderPage {
         // Set AjaxListener on Submit which will be invoked when form is submitted
         submit.addBehavior(new AjaxBehavior() {
 
+            @Override
             public Partial onAction(Control source) {
                 if (form.isValid()) {
                     saveForm();
