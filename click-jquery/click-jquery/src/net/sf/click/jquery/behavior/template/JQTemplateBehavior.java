@@ -85,9 +85,11 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
     }
 
     /**
-     * Set the CSS Selector for the behavior.
+     * By default JQBehavior uses the cssSelector of each control it is added to.
+     * You can override this default behavior by setting the CSS Selector property
+     * to use.
      *
-     * @return the behavior CSS Selector
+     * @param cssSelector the behavior CSS Selector
      */
     public void setCssSelector(String cssSelector) {
         this.cssSelector = cssSelector;
@@ -217,9 +219,17 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
         }
         addModel(templateModel, "messages", getMessages(), page, context);
 
-        String cssSelector = getCssSelector();
-        if (cssSelector == null) {
-            cssSelector = ClickUtils.getCssSelector(source);
+        String localCssSelector = getCssSelector();
+        if (localCssSelector == null) {
+
+            localCssSelector = ClickUtils.getCssSelector(source);
+            if (localCssSelector == null) {
+                throw new IllegalStateException("Control {"
+                    + source.getClass().getSimpleName() + ":"
+                    + source.getName()
+                    + "} has no css selector defined. Please define the control Name"
+                    + " or ID or set cssSelector of the behavior: JQTemplateBehavior.setCssSelector(String)");
+            }
         }
 
         addModel(templateModel, "cssSelector", cssSelector, page, context);

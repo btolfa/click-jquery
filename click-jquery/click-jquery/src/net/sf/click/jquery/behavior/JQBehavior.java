@@ -120,6 +120,13 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     protected int timeoutRetryLimit = 3;
 
+    /**
+     * By default JQBehavior uses the cssSelector of each control it is
+     * added to. You can override this default behavior by setting the
+     * CSS Selector property to use.
+     */
+    protected String cssSelector;
+
     // ----------------------------------------------------------- Constructors
 
     public JQBehavior(String eventType) {
@@ -131,6 +138,27 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     // Public Method ----------------------------------------------------------
+
+    /**
+     * Return the CSS Selector for the behavior, defaults to the Controls CSS selector
+     * returned by {@link org.apache.click.util.ClickUtils#getCssSelector(org.apache.click.Control)}.
+     *
+     * @return the behavior CSS Selector
+     */
+    public String getCssSelector() {
+        return cssSelector;
+    }
+
+    /**
+     * By default JQBehavior uses the cssSelector of each control it is added to.
+     * You can override this default behavior by setting the CSS Selector property
+     * to use.
+     *
+     * @param cssSelector the behavior CSS Selector
+     */
+    public void setCssSelector(String cssSelector) {
+        this.cssSelector = cssSelector;
+    }
 
     public String getEventType() {
         return eventType;
@@ -601,7 +629,20 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
             addModel(templateModel, "event", localEventType, page, context);
         }
 
-        addModel(templateModel, "cssSelector", ClickUtils.getCssSelector(source), page, context);
+        String localCssSelector = getCssSelector();
+        if (localCssSelector == null) {
+
+            localCssSelector = ClickUtils.getCssSelector(source);
+            if (localCssSelector == null) {
+                throw new IllegalStateException("Control {"
+                    + source.getClass().getSimpleName() + ":"
+                    + source.getName()
+                    + "} has no css selector defined. Either set a proper CSS"
+                    + " selector or set JQBehavior.setSkipSetup(true).");
+            }
+        }
+
+        addModel(templateModel, "cssSelector", localCssSelector, page, context);
 
         String localBusyIndicatorMessage = getBusyIndicatorMessage();
 
@@ -747,16 +788,6 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     protected void setupScript(JsScript script, Control source) {
-
-        String localCssSelector = ClickUtils.getCssSelector(source);
-        if (localCssSelector == null) {
-            throw new IllegalStateException("Control {"
-                + source.getClass().getSimpleName() + ":"
-                + source.getName()
-                + "} has no css selector defined. Either set a proper CSS"
-                + " selector or set JQBehavior.setSkipSetup(true).");
-        }
-
         Map templateModel = createTemplateModel(page, source, getContext());
         String json = new JSONWriter().write(templateModel);
 

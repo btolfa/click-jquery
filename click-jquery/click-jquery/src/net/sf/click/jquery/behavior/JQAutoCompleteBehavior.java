@@ -301,11 +301,23 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
 
         Map<String, Object> templateModel = new HashMap<String, Object>();
 
-        addModel(templateModel, "cssSelector", getCssSelector(), page, context);
+        String localCssSelector = getCssSelector();
+        if (localCssSelector == null) {
+            localCssSelector = ClickUtils.getCssSelector(source);
+            if (localCssSelector == null) {
+                throw new IllegalStateException("Control {"
+                    + source.getClass().getSimpleName() + ":"
+                    + source.getName()
+                    + "} has no css selector defined. Either set a proper CSS"
+                    + " selector or set JQAutoCompleteBehavior.setSkipSetup(true).");
+            }
+        }
 
-        String url = getUrl();
-        if (url != null) {
-            addModel(templateModel, "url", url, page, context);
+        addModel(templateModel, "cssSelector", localCssSelector, page, context);
+
+        String localUrl = getUrl();
+        if (localUrl != null) {
+            addModel(templateModel, "url", localUrl, page, context);
         }
 
         if (hasData()) {
@@ -385,20 +397,6 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
 
     @Override
     protected void setupScript(JsScript script, Control source) {
-
-        String cssSelector = getCssSelector();
-        if (cssSelector == null) {
-            cssSelector = ClickUtils.getCssSelector(source);
-            if (cssSelector == null) {
-                throw new IllegalStateException("Control {"
-                    + source.getClass().getSimpleName() + ":"
-                    + source.getName()
-                    + "} has no css selector defined. Either set a proper CSS"
-                    + " selector or set JQBehavior.setSkipSetup(true).");
-            }
-            setCssSelector(cssSelector);
-        }
-
         Map templateModel = createTemplateModel(page, source, getContext());
         String json = new JSONWriter().write(templateModel);
 

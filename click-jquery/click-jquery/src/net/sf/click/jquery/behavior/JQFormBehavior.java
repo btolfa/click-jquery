@@ -229,45 +229,17 @@ public class JQFormBehavior extends JQBehavior {
     }
 
     @Override
-    protected void setupScript(JsScript script, Control source) {
-        // Cast should be ok here
-        Form form = (Form) source;
-        String cssSelector = getCssSelector();
-        if (cssSelector == null) {
-            cssSelector = ClickUtils.getCssSelector(form);
-            if (cssSelector == null) {
-                throw new IllegalStateException("Form {"
-                    + form.getClass().getSimpleName() + ":"
-                    + form.getName()
-                    + "} has no css selector defined. Either set a proper CSS"
-                    + " selector or set JQBehavior.setSkipSetup(true).");
-            }
-            setCssSelector(cssSelector);
-        }
-
-        Map templateModel = createTemplateModel(page, form, getContext());
-        String json = new JSONWriter().write(templateModel);
-
-        HtmlStringBuffer buffer = new HtmlStringBuffer();
-        buffer.append("jQuery(document).ready(function(){");
-        buffer.append("Click.jq.ajaxFormTemplate(");
-        buffer.append(json);
-        buffer.append(");");
-
-        buffer.append("});");
-
-        script.setContent(buffer.toString());
-    }
-
-    protected Map<String, Object> createTemplateModel(Page page, Form form, Context context) {
+    protected Map<String, Object> createTemplateModel(Page page, Control control, Context context) {
         // Remove data so that super implementation does not serialize data into parameters
-        Map data = getData();
+        Map localData = getData();
         setData(null);
 
-        Map<String, Object> templateModel = super.createTemplateModel(page, form, context);
+        Map<String, Object> templateModel = super.createTemplateModel(page, control, context);
 
         // Restore data
-        setData(data);
+        setData(localData);
+
+        Form form = (Form) control;
 
         if (form.isJavaScriptValidation()) {
             addModel(templateModel, "jsValidate", true, page, context);
