@@ -61,11 +61,10 @@ public class FormDemo extends BorderPage {
         Submit submit = new Submit("save");
         form.add(submit);
 
-        form.setJavaScriptValidation(true);
-
         // Set Behavior on Submit which will be invoked when form is submitted
         submit.addBehavior(new AjaxBehavior() {
 
+            @Override
             public Partial onAction(Control source) {
                 System.out.println("Submit clicked!");
                 if (form.isValid()) {
@@ -84,6 +83,7 @@ public class FormDemo extends BorderPage {
         // Set Behavior on Submit which will be invoked when form is submitted
         cancel.addBehavior(new AjaxBehavior() {
 
+            @Override
             public Partial onAction(Control source) {
                 System.out.println("Cancel clicked!");
                 if (form.isValid()) {
