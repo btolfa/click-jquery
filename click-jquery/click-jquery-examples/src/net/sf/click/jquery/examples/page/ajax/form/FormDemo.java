@@ -86,11 +86,13 @@ public class FormDemo extends BorderPage {
             @Override
             public Partial onAction(Control source) {
                 System.out.println("Cancel clicked!");
-                if (form.isValid()) {
-                    return createSuccessResponse();
-                } else {
-                    return createErrorResponse();
-                }
+                JQTaconite partial = new JQTaconite();
+
+                // Clear the current values and update the Form in the browser
+                form.clearValues();
+                form.clearErrors();
+                partial.replace(form);
+                return partial;
             }
         });
     }
