@@ -68,7 +68,7 @@
       busyIndicatorOptions: {}
     };
 
-    var target=event.target;
+    var target=event.currentTarget;
     var opts=$.extend(defaults, event.data);
 
     // Extract parameters from element href/src/target
@@ -171,7 +171,6 @@
       busyIndicatorOptions: {}
     };
 
-    //var target=event.target;
     var opts=$.extend(defaults, options);
 
     if (!opts.cssSelector) {
