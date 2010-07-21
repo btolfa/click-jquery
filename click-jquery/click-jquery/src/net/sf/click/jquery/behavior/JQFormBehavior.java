@@ -16,7 +16,6 @@ package net.sf.click.jquery.behavior;
 import java.util.List;
 import java.util.Map;
 import net.sf.click.jquery.util.JSONLiteral;
-import net.sf.click.jquery.util.JSONWriter;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
@@ -24,7 +23,6 @@ import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
-import org.apache.click.util.ClickUtils;
 import org.apache.click.util.HtmlStringBuffer;
 
 /**
