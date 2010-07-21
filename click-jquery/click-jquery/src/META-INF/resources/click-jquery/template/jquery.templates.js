@@ -145,7 +145,7 @@
     if(tag=='a'||target.type=='submit'||target.type=='image') {
         event.preventDefault();
     }
-  };
+  }
   //
   // Template 1 END
   //
