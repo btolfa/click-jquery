@@ -16,6 +16,7 @@ package net.sf.click.jquery.behavior;
 import java.util.List;
 import java.util.Map;
 import net.sf.click.jquery.util.JSONLiteral;
+import net.sf.click.jquery.util.JSONWriter;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
@@ -224,6 +225,22 @@ public class JQFormBehavior extends JQBehavior {
         }
 
         super.addSetupScript(source);
+    }
+
+    @Override
+    protected void setupScript(JsScript script, Control source) {
+        Map templateModel = createTemplateModel(page, source, getContext());
+        String json = new JSONWriter().write(templateModel);
+
+        HtmlStringBuffer buffer = new HtmlStringBuffer();
+        buffer.append("jQuery(document).ready(function(){");
+        buffer.append("Click.jq.ajaxFormTemplate(");
+        buffer.append(json);
+        buffer.append(");");
+
+        buffer.append("});");
+
+        script.setContent(buffer.toString());
     }
 
     @Override
