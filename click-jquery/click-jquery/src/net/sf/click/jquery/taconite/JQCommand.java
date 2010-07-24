@@ -55,10 +55,10 @@ import org.apache.click.util.HtmlStringBuffer;
  * <pre class="prettyprint">
  * public void onInit() {
  *
- *     link.setActionListener(new AjaxAdapter()) {
+ *     link.addBehavior(new AjaxBehavior()) {
  *
- *         public Partial onAjaxAction(Control source) {
- *             JQTaconite taconite = new JQTaconite();
+ *         public ActionResult onAjaxAction(Control source) {
+ *             JQTaconite actionResult = new JQTaconite();
  *
  *             String commandName = "text";
  *             String selector = "#mySpan";
@@ -68,7 +68,8 @@ import org.apache.click.util.HtmlStringBuffer;
  *             JQCommand command = new JQCommand(commandName, selector, text);
  *
  *             // Add the command to JQTaconite
- *             taconite.add(command);
+ *             actionResult.add(command);
+ *             return actionResult;
  *         }
  *     }
  * } </pre>

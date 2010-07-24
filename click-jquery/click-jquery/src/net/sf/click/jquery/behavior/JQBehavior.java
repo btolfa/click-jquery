@@ -23,7 +23,7 @@ import javax.servlet.ServletContext;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import net.sf.click.jquery.JQEvent;
@@ -523,14 +523,14 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      * If no eventType is specified, the onAction is always called if the
      * behavior is the Ajax target.
      */
-    public Partial onAction(Control source, JQEvent eventType) {
+    public ActionResult onAction(Control source, JQEvent eventType) {
         return null;
     }
 
     // Callback Methods -------------------------------------------------------
 
     @Override
-    public final Partial onAction(Control source) {
+    public final ActionResult onAction(Control source) {
         Context context = getContext();
         String whichTypeParam = context.getRequestParameter("which");
 

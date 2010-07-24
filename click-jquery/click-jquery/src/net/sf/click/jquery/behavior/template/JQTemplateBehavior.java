@@ -22,7 +22,7 @@ import net.sf.click.jquery.behavior.AbstractJQBehavior;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import org.apache.click.service.ConfigService;
@@ -240,7 +240,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
 
     // Behavior Methods -------------------------------------------------------
 
-    public Partial onAction(Control source) {
+    public ActionResult onAction(Control source) {
         return null;
     }
 

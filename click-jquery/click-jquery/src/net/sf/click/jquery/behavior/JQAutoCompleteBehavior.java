@@ -24,7 +24,7 @@ import net.sf.click.jquery.util.Options;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Field;
 import org.apache.click.element.CssImport;
 import org.apache.click.element.JsImport;
@@ -77,8 +77,8 @@ import org.apache.click.util.HtmlStringBuffer;
  *         setActionListener(new AjaxAdapter() {
  *
  *             &#64;Override
- *             public Partial onAjaxAction(Control source) {
- *                 Partial partial = new Partial();
+ *             public ActionResult onAjaxAction(Control source) {
+ *                 ActionResult actionResult = new ActionResult();
  *                 List autocompleteList = getAutoCompleteList(getValue());
  *                 if (autocompleteList != null) {
  *                     HtmlStringBuffer buffer = new HtmlStringBuffer(autocompleteList.size() * 5);
@@ -88,9 +88,9 @@ import org.apache.click.util.HtmlStringBuffer;
  *                             buffer.append("\n");
  *                         }
  *                     }
- *                     partial.setContent(buffer.toString());
+ *                     actionResult.setContent(buffer.toString());
  *                 }
- *                 return partial;
+ *                 return actionResult;
  *             }
  *         });
  *     }
@@ -130,18 +130,17 @@ import org.apache.click.util.HtmlStringBuffer;
  *         form.add(countryField);
  *
  *         // Decorate the countryField with Ajax functionality
- *         JQAutoCompleteHelper jquery = new JQAutoCompleteHelper(countryField);
- *         jquery.ajaxify();
+ *         JQAutoCompleteBehavior behavior = new JQAutoCompleteBehavior(countryField);
  *
  *         // Register an Ajax listener on the form which is invoked when the
  *         // form is submitted.
- *         countryField.setActionListener(new AjaxAdapter() {
+ *         countryField.addBehavior(new AjaxBehavior() {
  *
  *             &#64;Override
- *             public Partial onAjaxAction(Control source) {
+ *             public ActionResult onAction(Control source) {
  *
- *                 // Create a Partial to contains the auto complete suggestions
- *                 Partial partial = new Partial();
+ *                 // Create an action result that contains the auto complete suggestions
+ *                 ActionResult actionResult = new ActionResult();
  *
  *                 String criteria = countryField.getValue();
  *
@@ -149,9 +148,9 @@ import org.apache.click.util.HtmlStringBuffer;
  *                 // should be separated by a newline char: '\n'.
  *                 String suggestions = getSuggestions(criteria);
  *
- *                 partial.setContent(suggestions);
+ *                 actionResult.setContent(suggestions);
  *
- *                 return partial;
+ *                 return actionResult;
  *             }
  *         });
  *     }
@@ -209,7 +208,7 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
     // Behavior Methods -------------------------------------------------------
 
     @Override
-    public Partial onAction(Control source, JQEvent eventType) {
+    public ActionResult onAction(Control source, JQEvent eventType) {
         if (!(source instanceof Field)) {
             throw new IllegalStateException("JQAutoCompleteBehavior source must be a Field, not "
                 + source.getClass().getSimpleName());
@@ -217,7 +216,7 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
 
         Field field = (Field) source;
 
-        Partial partial = new Partial();
+        ActionResult actionResult = new ActionResult();
         List autocompleteList = getAutoCompleteList(field.getValue());
         if (autocompleteList != null) {
             HtmlStringBuffer buffer = new HtmlStringBuffer(autocompleteList.size() * 5);
@@ -227,10 +226,10 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
                     buffer.append("\n");
                 }
             }
-            partial.setContent(buffer.toString());
+            actionResult.setContent(buffer.toString());
         }
 
-        return partial;
+        return actionResult;
     }
 
     @Override

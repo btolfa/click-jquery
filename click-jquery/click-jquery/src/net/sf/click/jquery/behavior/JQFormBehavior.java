@@ -93,13 +93,13 @@ import org.apache.click.util.HtmlStringBuffer;
  *         // Register an Ajax listener on the form which is invoked when the
  *         // form is submitted.
  *         form.setActionListener(new AjaxAdapter() {
- *             public Partial onAjaxAction(Control source) {
- *                 Taconite partial = new Taconite();
+ *             public ActionResult onAjaxAction(Control source) {
+ *                 Taconite actionResult = new Taconite();
  *
  *                 // 1. Replace the Form in the browser with the current one
- *                 partial.replace(form);
+ *                 actionResult.replace(form);
  *
- *                 return partial;
+ *                 return actionResult;
  *             }
  *         });
  *

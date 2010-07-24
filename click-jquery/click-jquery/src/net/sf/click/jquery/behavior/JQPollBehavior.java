@@ -105,29 +105,29 @@ import org.apache.click.util.HtmlStringBuffer;
  *         value.setText(getTime());
  *         clock.add(value);
  *
- *         clock.setActionListener(new AjaxAdapter() {
+ *         clock.addBehavior(new AjaxBehavior() {
  *
- *              public Partial onAjaxAction(Control source) {
- *                  Taconite partial = new Taconite();
+ *              public ActionResult onAction(Control source) {
+ *                  Taconite actionResult = new Taconite();
  *
  *                  // Replace the clock with the updated clock
- *                  partial.replaceContent(clock, value);
- *                  return partial;
+ *                  actionResult.replaceContent(clock, value);
+ *                  return actionResult;
  *              }
  *         });
  *
- *         stop.setActionListener(new AjaxAdapter(){
+ *         stop.addBehavior(new AjaxBehavior(){
  *
  *            &#64;Override
- *            public Partial onAjaxAction(Control source) {
- *                Taconite partial = new Taconite();
+ *            public ActionResult onAjaxAction(Control source) {
+ *                Taconite actionResult = new Taconite();
  *
  *                 // Note the eval statement below. This executes raw JavaScript
  *                 // on the browser, in this case a function from this helper's
  *                 // template: Click.refresh.stop('id');
- *                 partial.eval("Click.refresh.stop('" + refreshId + "');");
+ *                 actionResult.eval("Click.refresh.stop('" + refreshId + "');");
  *
- *                return partial;
+ *                return actionResult;
  *            }
  *        });
  *
@@ -157,29 +157,29 @@ import org.apache.click.util.HtmlStringBuffer;
  *
  * JQActionLink start = new JQActionLink("start", "Start refresh (5 second intervals)");
  *
- * start.setActionListener(new AjaxAdapter() {
+ * start.addBehavior(new AjaxBehavior() {
  *
  *     &#64;Override
- *     public Partial onAjaxAction(Control source) {
- *         Taconite partial = new Taconite();
+ *     public ActionResult onAjaxAction(Control source) {
+ *         Taconite actionResult = new Taconite();
  *
  *         // Execute raw JavaScript using eval
- *         partial.eval("Click.refresh.start('" + refreshId + "', 5000);");
- *          return partial;
+ *         actionResult.eval("Click.refresh.start('" + refreshId + "', 5000);");
+ *          return actionResult;
  *     }
  * });
  *
  * JQActionLink update = new JQActionLink("update", "Update refresh rate (2 second intervals)");
  *
- * update.setActionListener(new AjaxAdapter() {
+ * update.addBehavior(new AjaxBehavior() {
  *
  *     &#64;Override
- *     public Partial onAjaxAction(Control source) {
- *         Taconite partial = new Taconite();
+ *     public ActionResult onAction(Control source) {
+ *         Taconite actionResult = new Taconite();
  *
  *         // Execute raw JavaScript using eval
- *         partial.eval("Click.refresh.update('" + refreshId + "', 2000);");
- *         return partial;
+ *         actionResult.eval("Click.refresh.update('" + refreshId + "', 2000);");
+ *         return actionResult;
  *     }
  * }); </pre>
  */

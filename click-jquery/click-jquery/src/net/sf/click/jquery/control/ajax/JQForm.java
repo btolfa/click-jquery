@@ -50,8 +50,8 @@ import org.apache.commons.lang.StringUtils;
  *     submit.setActionListener(new AjaxAdapter() {
  *
  *        &#64;Override
- *        public Partial onAjaxAction(Control source) {
- *            Taconite partial = new Taconite();
+ *        public ActionResult onAjaxAction(Control source) {
+ *            Taconite actionResult = new Taconite();
  *
  *            if (form.isValid()) {
  *                // Save the form data to the database
@@ -59,9 +59,9 @@ import org.apache.commons.lang.StringUtils;
  *            }
  *
  *            // Update the form
- *            partial.replace(form);
+ *            actionResult.replace(form);
  *
- *            return partial;
+ *            return actionResult;
  *        }
  *    });
  * } </pre>

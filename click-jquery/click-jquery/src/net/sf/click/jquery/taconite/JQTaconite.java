@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.apache.click.Context;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.util.HtmlStringBuffer;
 import org.apache.click.element.CssStyle;
 import org.apache.click.element.Element;
@@ -64,18 +64,18 @@ import org.apache.commons.lang.StringUtils;
  *         addControl(link);
  *         addControl(span);
  *
- *         link.setActionListener(new AjaxAdapter() {
+ *         link.addBehavior(new AjaxBehavior() {
  *
  *             // Implement the onAjaxAction method which receives Ajax requests
- *             public Partial onAjaxAction(Control source) {
- *                 // Note JQTaconite is a Partial subclass
- *                 JQTaconite partial = new JQTaconite();
+ *             public ActionResult onAction(Control source) {
+ *                 // Note JQTaconite is an ActionResult subclass
+ *                 JQTaconite actionResult = new JQTaconite();
  *
  *                 // Using a CSS selector to replace the Span content with the latest
  *                 // Date
- *                 partial.replaceContent(span, "Updated at " + new Date());
+ *                 actionResult.replaceContent(span, "Updated at " + new Date());
  *
- *                 return partial;
+ *                 return actionResult;
  *             }
  *         });
  *     }
@@ -93,24 +93,24 @@ import org.apache.commons.lang.StringUtils;
  *
  *     public void onInit() {
  *
- *         link.setActionListener(new AjaxAdapter() {
+ *         link.addBehavior(new AjaxBehavior() {
  *
  *             // Implement the onAjaxAction method which receives Ajax requests
- *             public Partial onAjaxAction(Control source) {
- *                 // Note JQTaconite is a Partial subclass
- *                 JQTaconite partial = new JQTaconite();
+ *             public ActionResult onAction(Control source) {
+ *                 // Note JQTaconite is an ActionResult subclass
+ *                 JQTaconite actionResult = new JQTaconite();
  *
  *                 // Using a CSS selector to replace the Span content with the latest
  *                 // Date
- *                 partial.replaceContent(span, "Updated at " + new Date());
+ *                 actionResult.replaceContent(span, "Updated at " + new Date());
  *
  *                 // Add a Form after the span
- *                 partial.after(span, form);
+ *                 actionResult.after(span, form);
  *
  *                 // Add a Table after the Form
- *                 partial.after(form, table);
+ *                 actionResult.after(form, table);
  *
- *                 return partial;
+ *                 return actionResult;
  *             }
  *         });
  *     }
@@ -184,7 +184,7 @@ import org.apache.commons.lang.StringUtils;
  * </li>
  * </ul>
  */
-public class JQTaconite extends Partial {
+public class JQTaconite extends ActionResult {
 
     // -------------------------------------------------------------- Constants
 
@@ -1499,9 +1499,9 @@ public class JQTaconite extends Partial {
      * @param response the page servlet response
      */
     @Override
-    protected void renderPartial(Context context) {
+    protected void renderActionResult(Context context) {
         setReader(new StringReader(toString()));
-        super.renderPartial(context);
+        super.renderActionResult(context);
     }
 
     /**
