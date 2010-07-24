@@ -23,7 +23,7 @@ import net.sf.click.jquery.examples.control.Window;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Column;
 import org.apache.click.control.Table;
 import org.apache.click.util.HtmlStringBuffer;
@@ -67,7 +67,7 @@ public class LazyLoadDemo extends BorderPage {
         JQBehavior behavior = new JQBehavior(JQEvent.DOMREADY) {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent event) {
                 JQTaconite taconite = new JQTaconite();
                 table1.setRowList(createData());
                 taconite.replace(table1);
@@ -88,7 +88,7 @@ public class LazyLoadDemo extends BorderPage {
         behavior = new JQBehavior(JQEvent.DOMREADY) {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent event) {
                 JQTaconite taconite = new JQTaconite();
                 table2.setRowList(createData());
                 taconite.replace(table2);

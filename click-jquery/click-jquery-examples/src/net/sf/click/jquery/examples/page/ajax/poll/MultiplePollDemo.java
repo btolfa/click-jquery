@@ -23,7 +23,7 @@ import net.sf.click.jquery.examples.control.html.Text;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 
 /**
@@ -60,35 +60,35 @@ public class MultiplePollDemo extends BorderPage {
 
         start.addBehavior(new JQBehavior(){
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
-                partial.eval("Click.jq.polls.start('" + pollId + "', 5000)");
+                actionResult.eval("Click.jq.polls.start('" + pollId + "', 5000)");
 
-                return partial;
+                return actionResult;
             }
         });
 
         stop.addBehavior(new JQBehavior(){
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
-                partial.eval("Click.jq.polls.stop('" + pollId + "')");
+                actionResult.eval("Click.jq.polls.stop('" + pollId + "')");
 
-                return partial;
+                return actionResult;
             }
         });
 
         JQPollBehavior behavior = new JQPollBehavior(pollId) {
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
                 // Replace the clock with the updated clock
-                partial.replaceContent(clock, value);
+                actionResult.replaceContent(clock, value);
 
-                return partial;
+                return actionResult;
             }
         };
         clock.addBehavior(behavior);

@@ -21,7 +21,7 @@ import net.sf.click.jquery.examples.control.html.Span;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 
 public class TextDemo extends BorderPage {
@@ -44,14 +44,14 @@ public class TextDemo extends BorderPage {
         link.addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
                 // Using a CSS selector to replace the Label content with the latest
                 // Date
                 label.setText("Current time : " + dateFormat.format(new Date()));
-                partial.replace(label);
-                return partial;
+                actionResult.replace(label);
+                return actionResult;
             }
         });
     }

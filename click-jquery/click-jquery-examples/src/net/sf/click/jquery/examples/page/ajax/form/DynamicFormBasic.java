@@ -19,7 +19,7 @@ import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.ActionListener;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.ajax.AjaxBehavior;
 import org.apache.click.control.Checkbox;
 import org.apache.click.control.FieldSet;
@@ -66,7 +66,7 @@ public class DynamicFormBasic extends BorderPage {
         JQBehavior behavior = new JQBehavior(JQEvent.CLICK) {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent event) {
                 JQTaconite taconite = new JQTaconite();
                 if (!form.contains(typeGroup)) {
                     form.add(typeGroup);
@@ -101,7 +101,7 @@ public class DynamicFormBasic extends BorderPage {
         laptop.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
+            public ActionResult onAction(Control source) {
                 JQTaconite taconite = new JQTaconite();
                 if (form.contains(laptopFS)) {
                     return taconite;
@@ -125,7 +125,7 @@ public class DynamicFormBasic extends BorderPage {
         desktop.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
+            public ActionResult onAction(Control source) {
                 JQTaconite taconite = new JQTaconite();
                 if (form.contains(desktopFS)) {
                     return taconite;

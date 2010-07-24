@@ -22,7 +22,7 @@ import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import net.sf.click.jquery.util.Options;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.util.ClickUtils;
 
 /**
@@ -43,7 +43,7 @@ public class DashboardPage extends BorderPage {
         JQBehavior behavior = new JQBehavior(JQEvent.DOMREADY) {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent event) {
                 JQTaconite taconite = new JQTaconite();
                 taconite.append("#dashboard-content", new RevenueChart("chart"));
                 taconite.append("#dashboard-content", new RevenueChart("chart1"));

@@ -18,7 +18,7 @@ import net.sf.click.jquery.behavior.JQBehavior;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -35,8 +35,8 @@ public class LightWeightActionLinkDemo extends BorderPage {
         link.addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
                 incrementCounter();
 
@@ -47,12 +47,12 @@ public class LightWeightActionLinkDemo extends BorderPage {
                 setSkipHeadElements(true);
 
                 // Replace the link with the updated link
-                partial.replace(link);
+                actionResult.replace(link);
 
                 // Using a CSS selector, replace the target counter with the
                 // updated link value
-                partial.replaceContent("#target", link.getValue());
-                return partial;
+                actionResult.replaceContent("#target", link.getValue());
+                return actionResult;
             }
         });
     }

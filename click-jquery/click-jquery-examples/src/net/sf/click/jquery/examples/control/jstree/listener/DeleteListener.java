@@ -13,7 +13,7 @@
  */
 package net.sf.click.jquery.examples.control.jstree.listener;
 
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 
 /**
  *
@@ -23,7 +23,7 @@ public class DeleteListener {
     /** default serial version id. */
     private static final long serialVersionUID = 1L;
 
-    public Partial delete(String nodeId) {
+    public ActionResult delete(String nodeId) {
         return null;
     }
 }

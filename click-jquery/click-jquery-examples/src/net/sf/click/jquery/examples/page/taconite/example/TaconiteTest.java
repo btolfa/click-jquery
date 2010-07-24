@@ -24,7 +24,7 @@ import org.apache.click.Page;
 import org.apache.click.control.Form;
 import org.apache.click.control.Option;
 import org.apache.click.extras.control.DateField;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 
 /**
@@ -57,10 +57,11 @@ public class TaconiteTest extends Page {
 
         link.addBehavior(new JQBehavior() {
 
-            public Partial onAjaxAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
-                partial.replaceContent('#' + wrapperId, new DateField("date"));
-                return partial;
+            @Override
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
+                actionResult.replaceContent('#' + wrapperId, new DateField("date"));
+                return actionResult;
             }
         });
 

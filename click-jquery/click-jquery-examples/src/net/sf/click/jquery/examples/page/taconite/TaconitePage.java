@@ -19,7 +19,7 @@ import net.sf.click.jquery.examples.control.html.Div;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
 import org.apache.click.Page;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 import org.apache.click.extras.control.DateField;
 
@@ -41,10 +41,11 @@ public class TaconitePage extends Page {
 
         link.addBehavior(new JQBehavior("click") {
 
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
-                partial.replaceContent(wrapper, new DateField("date"));
-                return partial;
+            @Override
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
+                actionResult.replaceContent(wrapper, new DateField("date"));
+                return actionResult;
             }
         });
 

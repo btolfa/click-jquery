@@ -23,7 +23,7 @@ import net.sf.click.jquery.examples.control.jstree.listener.OpenListener;
 import net.sf.click.jquery.examples.control.jstree.listener.RenameListener;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.util.HtmlStringBuffer;
 import org.apache.commons.lang.math.RandomUtils;
 
@@ -74,45 +74,45 @@ public class TreeDemo extends BorderPage {
         tree.setChangeListener(new ChangeListener(){
 
             @Override
-            public Partial change(String nodeId) {
-                JQTaconite partial = new JQTaconite();
-                partial.prepend("#response", "<p>changed to node '" + nodeId
+            public ActionResult change(String nodeId) {
+                JQTaconite actionResult = new JQTaconite();
+                actionResult.prepend("#response", "<p>changed to node '" + nodeId
                     + "', invoked at : " + format.currentDate("yyyy-MM-dd hh:mm:ss") + "</p>");
-                return partial;
+                return actionResult;
             }
         });
 
         tree.setDeleteListener(new DeleteListener(){
 
             @Override
-            public Partial delete(String nodeId) {
-                JQTaconite partial = new JQTaconite();
-                partial.prepend("#response", "<p>deleted node '" + nodeId
+            public ActionResult delete(String nodeId) {
+                JQTaconite actionResult = new JQTaconite();
+                actionResult.prepend("#response", "<p>deleted node '" + nodeId
                     + "', invoked at : " + format.currentDate("yyyy-MM-dd hh:mm:ss") + "</p>");
-                return partial;
+                return actionResult;
             }
         });
 
         tree.setRenameListener(new RenameListener() {
 
             @Override
-            public Partial rename(String nodeId, String newValue) {
-                JQTaconite partial = new JQTaconite();
-                partial.prepend("#response", "<p>renamed node '"
+            public ActionResult rename(String nodeId, String newValue) {
+                JQTaconite actionResult = new JQTaconite();
+                actionResult.prepend("#response", "<p>renamed node '"
                     + nodeId + "' to '" + newValue + "', invoked at : "
                     + format.currentDate("yyyy-MM-dd hh:mm:ss") + "</p>");
-                return partial;
+                return actionResult;
             }
         });
 
         tree.setMoveListener(new MoveListener(){
 
             @Override
-            public Partial move(String nodeId, String refNodeId, String type) {
-                JQTaconite partial = new JQTaconite();
-                partial.prepend("#response", "<p>moved node '" + nodeId + "' to '" + type
+            public ActionResult move(String nodeId, String refNodeId, String type) {
+                JQTaconite actionResult = new JQTaconite();
+                actionResult.prepend("#response", "<p>moved node '" + nodeId + "' to '" + type
                     + "' prepend '" + refNodeId + "', invoked at : " + format.currentDate("yyyy-MM-dd hh:mm:ss") + "</p>");
-                return partial;
+                return actionResult;
             }
         });
 
@@ -120,12 +120,12 @@ public class TreeDemo extends BorderPage {
 
             @Override
             public JQTaconite create(String value) {
-                JQTaconite partial = new JQTaconite();
+                JQTaconite actionResult = new JQTaconite();
                 String nodeId = "n_" + Long.toString(RandomUtils.nextLong());
-                partial.prepend("#response", "<p>created node '" + value + "' with ID '"
+                actionResult.prepend("#response", "<p>created node '" + value + "' with ID '"
                     + nodeId + "', invoked at : " + format.currentDate("yyyy-MM-dd hh:mm:ss") + "</p>");
                 setId(nodeId);
-                return partial;
+                return actionResult;
             }
         });
     }

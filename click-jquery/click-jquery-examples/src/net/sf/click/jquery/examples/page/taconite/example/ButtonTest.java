@@ -18,7 +18,7 @@ import net.sf.click.jquery.behavior.JQBehavior;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Submit;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -38,18 +38,18 @@ public class ButtonTest extends BorderPage {
         JQBehavior behavior = new JQBehavior(JQEvent.CLICK) {
 
             @Override
-            public Partial onAction(Control source, JQEvent eventType) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent eventType) {
+                JQTaconite actionResult = new JQTaconite();
 
                 // Make simpler counter
                 int count = NumberUtils.toInt(button.getValue().substring(9));
 
                 button.setLabel("Counter: " + Integer.toString(++count));
 
-                partial.replace(button);
-                partial.remove(button2);
-                partial.after('#' + button.getId(), button2);
-                return partial;
+                actionResult.replace(button);
+                actionResult.remove(button2);
+                actionResult.after('#' + button.getId(), button2);
+                return actionResult;
             }
         };
 
@@ -58,15 +58,15 @@ public class ButtonTest extends BorderPage {
 
         JQBehavior behavior2 = new JQBehavior(JQEvent.CLICK) {
             @Override
-            public Partial onAction(Control source, JQEvent eventType) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent eventType) {
+                JQTaconite actionResult = new JQTaconite();
                 int count = NumberUtils.toInt(button2.getValue().substring(9));
                 ++count;
 
                 button2.setLabel("Counter: " + Integer.toString(count));
 
-                partial.replace(button2);
-                return partial;
+                actionResult.replace(button2);
+                return actionResult;
             }
         };
 

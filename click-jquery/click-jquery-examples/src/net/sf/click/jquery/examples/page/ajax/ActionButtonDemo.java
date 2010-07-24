@@ -19,7 +19,7 @@ import net.sf.click.jquery.examples.control.JQActionButton;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.commons.lang.math.NumberUtils;
 
 public class ActionButtonDemo extends BorderPage {
@@ -33,18 +33,18 @@ public class ActionButtonDemo extends BorderPage {
         button.addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
                 incrementCounter();
 
                 // Replace the button with the updated button
-                partial.replace(button);
+                actionResult.replace(button);
 
                 // Using a CSS selector, replace the target counter with the
                 // updated button value
-                partial.replaceContent("#target", button.getValue());
-                return partial;
+                actionResult.replaceContent("#target", button.getValue());
+                return actionResult;
             }
         });
     }

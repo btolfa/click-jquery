@@ -13,14 +13,14 @@
  */
 package net.sf.click.jquery.examples.control.jstree.listener;
 
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 
 /**
  *
  */
 public class RenameListener {
 
-    public Partial rename(String nodeId, String newValue) {
+    public ActionResult rename(String nodeId, String newValue) {
         return null;
     }
 }

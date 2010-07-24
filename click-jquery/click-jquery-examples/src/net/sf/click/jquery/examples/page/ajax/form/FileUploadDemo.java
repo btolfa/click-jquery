@@ -17,7 +17,7 @@ import net.sf.click.jquery.control.ajax.JQForm;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.ajax.AjaxBehavior;
 import org.apache.click.control.FileField;
 import org.apache.click.control.Form;
@@ -57,12 +57,12 @@ public class FileUploadDemo extends BorderPage {
         submit.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
+            public ActionResult onAction(Control source) {
                 System.out.println("Save Clicked - Ajax");
-                JQTaconite partial = new JQTaconite();
+                JQTaconite actionResult = new JQTaconite();
 
                 // Might want to return a success message
-                return partial;
+                return actionResult;
             }
         });
         ajaxForm.add(submit);
@@ -85,26 +85,26 @@ public class FileUploadDemo extends BorderPage {
     class OnSubmitHandler extends AjaxBehavior {
 
         @Override
-        public Partial onAction(Control source) {
+        public ActionResult onAction(Control source) {
             System.out.println("Upload Clicked - Ajax");
-            JQTaconite partial = new JQTaconite();
+            JQTaconite actionResult = new JQTaconite();
 
             if (ajaxForm.isValid()) {
 
                 if (ajaxFileField.getFileItem() == null) {
-                    return partial;
+                    return actionResult;
                 }
 
                 FileItem fileItem = ajaxFileField.getFileItem();
 
                 // Update FileItem data
-                partial.replaceContent("#ajax-fileitem-name", fileItem.getName());
-                partial.replaceContent("#ajax-fileitem-size", Long.toString(
+                actionResult.replaceContent("#ajax-fileitem-name", fileItem.getName());
+                actionResult.replaceContent("#ajax-fileitem-size", Long.toString(
                     fileItem.getSize()));
-                partial.replaceContent("#ajax-fileitem-content-type",
+                actionResult.replaceContent("#ajax-fileitem-content-type",
                     fileItem.getContentType());
             }
-            return partial;
+            return actionResult;
         }
     }
 }

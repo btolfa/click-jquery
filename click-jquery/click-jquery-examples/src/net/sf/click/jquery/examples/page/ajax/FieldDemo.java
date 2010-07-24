@@ -20,7 +20,7 @@ import net.sf.click.jquery.examples.control.html.Text;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Field;
 import org.apache.click.control.TextField;
 
@@ -44,15 +44,15 @@ public class FieldDemo extends BorderPage {
         field.addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
                 // Set the label content to the latest field value
                 label.add(new Text(field.getValue()));
  
                 // Replace the label in the browser with the new one
-                partial.replace(label);
-                return partial;
+                actionResult.replace(label);
+                return actionResult;
             }
         });
 

@@ -21,7 +21,7 @@ import org.apache.click.control.Option;
 import org.apache.click.control.Select;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
 
@@ -44,7 +44,7 @@ public class SelectDemo extends BorderPage {
 
         provinceSelect.addBehavior(new JQBehavior(JQEvent.CHANGE) {
             @Override
-            public Partial onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent event) {
                 return updateCities();
             }
         });
@@ -68,8 +68,8 @@ public class SelectDemo extends BorderPage {
         return true;
     }
 
-    private Partial updateCities() {
-        JQTaconite partial = new JQTaconite();
+    private ActionResult updateCities() {
+        JQTaconite actionResult = new JQTaconite();
 
         // Clear the city options
         citySelect.getOptionList().clear();
@@ -78,8 +78,8 @@ public class SelectDemo extends BorderPage {
         populateCities();
 
         // Update the citySelect
-        partial.replace(citySelect);
-        return partial;
+        actionResult.replace(citySelect);
+        return actionResult;
     }
 
     private void populateProvinces() {

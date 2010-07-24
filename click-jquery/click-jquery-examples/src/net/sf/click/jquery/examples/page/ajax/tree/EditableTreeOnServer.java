@@ -28,7 +28,7 @@ import net.sf.click.jquery.examples.services.ApplicationRegistry;
 import net.sf.click.jquery.examples.services.FileSystemService;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.ajax.AjaxBehavior;
 import org.apache.click.control.Field;
 import org.apache.click.control.HiddenField;
@@ -73,8 +73,8 @@ public class EditableTreeOnServer extends BorderPage {
         tree.setChangeListener(new ChangeListener() {
 
             @Override
-            public Partial change(String nodeId) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult change(String nodeId) {
+                JQTaconite actionResult = new JQTaconite();
                 File file = getFileSystemService().load(nodeId);
 
                 // Populate the form from the file object.
@@ -96,7 +96,7 @@ public class EditableTreeOnServer extends BorderPage {
                 // set
                 form.getField("type").setDisabled(true);
 
-                partial.replace(form);
+                actionResult.replace(form);
 
                 // NB: When replacing the form from the Tree "change event", the
                 // Form submit event is not rebound (because the jQuery Form plugin
@@ -112,9 +112,9 @@ public class EditableTreeOnServer extends BorderPage {
                 // Click.jquery.form['$selector']
                 // If/when jQuery Form plugin uses the "live" method of binding,
                 // the workaround below can be removed
-                //partial.eval("var options = Click.jquery.form['#" + form.getId() + "'];"
+                //actionResult.eval("var options = Click.jquery.form['#" + form.getId() + "'];"
                     //+ "jQuery('#" + form.getId() + "').ajaxForm(options);");
-                return partial;
+                return actionResult;
             }
         });
     }
@@ -145,15 +145,15 @@ public class EditableTreeOnServer extends BorderPage {
         create.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source) {
+                JQTaconite actionResult = new JQTaconite();
                 form.clearErrors();
                 clearVisibleFields();
 
                 // Update the form
-                partial.replace(form);
+                actionResult.replace(form);
 
-                return partial;
+                return actionResult;
             }
         });
 
@@ -161,8 +161,8 @@ public class EditableTreeOnServer extends BorderPage {
         save.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source) {
+                JQTaconite actionResult = new JQTaconite();
 
                 if (form.isValid()) {
                     if (StringUtils.isBlank(idField.getValue())) {
@@ -196,7 +196,7 @@ public class EditableTreeOnServer extends BorderPage {
                             form.copyTo(file);
 
                             parent.add(file);
-                            createJSTreeNode(partial, entityId);
+                            createJSTreeNode(actionResult, entityId);
                         }
                     } else {
                         // Do an update to the database
@@ -217,15 +217,15 @@ public class EditableTreeOnServer extends BorderPage {
                             // changed once set
                             form.getField("type").setDisabled(true);
 
-                            updateJSTreeNode(partial);
+                            updateJSTreeNode(actionResult);
                         }
                     }
                 }
 
                 // Update the form
-                partial.replace(form);
+                actionResult.replace(form);
 
-                return partial;
+                return actionResult;
             }
         });
 
@@ -233,18 +233,18 @@ public class EditableTreeOnServer extends BorderPage {
         delete.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source) {
+                JQTaconite actionResult = new JQTaconite();
                 String referenceNodeId = form.getField("referenceNodeId").getValue();
                 if (StringUtils.isNotBlank(referenceNodeId)) {
                     getFileSystemService().delete(referenceNodeId);
                     form.clearErrors();
                     form.clearValues();
-                    partial.replace(form);
-                    partial.eval("var tree = jQuery.tree.focused(); if (tree) { tree.remove(tree.selected) }");
+                    actionResult.replace(form);
+                    actionResult.eval("var tree = jQuery.tree.focused(); if (tree) { tree.remove(tree.selected) }");
                 }
        
-                return partial;
+                return actionResult;
             }
         });
 
@@ -252,14 +252,14 @@ public class EditableTreeOnServer extends BorderPage {
         cancel.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source) {
+                JQTaconite actionResult = new JQTaconite();
                 form.clearErrors();
                 form.clearValues();
 
-                partial.replace(form);
+                actionResult.replace(form);
 
-                return partial;
+                return actionResult;
             }
         });
     }
@@ -270,17 +270,17 @@ public class EditableTreeOnServer extends BorderPage {
         return nodeId;
     }
 
-    private void updateJSTreeNode(JQTaconite partial) {
+    private void updateJSTreeNode(JQTaconite actionResult) {
         Map<String, Object> model = new HashMap<String, Object>();
         JsScript script = new JsScript("/ajax/tree/editable-tree-on-server-partial.js", model);
-        partial.eval(script);
+        actionResult.eval(script);
     }
 
-    private void createJSTreeNode(JQTaconite partial, String nodeId) {
+    private void createJSTreeNode(JQTaconite actionResult, String nodeId) {
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("nodeId", nodeId);
         JsScript script = new JsScript("/ajax/tree/editable-tree-on-server-partial.js", model);
-        partial.eval(script);
+        actionResult.eval(script);
     }
 
     private FileSystemService getFileSystemService() {

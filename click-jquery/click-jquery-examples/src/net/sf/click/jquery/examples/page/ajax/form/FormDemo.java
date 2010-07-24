@@ -19,7 +19,7 @@ import net.sf.click.jquery.examples.control.html.Text;
 import org.apache.click.Control;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.ajax.AjaxBehavior;
 import org.apache.click.control.Form;
 import org.apache.click.control.Submit;
@@ -65,7 +65,7 @@ public class FormDemo extends BorderPage {
         submit.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
+            public ActionResult onAction(Control source) {
                 System.out.println("Submit clicked!");
                 if (form.isValid()) {
                     saveForm();
@@ -84,15 +84,15 @@ public class FormDemo extends BorderPage {
         cancel.addBehavior(new AjaxBehavior() {
 
             @Override
-            public Partial onAction(Control source) {
+            public ActionResult onAction(Control source) {
                 System.out.println("Cancel clicked!");
-                JQTaconite partial = new JQTaconite();
+                JQTaconite actionResult = new JQTaconite();
 
                 // Clear the current values and update the Form in the browser
                 form.clearValues();
                 form.clearErrors();
-                partial.replace(form);
-                return partial;
+                actionResult.replace(form);
+                return actionResult;
             }
         });
     }
@@ -102,18 +102,18 @@ public class FormDemo extends BorderPage {
     }
 
     /**
-     * Return a Partial response (using a Taconite Partial object)
+     * Return a partial response (using a Taconite action result)
      * that does the following:
      *
      * 1. Replace the Form in the browser with the current Form
      * 2. Style the message holder with a green background which indicates success
      * 3. Replace the message holder with the current message holder
      */
-    private Partial createSuccessResponse() {
-        JQTaconite partial = new JQTaconite();
+    private ActionResult createSuccessResponse() {
+        JQTaconite actionResult = new JQTaconite();
 
         // 1. Replace the Form in the browser with the current one
-        partial.replace(form);
+        actionResult.replace(form);
 
         // Set a success message
         textMsg.setText("Successfully submitted Form");
@@ -122,24 +122,24 @@ public class FormDemo extends BorderPage {
         msgHolder.setAttribute("style", "color:white; background: green; border: black 1px solid;padding: 5px; float: left");
 
         // 3. Replace the message holder in the browser with the current one
-        partial.replace(msgHolder);
+        actionResult.replace(msgHolder);
 
-        return partial;
+        return actionResult;
     }
 
     /**
-     * Return a Partial response (using a Taconite Partial object)
+     * Return a partial response (using a Taconite action result)
      * that does the following:
      *
      * 1. Replace the Form in the browser with the current Form
      * 2. Style the message holder with a red background which indicates an error
      * 3. Replace the message holder with the current message holder
      */
-    private Partial createErrorResponse() {
-        JQTaconite partial = new JQTaconite();
+    private ActionResult createErrorResponse() {
+        JQTaconite actionResult = new JQTaconite();
 
         // 1. Replace the Form in the browser with the current one
-        partial.replace(form);
+        actionResult.replace(form);
 
         // Set an error message
         textMsg.setText("Form contained errors.");
@@ -148,8 +148,8 @@ public class FormDemo extends BorderPage {
         msgHolder.setAttribute("style", "color:white; background: red; border: black 1px solid;padding: 5px; float: left");
 
         // 3. Replace the message holder in the browser with the current one
-        partial.replace(msgHolder);
+        actionResult.replace(msgHolder);
 
-        return partial;
+        return actionResult;
     }
 }

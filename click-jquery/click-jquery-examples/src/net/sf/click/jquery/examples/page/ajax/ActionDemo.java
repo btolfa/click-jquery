@@ -21,7 +21,7 @@ import org.apache.click.Control;
 import org.apache.click.util.HtmlStringBuffer;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 import org.apache.commons.lang.math.RandomUtils;
 
@@ -40,19 +40,18 @@ public class ActionDemo extends BorderPage {
         final Div target1 = new Div("target1");
         addControl(target1);
 
-        // Create a Ajaxified link that will update a specified target with a
-        // Partial response
+        // Create a Ajaxified link that will update a specified target with an
+        // ActionResult
         JQActionButton button = new JQActionButton("button", "Click here to make Ajax request");
 
         button.addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent event) {
                 // Create a response that will be placed inside the target div
-                JQTaconite partial = new JQTaconite();
-                partial.replaceContent(target1, createResponse());
-                return partial;
-                //return new Partial(createResponse());
+                JQTaconite actionResult = new JQTaconite();
+                actionResult.replaceContent(target1, createResponse());
+                return actionResult;
             }
         });
         addControl(button);
@@ -80,8 +79,8 @@ public class ActionDemo extends BorderPage {
         link.addBehavior(new JQBehavior(JQEvent.CLICK) {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                // This partial will randomly update one target and clear the other
+            public ActionResult onAction(Control source, JQEvent event) {
+                // This actionResult will randomly update one target and clear the other
 
                 JQTaconite response = new JQTaconite();
                 // Randomly update a different target
@@ -98,7 +97,7 @@ public class ActionDemo extends BorderPage {
                 return response;
 
                 // Return normal Javascript that will be executed by JQuery
-                //return new Partial("jQuery('#" + activeTargetId + "').html(\"" + createResponse() + "\");" +
+                //return new ActionResult("jQuery('#" + activeTargetId + "').html(\"" + createResponse() + "\");" +
                 //   "jQuery('#" + inactiveTargetId + "').html(\"\");");
             }
         });

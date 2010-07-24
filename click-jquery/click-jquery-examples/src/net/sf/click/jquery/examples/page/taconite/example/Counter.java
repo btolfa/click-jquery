@@ -19,7 +19,7 @@ import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQCommand;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -42,16 +42,16 @@ public class Counter extends BorderPage {
             }
 
             @Override
-            public Partial onAction(Control source, JQEvent eventType) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent eventType) {
+                JQTaconite actionResult = new JQTaconite();
                 int count = NumberUtils.toInt(getContext().getRequestParameter("count"));
                 ++count;
                 link.setParameter("count", count);
                 link.setLabel("Counter: " + count);
                 JQCommand command = new JQCommand("replace", link).characterData(true);
 
-                partial.add(command);
-                return partial;
+                actionResult.add(command);
+                return actionResult;
             }
         });
     }

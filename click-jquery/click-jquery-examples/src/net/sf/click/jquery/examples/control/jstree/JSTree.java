@@ -30,7 +30,7 @@ import net.sf.click.jquery.taconite.JQCommand;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Context;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.ajax.AjaxBehavior;
 import org.apache.click.control.AbstractControl;
 import org.apache.click.element.Element;
@@ -432,7 +432,8 @@ public class JSTree extends AbstractControl {
 
     private class JSTreeListener extends AjaxBehavior {
 
-        public Partial onAction(Control source) {
+        @Override
+        public ActionResult onAction(Control source) {
             Context context = getContext();
 
             String callbackParam = context.getRequestParameter(CALLBACK);
@@ -441,17 +442,17 @@ public class JSTree extends AbstractControl {
                 return null;
             }
 
-            Partial partial = null;
+            ActionResult actionResult = null;
 
             switch (callback) {
                 case OPEN: {
                     OpenListener listener = getOpenListener();
                     if (listener != null) {
                         String nodeId = context.getRequestParameter(NODE_ID);
-                        partial = new Partial();
+                        actionResult = new ActionResult();
                         HtmlStringBuffer buffer = new HtmlStringBuffer();
                         listener.open(nodeId, buffer);
-                        partial.setContent(buffer.toString());
+                        actionResult.setContent(buffer.toString());
                     }
                     break;
                 }
@@ -459,7 +460,7 @@ public class JSTree extends AbstractControl {
                     CloseListener listener = getCloseListener();
                     if (listener != null) {
                         String nodeId = context.getRequestParameter(NODE_ID);
-                        partial = listener.close(nodeId);
+                        actionResult = listener.close(nodeId);
                     }
                     break;
                 }
@@ -467,14 +468,14 @@ public class JSTree extends AbstractControl {
                     CreateListener listener = getCreateListener();
                     if (listener != null) {
                         String newValue = context.getRequestParameter(VALUE);
-                        partial = listener.create(newValue);
+                        actionResult = listener.create(newValue);
                         String newNodeId = listener.getId();
 
                         // Send created nodeId to browser
                         JQCommand command = new JQCommand(JQTaconite.CUSTOM);
                         command.setName(NODE_ID);
                         command.setValue(newNodeId);
-                        ((JQTaconite) partial).insert(command, 0);
+                        ((JQTaconite) actionResult).insert(command, 0);
                     }
                     break;
                 }
@@ -482,7 +483,7 @@ public class JSTree extends AbstractControl {
                     DeleteListener listener = getDeleteListener();
                     if (listener != null) {
                         String nodeId = context.getRequestParameter(NODE_ID);
-                        partial = listener.delete(nodeId);
+                        actionResult = listener.delete(nodeId);
                     }
                     break;
                 }
@@ -491,7 +492,7 @@ public class JSTree extends AbstractControl {
                     if (listener != null) {
                         String nodeId = context.getRequestParameter(NODE_ID);
                         String newValue = context.getRequestParameter(VALUE);
-                        partial = listener.rename(nodeId, newValue);
+                        actionResult = listener.rename(nodeId, newValue);
                     }
                     break;
                 }
@@ -502,8 +503,8 @@ public class JSTree extends AbstractControl {
                         String refNodeId = context.getRequestParameter(
                             REFERENCE_NODE_ID);
                         String type = context.getRequestParameter(TYPE);
-                        partial = new JQTaconite();
-                        partial = listener.move(nodeId, refNodeId, type);
+                        actionResult = new JQTaconite();
+                        actionResult = listener.move(nodeId, refNodeId, type);
                     }
                     break;
                 }
@@ -511,7 +512,7 @@ public class JSTree extends AbstractControl {
                     ChangeListener listener = getChangeListener();
                     if (listener != null) {
                         String nodeId = context.getRequestParameter(NODE_ID);
-                        partial = listener.change(nodeId);
+                        actionResult = listener.change(nodeId);
                     }
                     break;
                 }
@@ -519,7 +520,7 @@ public class JSTree extends AbstractControl {
                     SelectListener listener = getSelectListener();
                     if (listener != null) {
                         String nodeId = context.getRequestParameter(NODE_ID);
-                        partial = listener.select(nodeId);
+                        actionResult = listener.select(nodeId);
                     }
                     break;
                 }
@@ -527,13 +528,13 @@ public class JSTree extends AbstractControl {
                     DeselectListener listener = getDeselectListener();
                     if (listener != null) {
                         String nodeId = context.getRequestParameter(NODE_ID);
-                        partial = listener.deselect(nodeId);
+                        actionResult = listener.deselect(nodeId);
                     }
                     break;
                 }
             }
 
-            return partial;
+            return actionResult;
         }
     }
 }

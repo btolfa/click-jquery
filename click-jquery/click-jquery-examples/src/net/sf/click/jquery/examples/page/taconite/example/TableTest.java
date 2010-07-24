@@ -25,7 +25,7 @@ import org.apache.click.control.Table;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQCommand;
 import net.sf.click.jquery.taconite.JQTaconite;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -44,34 +44,34 @@ public class TableTest extends BorderPage {
         link.addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent eventType) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent eventType) {
+                JQTaconite actionResult = new JQTaconite();
                 int count = NumberUtils.toInt(getContext().getRequestParameter("count"));
                 ++count;
 
                 // After the link is added, we can change the href parameters.
                 link.setParameter("count", count);
                 link.setLabel("Counter: " + count);
-                partial.replace(link);
-                partial.remove(link2);
-                partial.after(link, link2);
+                actionResult.replace(link);
+                actionResult.remove(link2);
+                actionResult.after(link, link2);
                 Table table = createTable();
                 table.setClass(Table.CLASS_COMPLEX);
                 //command.add(table);
-                partial.remove(table);
-                partial.after(link2, table);
-                return partial;
+                actionResult.remove(table);
+                actionResult.after(link2, table);
+                return actionResult;
             }
         });
 
         JQBehavior behavior = new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent eventType) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent eventType) {
+                JQTaconite actionResult = new JQTaconite();
                 JQCommand command = new JQCommand(JQTaconite.AFTER, "tr.even", "<tr><td>WHOO HOOO!!!</td></tr>");
-                partial.add(command);
-                return partial;
+                actionResult.add(command);
+                return actionResult;
             }
         };
 

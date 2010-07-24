@@ -18,7 +18,7 @@ import net.sf.click.jquery.behavior.JQBehavior;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Button;
 import org.apache.click.control.Form;
 import org.apache.click.control.Submit;
@@ -38,7 +38,7 @@ public class JQBehaviorDemo extends BorderPage {
         JQBehavior behavior = new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent event) {
                 JQTaconite taconite = new JQTaconite();
                 taconite.after(form, "<div>" + source.getName() + " clicked!</div>");
                 return taconite;

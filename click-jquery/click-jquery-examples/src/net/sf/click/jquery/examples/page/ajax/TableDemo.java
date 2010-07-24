@@ -20,7 +20,7 @@ import net.sf.click.jquery.examples.domain.Customer;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Column;
 import org.apache.click.control.Table;
 import org.apache.click.dataprovider.DataProvider;
@@ -48,20 +48,20 @@ public class TableDemo extends BorderPage {
         table.getControlLink().addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
                 // Note: table must be processed in order to update paging and
                 // sorting state
                 table.onProcess();
 
                 // If an external Table Paginator was used, we should remove any leftover paginator elements
-                // partial.remove(".pagelinks, .pagebanner, .pagelinks-nobanner");
+                // actionResult.remove(".pagelinks, .pagebanner, .pagelinks-nobanner");
 
                 // Append a table after the link
-                partial.replace(table);
+                actionResult.replace(table);
 
-                return partial;
+                return actionResult;
             }
         });
     }

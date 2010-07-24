@@ -13,7 +13,7 @@
  */
 package net.sf.click.jquery.examples.control.jstree.listener;
 
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 
 /**
  *
@@ -23,7 +23,7 @@ public class MoveListener {
     /** default serial version id. */
     private static final long serialVersionUID = 1L;
 
-    public Partial move(String nodeId, String referenceNodeId, String type) {
+    public ActionResult move(String nodeId, String referenceNodeId, String type) {
         return null;
     }
 }

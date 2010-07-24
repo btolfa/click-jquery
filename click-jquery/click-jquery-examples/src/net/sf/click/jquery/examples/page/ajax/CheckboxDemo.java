@@ -18,7 +18,7 @@ import net.sf.click.jquery.behavior.JQBehavior;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.Checkbox;
 import org.apache.click.control.Form;
 
@@ -35,12 +35,12 @@ public class CheckboxDemo extends BorderPage {
         checkbox.addBehavior(new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent event) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent event) {
+                JQTaconite actionResult = new JQTaconite();
 
-                partial.prepend("#myTarget", "<p>You have " + (checkbox.isChecked() ? "checked" : "unchecked") + " the checkbox.</p>");
+                actionResult.prepend("#myTarget", "<p>You have " + (checkbox.isChecked() ? "checked" : "unchecked") + " the checkbox.</p>");
 
-                return partial;
+                return actionResult;
             }
         });
 

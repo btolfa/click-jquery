@@ -21,7 +21,7 @@ import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQCommand;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Context;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.commons.lang.math.NumberUtils;
 
 /**
@@ -42,8 +42,8 @@ public class DecoratorTest extends BorderPage {
         JQBehavior behavior = new JQBehavior(JQEvent.CLICK) {
 
             @Override
-            public Partial onAction(Control source, JQEvent eventType) {
-                JQTaconite partial = new JQTaconite();
+            public ActionResult onAction(Control source, JQEvent eventType) {
+                JQTaconite actionResult = new JQTaconite();
                 Context context = getContext();
                 int count = NumberUtils.toInt(context.getRequestParameter("count"));
                 count++;
@@ -51,8 +51,8 @@ public class DecoratorTest extends BorderPage {
                 link.setLabel("Counter: " + count);
                 JQCommand command = new JQCommand(JQTaconite.REPLACE, cssSelector, link).characterData(true);
 
-                partial.add(command);
-                return partial;
+                actionResult.add(command);
+                return actionResult;
             }
         };
         behavior.setCssSelector(cssSelector);
