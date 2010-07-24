@@ -20,6 +20,7 @@
         <menu label="Action Link Demo" path="ajax/action-link-demo.htm"/>
         <menu label="Action Button Demo" path="ajax/action-button-demo.htm"/>
         <menu label="Action Demo" path="ajax/action-demo.htm"/>
+        <menu label="Light-weight Action Link Demo" path="ajax/light-weight-action-link-demo.htm"/>
         <menu separator="true"/>
         <menu label="Table Demo" path="ajax/table-demo.htm"/>
         <menu label="Stateful Table Demo" path="ajax/stateful-table-demo.htm"/>
