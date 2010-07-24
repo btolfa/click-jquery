@@ -4,7 +4,7 @@ import net.sf.click.jquery.behavior.JQBehavior;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import net.sf.click.jquery.JQEvent;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -29,7 +29,7 @@ public class JQBehaviorTest {
         JQBehavior behavior = new JQBehavior() {
 
             @Override
-            public Partial onAction(Control source, JQEvent eventType) {
+            public ActionResult onAction(Control source, JQEvent eventType) {
                 System.out.println("OK");
                 return null;
             }
