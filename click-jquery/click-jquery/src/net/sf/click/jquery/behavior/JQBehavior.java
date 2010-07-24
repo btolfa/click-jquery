@@ -100,7 +100,9 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      */
     protected int delay = 0;
 
-    protected boolean skipSetup = false;
+    protected boolean skipSetupScript = false;
+
+    protected boolean skipHeadElements = false;
 
     protected JsScript setupScript;
 
@@ -318,17 +320,32 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     /**
+     * @return the skipHeadElements
+     */
+    public boolean isSkipHeadElements() {
+        return skipHeadElements;
+    }
+
+    /**
+     * @param skipHeadElements true if headElements should not be rendered,
+     * false otherwise
+     */
+    public void setSkipHeadElements(boolean skipHeadElements) {
+        this.skipHeadElements = skipHeadElements;
+    }
+
+    /**
      * @return the skipSetup
      */
-    public boolean isSkipSetup() {
-        return skipSetup;
+    public boolean isSkipSetupScript() {
+        return skipSetupScript;
     }
 
     /**
      * @param skipSetup the skipSetup to set
      */
-    public void setSkipSetup(boolean skipSetup) {
-        this.skipSetup = skipSetup;
+    public void setSkipSetupScript(boolean skipSetupScript) {
+        this.skipSetupScript = skipSetupScript;
     }
 
     public JsScript getSetupScript() {
@@ -534,9 +551,15 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     @Override
     public void preGetHeadElements(Control source) {
+        // If headElements should be skipped, exit early
+        if (isSkipHeadElements()) {
+            return;
+        }
+
         super.preGetHeadElements(source);
 
-        if (!isSkipSetup()) {
+        // If setup script should be skipped, exit early
+        if (!isSkipSetupScript()) {
             addSetupScript(source);
         }
     }
