@@ -20,7 +20,7 @@ import net.sf.click.jquery.examples.domain.Customer;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
-import org.apache.click.Partial;
+import org.apache.click.ActionResult;
 import org.apache.click.control.ActionLink;
 import org.apache.click.control.Column;
 import org.apache.click.control.Table;
@@ -112,17 +112,17 @@ public class StatefulTableDemo extends BorderPage {
     private class TableAjaxBehavior extends JQBehavior {
 
         @Override
-        public Partial onAction(Control source, JQEvent event) {
-            JQTaconite partial = new JQTaconite();
+        public ActionResult onAction(Control source, JQEvent event) {
+            JQTaconite actionResult = new JQTaconite();
 
             // Note: table must be processed in order to update paging and
             // sorting
             table.onProcess();
 
             // Replace the content of the element (with ID #target) with table
-            partial.replaceContent("#target", table);
+            actionResult.replaceContent("#target", table);
 
-            return partial;
+            return actionResult;
         }
     }
 }
