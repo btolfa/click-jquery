@@ -3,7 +3,7 @@ plot = jQuery.jqplot('$selector', [[$data]], {
     axes:{
         xaxis:{
             renderer:jQuery.jqplot.DateAxisRenderer,
-            min:'January 1, 2009',
+            min:'January 1, $year',
             tickInterval:'1 month',
             rendererOptions:{
                 tickRenderer:jQuery.jqplot.CanvasAxisTickRenderer},

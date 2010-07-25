@@ -64,7 +64,8 @@ public class RevenueChart extends AbstractControl {
             Map jsModel = new HashMap();
             jsModel.put("data", getChartData());
             jsModel.put("selector", getId());
-            jsModel.put("label", "Revenue for first quarter : " + Calendar.getInstance().get(Calendar.YEAR));
+            jsModel.put("year", getYear());
+            jsModel.put("label", "Revenue for first quarter : " + getYear());
             headElements.add(new JsScript("/charts/dashboard/revenue-chart.js", jsModel));
 
             headElements.add(new CssImport("/click-jquery/example/jqplot/jquery.jqplot.min.css"));
@@ -75,10 +76,15 @@ public class RevenueChart extends AbstractControl {
 
     private String getChartData() {
         HtmlStringBuffer buffer = new HtmlStringBuffer(20);
-        buffer.append("['2009-01-1', 400000],");
-        buffer.append("['2009-02-1', 450000],");
-        buffer.append("['2009-03-1', 410000],");
-        buffer.append("['2009-03-31',510000]");
+        int year = getYear();
+        buffer.append("['").append(year).append("-01-1', 400000],");
+        buffer.append("['").append(year).append("-02-1', 450000],");
+        buffer.append("['").append(year).append("-03-1', 410000],");
+        buffer.append("['").append(year).append("-03-31',510000]");
         return buffer.toString();
+    }
+
+    private int getYear() {
+        return Calendar.getInstance().get(Calendar.YEAR);
     }
 }
