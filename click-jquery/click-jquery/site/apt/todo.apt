@@ -7,7 +7,6 @@
 
 TODO
 
-   * Convert all clickclick references to the proper new ones.
 
    * remove non-relevant components and examples and code
 
@@ -15,8 +14,8 @@ TODO
 
    * cleanup the code so that  the checkstyles can pass
 
-   * publish the first release, announce it on: Click lists, Click blogs, Dzone, etc.
+   * publish the first release, announce it on the Click lists, Click Blog, DZone, etc.
 
-   * push the release to a public maven repo.
+   * push the release to a public maven Repo.
 
    []
