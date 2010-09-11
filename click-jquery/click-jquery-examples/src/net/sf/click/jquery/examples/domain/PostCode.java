@@ -13,6 +13,9 @@
  */
 package net.sf.click.jquery.examples.domain;
 
+/**
+ * Domain class representing the 'PostCode' entity.
+ */
 public class PostCode {
 
     private String locality;

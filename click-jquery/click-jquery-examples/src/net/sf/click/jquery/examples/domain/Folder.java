@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
+ * Domain class representing the  'Folder' entity.
  */
 public class Folder extends File implements Serializable {
 

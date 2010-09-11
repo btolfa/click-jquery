@@ -13,7 +13,6 @@
  */
 package net.sf.click.jquery.examples.util;
 
-import java.util.Iterator;
 import java.util.List;
 import org.apache.click.control.Checkbox;
 import org.apache.click.control.Field;
@@ -37,22 +36,18 @@ import org.apache.click.util.HtmlStringBuffer;
 public class JQValidationHelper {
 
     public String getRules(Form form) {
-        List fields = ContainerUtils.getFields(form);
+        List<Field> fields = ContainerUtils.getFields(form);
         HtmlStringBuffer buffer = new HtmlStringBuffer(fields.size() * 50);
-        Iterator it = fields.iterator();
-        while(it.hasNext()) {
-            Field field = (Field) it.next();
+        for (Field field : fields) {
             addRules(buffer, field);
         }
         return buffer.toString();
     }
 
     public String getMessages(Form form) {
-        List fields = ContainerUtils.getFields(form);
+        List<Field> fields = ContainerUtils.getFields(form);
         HtmlStringBuffer buffer = new HtmlStringBuffer(fields.size() * 50);
-        Iterator it = fields.iterator();
-        while(it.hasNext()) {
-            Field field = (Field) it.next();
+        for (Field field : fields) {
             addMessages(buffer, field);
         }
         return buffer.toString();

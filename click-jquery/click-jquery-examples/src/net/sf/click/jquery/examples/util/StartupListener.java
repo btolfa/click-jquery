@@ -39,9 +39,9 @@ public class StartupListener implements ServletContextListener {
 
     private long id = 0;
 
-    public static final List<Customer> CUSTOMERS = new ArrayList();
+    public static final List<Customer> CUSTOMERS = new ArrayList<Customer>();
 
-    public static final List<PostCode> POST_CODES = new ArrayList();
+    public static final List<PostCode> POST_CODES = new ArrayList<PostCode>();
 
     // --------------------------------------------------------- Public Methods
 

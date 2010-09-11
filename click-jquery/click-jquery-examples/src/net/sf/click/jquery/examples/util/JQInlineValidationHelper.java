@@ -13,7 +13,6 @@
  */
 package net.sf.click.jquery.examples.util;
 
-import java.util.Iterator;
 import java.util.List;
 import net.sf.click.jquery.examples.control.JQColorPicker;
 import org.apache.click.control.Checkbox;
@@ -43,10 +42,8 @@ import org.apache.commons.lang.StringUtils;
 public class JQInlineValidationHelper {
 
     public void decorate(Form form) {
-        List fields = ContainerUtils.getFields(form);
-        Iterator it = fields.iterator();
-        while(it.hasNext()) {
-            Field field = (Field) it.next();
+        List<Field> fields = ContainerUtils.getFields(form);
+        for (Field field : fields) {
             decorate(field);
         }
     }

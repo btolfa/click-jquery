@@ -15,6 +15,9 @@ package net.sf.click.jquery.examples.domain;
 
 import java.util.Date;
 
+/**
+ * Domain class representing the 'Customer' entity.
+ */
 public class Customer {
 
     private Boolean active;

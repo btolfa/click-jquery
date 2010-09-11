@@ -16,7 +16,7 @@ package net.sf.click.jquery.examples.domain;
 import java.io.Serializable;
 
 /**
- *
+ * Domain class representing the 'File' entity.
  */
 public class File implements Serializable {
 

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A book class.
+ * Domain class representing the 'Book' entity.
  */
 public class Book implements Serializable {
 
