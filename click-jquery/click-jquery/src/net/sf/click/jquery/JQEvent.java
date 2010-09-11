@@ -135,6 +135,12 @@ public class JQEvent {
         this.which = which;
     }
 
+    /**
+     * Returns true if the the event is bindable.
+     * 
+     * @param event the event name to check upon.
+     * @return true if the event is bindable, false otherwise.
+     */
     public static boolean isBindableEvent(String event) {
         return !ArrayUtils.contains(NON_BINDABLE, event);
     }

@@ -284,7 +284,7 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
      *     }
      * } </pre>
      *
-     * @param options the Autocomplete options
+     * @param autoCompleteOptions the Autocomplete options
      */
     public void setAutocCompleteOptions(Options autoCompleteOptions) {
         this.autoCompleteOptions = autoCompleteOptions;

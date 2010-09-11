@@ -24,6 +24,7 @@ import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
 import org.apache.click.ActionResult;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import net.sf.click.jquery.JQEvent;
@@ -178,7 +179,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     /**
      * Set the template to render for this helper.
      *
-     * @param template the template to render for this helper
+     * @param templatesPath the template to render for this helper
      */
     public void setTemplatesPath(String templatesPath) {
         this.templatesPath = templatesPath;
@@ -256,7 +257,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      */
     public Map<String, Object> getData() {
         if (data == null) {
-            data = new HashMap(2);
+            data = new HashMap<String, Object>(2);
         }
         return data;
     }
@@ -273,7 +274,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     /**
      * Set the Ajax request parameter.
      *
-     * @param parameters the Ajax request parameters
+     * @param data the Ajax request parameters
      */
     public void setData(Map<String, Object> data) {
         this.data = data;
@@ -312,7 +313,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      * Set whether an Ajax indicator (busy indicator) should be shown during
      * Ajax requests.
      *
-     * @param showIndicator indicates whether an Ajax indicator should be shown
+     * @param showBusyIndicator indicates whether an Ajax indicator should be shown
      * during Ajax requests
      */
     public void setShowBusyIndicator(boolean showBusyIndicator) {
@@ -342,7 +343,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     /**
-     * @param skipSetup the skipSetup to set
+     * @param skipSetupScript the skipSetup to set
      */
     public void setSkipSetupScript(boolean skipSetupScript) {
         this.skipSetupScript = skipSetupScript;
@@ -719,7 +720,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     @Override
     protected void addHeadElements(Control source) {
 
-        List headElements = source.getHeadElements();
+        List<Element> headElements = source.getHeadElements();
 
         int index = 0;
         JsImport jsImport = new JsImport(jqueryPath);
@@ -767,7 +768,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     protected void addSetupScript(Control source) {
-        List headElements = source.getHeadElements();
+        List<Element> headElements = source.getHeadElements();
 
         // Check if user set a custom setup script
         JsScript script = getSetupScript();
@@ -777,10 +778,10 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
             if (script.getTemplate() != null) {
                 // Get template model
-                Map templateModel = createTemplateModel(page, source, getContext());
+                Map<String, Object> templateModel = createTemplateModel(page, source, getContext());
 
                 // Copy script model over templateModel
-                Map scriptModel = script.getModel();
+                Map<String, Object> scriptModel = script.getModel();
                 if (scriptModel != null) {
                     templateModel.putAll(scriptModel);
                 }

@@ -31,7 +31,7 @@ import org.apache.click.util.HtmlStringBuffer;
 import org.apache.click.util.MessagesMap;
 
 /**
- *
+ * Base Abstract jQuery Behavior class.
  */
 public abstract class AbstractJQBehavior extends AjaxBehavior implements Serializable {
 
@@ -136,7 +136,7 @@ public abstract class AbstractJQBehavior extends AjaxBehavior implements Seriali
     }
 
     /**
-     * Return the Context of the current request
+     * Return the Context of the current request.
      *
      * @return the Context of the current request
      */
@@ -200,3 +200,4 @@ public abstract class AbstractJQBehavior extends AjaxBehavior implements Seriali
         return buffer.toString();
     }
 }
+
