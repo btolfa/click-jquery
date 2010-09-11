@@ -138,9 +138,9 @@ public abstract class JQAutoCompleteTextField extends TextField {
     }
 
     /**
-     * Set the JQuery Helper instance.
+     * Set the JQuery Behavior instance.
      *
-     * @param jqHelper the JQuery Helper instance
+     * @param jqBehavior the JQuery Behavior instance
      */
     public void setJQBehavior(JQAutoCompleteBehavior jqBehavior) {
         this.jqBehavior = jqBehavior;

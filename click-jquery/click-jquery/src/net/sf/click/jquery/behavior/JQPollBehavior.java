@@ -290,7 +290,7 @@ public class JQPollBehavior extends JQBehavior {
     /**
      * Set the unique refresh id.
      *
-     * @param refreshId the unique refresh id
+     * @param pollId the unique refresh id
      */
     public void setPollId(String pollId) {
         this.pollId = pollId;

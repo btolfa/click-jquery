@@ -91,7 +91,7 @@ public class JQCommand {
     private String value;
 
     /** An array of arguments to pass to the command. */
-    private List arguments;
+    private List<String> arguments;
 
     /** The content (payload) of the command. */
     private List content = new ArrayList();
@@ -312,9 +312,9 @@ public class JQCommand {
      *
      * @return the command's arguments.
      */
-    public List getArguments() {
+    public List<String> getArguments() {
         if (arguments == null) {
-            arguments = new ArrayList();
+            arguments = new ArrayList<String>();
         }
         return arguments;
     }
@@ -325,11 +325,7 @@ public class JQCommand {
      * @return true if the command contains any arguments, false otherwise
      */
     public boolean hasArguments() {
-        if (arguments != null) {
-            return !getArguments().isEmpty();
-        } else {
-            return false;
-        }
+        return arguments != null && !getArguments().isEmpty();
     }
 
     /**
@@ -678,9 +674,7 @@ public class JQCommand {
             buffer.append("<![CDATA[ ");
         }
 
-        Iterator it = getContent().iterator();
-        while(it.hasNext()) {
-            Object content = it.next();
+        for (Object o : getContent()) {
             if (content instanceof Control) {
                 ((Control) content).render(buffer);
             } else if (content instanceof JsScript) {

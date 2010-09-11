@@ -255,7 +255,7 @@ public class JQTaconite extends ActionResult {
     // -------------------------------------------------------------- Variables
 
     /** The list of commands to execute. */
-    protected List commands = new ArrayList();
+    protected List<JQCommand> commands = new ArrayList<JQCommand>();
 
     protected boolean skipHeadElements = false;
 
@@ -933,7 +933,7 @@ public class JQTaconite extends ActionResult {
      * <p/>
      * The given JsScript content will evaluated in the browser.
      *
-     * @param content the JsScript content to be evaluated in the browser
+     * @param script the JsScript content to be evaluated in the browser
      * @return the command that was created
      */
     public JQCommand eval(JsScript script) {

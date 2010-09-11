@@ -337,7 +337,7 @@ public class JSONWriter {
             sr.mark(1);
             int i = sr.read();
             if (i == -1) {
-                throw new RuntimeException("Sould not reach here!");
+                throw new RuntimeException("Should not reach here!");
             } else {
                 char c = (char) i;
                 switch (c) {

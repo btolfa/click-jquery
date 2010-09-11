@@ -15,6 +15,7 @@ package net.sf.click.jquery.control.ajax;
 
 import java.util.List;
 import net.sf.click.jquery.behavior.JQFormBehavior;
+import org.apache.click.control.Field;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
 import org.apache.click.element.Element;
@@ -70,7 +71,7 @@ public class JQForm extends Form {
 
     // -------------------------------------------------------------- Variables
 
-    /** The JQuery helper object. */
+    /** The JQuery Behavior object. */
     protected JQFormBehavior jqBehavior;
 
     /** The JavaScript focus function HEAD element. */
@@ -96,9 +97,9 @@ public class JQForm extends Form {
     // ------------------------------------------------------ Public Properties
 
     /**
-     * Return the JQuery Helper instance.
+     * Return the JQuery Behavior instance.
      *
-     * @return the jqHelper instance
+     * @return the jqBehavior instance
      */
     public JQFormBehavior getJQBehavior() {
         if (jqBehavior == null) {
@@ -108,9 +109,9 @@ public class JQForm extends Form {
     }
 
     /**
-     * Set the JQuery Helper instance.
+     * Set the JQuery Behavior instance.
      *
-     * @param jqHelper the JQuery Helper instance
+     * @param jqBehavior the JQuery Behavior instance
      */
     public void setJQBehavior(JQFormBehavior jqBehavior) {
         this.jqBehavior = jqBehavior;
@@ -181,7 +182,7 @@ public class JQForm extends Form {
      * @param formFields the list of form fields
      */
     @Override
-    protected void renderFocusJavaScript(HtmlStringBuffer buffer, List formFields) {
+    protected void renderFocusJavaScript(HtmlStringBuffer buffer, List<Field> formFields) {
         if (getContext().isAjaxRequest()) {
             HtmlStringBuffer tempBuf = new HtmlStringBuffer();
             super.renderFocusJavaScript(tempBuf, formFields);
