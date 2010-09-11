@@ -21,6 +21,7 @@ import net.sf.click.jquery.util.JSONWriter;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import org.apache.click.util.HtmlStringBuffer;
@@ -432,7 +433,7 @@ public class JQPollBehavior extends JQBehavior {
     protected void addHeadElements(Control source) {
         super.addHeadElements(source);
 
-        List headElements = source.getHeadElements();
+        List<Element> headElements = source.getHeadElements();
 
         JsImport jsImport = new JsImport(jqueryPollPath);
         if (!headElements.contains(jsImport)) {

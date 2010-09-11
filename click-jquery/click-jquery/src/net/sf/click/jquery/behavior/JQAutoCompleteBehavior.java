@@ -27,6 +27,7 @@ import org.apache.click.Page;
 import org.apache.click.ActionResult;
 import org.apache.click.control.Field;
 import org.apache.click.element.CssImport;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import org.apache.click.service.ConfigService;
@@ -338,7 +339,7 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
      */
     @Override
     protected void addHeadElements(Control source) {
-        List headElements = source.getHeadElements();
+        List<Element> headElements = source.getHeadElements();
 
         JsImport jsImport = new JsImport(jqueryPath);
         if (!headElements.contains(jsImport)) {

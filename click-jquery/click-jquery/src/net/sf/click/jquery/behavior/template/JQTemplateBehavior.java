@@ -23,6 +23,7 @@ import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
 import org.apache.click.ActionResult;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import org.apache.click.service.ConfigService;
@@ -256,7 +257,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
     @Override
     protected void addHeadElements(Control source) {
 
-        List headElements = source.getHeadElements();
+        List<Element> headElements = source.getHeadElements();
 
         JsImport jsImport = new JsImport(jqueryPath);
         if (!headElements.contains(jsImport)) {
@@ -293,7 +294,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
             JsScript jsScript = new JsScript();
             jsScript.setId(getTemplateId());
 
-            List headElements = source.getHeadElements();
+            List<Element> headElements = source.getHeadElements();
 
             // Guard against adding duplicate templates in case of stateful pages
             if (!headElements.contains(jsScript)) {

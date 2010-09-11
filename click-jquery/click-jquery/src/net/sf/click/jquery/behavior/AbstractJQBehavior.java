@@ -24,6 +24,7 @@ import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
 import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsScript;
 import org.apache.click.util.ClickUtils;
 import org.apache.click.util.HtmlStringBuffer;
@@ -153,7 +154,7 @@ public abstract class AbstractJQBehavior extends AjaxBehavior implements Seriali
      *
      * @param headElements list which to add the debug script to
      */
-    protected void addJSDebugScript(List headElements) {
+    protected void addJSDebugScript(List<Element> headElements) {
         JsScript jsScript = new JsScript();
         jsScript.setId("enable_js_debugging");
         if (headElements.contains(jsScript)) {

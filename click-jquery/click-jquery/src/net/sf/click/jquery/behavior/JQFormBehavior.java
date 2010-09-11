@@ -22,6 +22,7 @@ import org.apache.click.Control;
 import org.apache.click.Page;
 import org.apache.click.control.Form;
 import org.apache.click.control.HiddenField;
+import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.element.JsScript;
 import org.apache.click.util.HtmlStringBuffer;
@@ -279,7 +280,7 @@ public class JQFormBehavior extends JQBehavior {
     }
 
     @Override
-    protected void addJSDebugScript(List headElements) {
+    protected void addJSDebugScript(List<Element> headElements) {
         JsScript jsScript = new JsScript();
         jsScript.setId("enable_js_debugging");
         if (headElements.contains(jsScript)) {
