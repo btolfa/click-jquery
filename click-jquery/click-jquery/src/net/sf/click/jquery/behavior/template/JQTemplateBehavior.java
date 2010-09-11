@@ -251,7 +251,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
      * Add the necessary JavaScript imports and scripts to the given
      * headElements list to enable Ajax requests.
      *
-     * @param headElements the list which to add all JavaScript imports and
+     * @param source Control to add to it's headElements all JavaScript imports and
      * scripts to enable Ajax requests
      */
     @Override
@@ -286,7 +286,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
     /**
      * Add the {@link #template} content to the given headElements list.
      *
-     * @param headElements list which to add the Ajax template to
+     * @param source Control which to add the Ajax template to
      */
     protected void addTemplate(Control source) {
         if (StringUtils.isNotBlank(getTemplate())) {
@@ -300,7 +300,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
             if (!headElements.contains(jsScript)) {
                 jsScript.setTemplate(getTemplate());
 
-                Map templateModel = createTemplateModel(page, source);
+                Map<String, Object> templateModel = createTemplateModel(page, source);
                 jsScript.setModel(templateModel);
 
                 headElements.add(jsScript);

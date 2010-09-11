@@ -203,7 +203,7 @@ public class JQFormBehavior extends JQBehavior {
     protected void addHeadElements(Control source) {
         super.addHeadElements(source);
 
-        List headElements = source.getHeadElements();
+        List<Element> headElements = source.getHeadElements();
 
         JsImport jsImport = new JsImport(jqueryFormPath);
         if (!headElements.contains(jsImport)) {
@@ -247,7 +247,7 @@ public class JQFormBehavior extends JQBehavior {
     @Override
     protected Map<String, Object> createTemplateModel(Page page, Control control, Context context) {
         // Remove data so that super implementation does not serialize data into parameters
-        Map localData = getData();
+        Map<String, Object> localData = getData();
         setData(null);
 
         Map<String, Object> templateModel = super.createTemplateModel(page, control, context);

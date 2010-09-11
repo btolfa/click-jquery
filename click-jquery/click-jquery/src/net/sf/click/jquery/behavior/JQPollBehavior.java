@@ -249,7 +249,6 @@ public class JQPollBehavior extends JQBehavior {
     /**
      * Create a JQPollBehavior for the given target control.
      *
-     * @param control the helper target control
      */
     public JQPollBehavior() {
         super(JQEvent.DOMREADY);
