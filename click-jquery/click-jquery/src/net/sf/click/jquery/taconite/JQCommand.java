@@ -16,7 +16,6 @@ package net.sf.click.jquery.taconite;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.apache.click.Context;
@@ -158,7 +157,7 @@ public class JQCommand {
      * @param selector the CSS to identify the target of the operation
      * @param content the content of the command
      */
-    public JQCommand (String command, String selector, Control content) {
+    public JQCommand(String command, String selector, Control content) {
         setCommand(command);
         setSelector(selector);
         if (content != null) {
@@ -645,7 +644,7 @@ public class JQCommand {
         buffer.appendAttribute("value", getValue());
         if (hasArguments()) {
             List args = getArguments();
-            for(int i = 0; i < args.size(); i++) {
+            for (int i = 0; i < args.size(); i++) {
                 String arg = (String) args.get(i);
                 buffer.append(" arg").append(i + 1);
                 buffer.append("=\"");

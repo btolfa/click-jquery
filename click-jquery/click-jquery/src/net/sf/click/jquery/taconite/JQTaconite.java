@@ -1573,9 +1573,7 @@ public class JQTaconite extends ActionResult {
      * @param buffer the buffer to render to
      */
     protected void renderContent(HtmlStringBuffer buffer) {
-        Iterator it = commands.iterator();
-        while(it.hasNext()) {
-            JQCommand command = (JQCommand) it.next();
+        for (JQCommand command : commands) {
             command.render(buffer);
             buffer.append("\n");
         }
@@ -1614,7 +1612,7 @@ public class JQTaconite extends ActionResult {
         PageImports pageImports = new PageImports(null);
 
         Iterator it = commands.iterator();
-        List evalCommands = null;
+        List<JQCommand> evalCommands = null;
         while (it.hasNext()) {
             JQCommand command = (JQCommand) it.next();
 
@@ -1623,7 +1621,7 @@ public class JQTaconite extends ActionResult {
                 // response. These commands are processed in the order they were
                 // added, but after all other commands were processed
                 if (evalCommands == null) {
-                    evalCommands = new ArrayList();
+                    evalCommands = new ArrayList<JQCommand>();
                 }
                 evalCommands.add(command);
                 it.remove();
@@ -1638,18 +1636,18 @@ public class JQTaconite extends ActionResult {
             }
         }
 
-        List headElements = pageImports.getHeadElements();
+        List<Element> headElements = pageImports.getHeadElements();
 
         // Ensure CssStyle content is wrapped in CDATA tags because the content
         // must be valid XML.
         for (int i = 0, size = headElements.size(); i < size; i++) {
-            Element element = (Element) headElements.get(i);
+            Element element = headElements.get(i);
             if (element instanceof CssStyle) {
                 ((CssStyle) element).setCharacterData(true);
             }
         }
 
-        List jsElements = pageImports.getJsElements();
+        List<Element> jsElements = pageImports.getJsElements();
 
         JQCommand headElementsCommand = new JQCommand(JQTaconite.ADD_HEADER);
         headElementsCommand.setContent(headElements);
@@ -1663,10 +1661,10 @@ public class JQTaconite extends ActionResult {
 
         // Add headElements at the top of the command list, but after any CUSTOM
         // commands
-        if(headElementsCommand.getContent().size() > 0) {
+        if (headElementsCommand.getContent().size() > 0) {
             int i = 0;
-            for(int size = commands.size(); i < size; i++) {
-                JQCommand command = (JQCommand) commands.get(i);
+            for (int size = commands.size(); i < size; i++) {
+                JQCommand command = commands.get(i);
                 if (!CUSTOM.equals(command.getCommand())) {
                     break;
                 }
@@ -1724,10 +1722,7 @@ public class JQTaconite extends ActionResult {
      * @param pageImports the pageImports to add HEAD elements to
      */
     void processHeadElements(JQCommand command, PageImports pageImports) {
-        Iterator it = command.getContent().iterator();
-        while(it.hasNext()) {
-            Object content = it.next();
-
+        for (Object content : command.getContent()) {
             // Add all controls to the PageImports instance
             if (content instanceof Control) {
                 Control control = (Control) content;
