@@ -40,7 +40,6 @@ public class DynamicFormAjax extends BorderPage {
 
     private JQActionButton start = new JQActionButton("start");
 
-
     private RadioGroup typeGroup = new RadioGroup("type");
 
     private FieldSet desktopFS = new FieldSet("desktop");
