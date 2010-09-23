@@ -54,6 +54,13 @@ a:visited {
 	color: blue;
 }
 
+.infoMsg {
+    border: 1px solid #a7bcd6;
+    background-color: #ffffc0;
+    margin: 0.5em;
+    padding: 0.5em;
+}
+
 /*
  * Table styles
  */
