@@ -15,12 +15,12 @@ package net.sf.click.jquery.examples.page.ajax.form;
 
 import net.sf.click.jquery.JQEvent;
 import net.sf.click.jquery.behavior.JQBehavior;
-import net.sf.click.jquery.examples.control.JQActionButton;
+import net.sf.click.jquery.control.ajax.JQForm;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
-import org.apache.click.ActionListener;
 import org.apache.click.Control;
 import org.apache.click.ActionResult;
+import org.apache.click.ajax.AjaxBehavior;
 import org.apache.click.control.Checkbox;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
@@ -28,114 +28,140 @@ import org.apache.click.control.Radio;
 import org.apache.click.control.RadioGroup;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
+import org.apache.click.util.ClickUtils;
+import org.apache.commons.lang.StringUtils;
 
 /**
- * Provides a dynamically built Form using Ajax.
+ * Demonstrates a form that is dynamically built using AJAX, The form is submitted
+ * through AJAX.
  */
 public class DynamicFormAjax extends BorderPage {
 
-	private static final long serialVersionUID = 1L;
+	  private static final long serialVersionUID = 1L;
 
-    private Form form = new Form("form");
+    private Form form = new JQForm("form");
 
-    private JQActionButton start = new JQActionButton("start");
-
-    private RadioGroup typeGroup = new RadioGroup("type");
+    private RadioGroup productType = new RadioGroup("productType", true);
 
     private FieldSet desktopFS = new FieldSet("desktop");
 
     private FieldSet laptopFS = new FieldSet("laptop");
 
+    private Submit start = new Submit("start");
+
     private Submit save = new Submit("save");
 
     public DynamicFormAjax() {
-        setStateful(true);
+        addControl(form);
+        form.add(start);
 
-        start.addBehavior(new JQBehavior() {
+        // Use explicit binding to determine if the user picked a product type,
+        // or submitted the form
+        ClickUtils.bind(productType);
+        ClickUtils.bind(save);
+        if (StringUtils.isNotBlank(productType.getValue()) || save.isClicked()) {
+            // If a product type was chosen or the form is submitted, ensure
+            // product type group is present in form
+            buildProductTypesForm();
+        }
+
+        start.addBehavior(new JQBehavior(JQEvent.CLICK) {
 
             @Override
             public ActionResult onAction(Control source, JQEvent event) {
+                // Add product types  to form
+                buildProductTypesForm();
+
                 JQTaconite taconite = new JQTaconite();
-                if (!form.contains(typeGroup)) {
-                    form.add(typeGroup);
-                    buildAjaxForm(typeGroup);
+                // Replace the form in the browser with the dynamically built form
                     taconite.replace(form);
-                }
+                    // Remove the messagebox element
+                taconite.remove("#messagebox");
                 return taconite;
             }
         });
-
-        form.add(start);
-        addControl(form);
     }
 
-    private void buildAjaxForm(final RadioGroup type) {
+    private void buildProductTypesForm() {
+        form.add(productType);
         form.add(save);
 
-        save.setActionListener(new ActionListener() {
+        // Set Behavior on Submit which will be invoked when form is submitted
+        save.addBehavior(new AjaxBehavior() {
 
-            public boolean onAction(Control source) {
-                System.out.println("SAVED");
-                return true;
+            @Override
+            public ActionResult onAction(Control source) {
+                JQTaconite taconite = new JQTaconite();
+                // Remove the messagebox element
+                taconite.remove("#messagebox");
+                if (form.isValid()) {
+                    // Add the messagebox element above the form
+                    taconite.before(form, "<div id='messagebox' class='infoMsg'>Form saved!</div>");
+                }
+                // Replace the form in the browser with the dynamically built form
+                    taconite.replace(form);
+                return taconite;
             }
         });
 
         final Radio laptop = new Radio("laptop");
 
-        laptop.addBehavior(new JQBehavior() {
+        laptop.addBehavior(new JQBehavior(JQEvent.CLICK) {
 
             @Override
-            public ActionResult onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent eventType) {
                 JQTaconite taconite = new JQTaconite();
-                if (form.contains(laptopFS)) {
-                    return taconite;
-                }
 
-                typeGroup.setValue(laptop.getValue());
-                form.remove(desktopFS);
-                form.add(laptopFS);
-                initLaptop(laptopFS);
+                // Replace the form in the browser with the dynamically built form
                 taconite.replace(form);
+                    // Remove the messagebox element
+                taconite.remove("#messagebox");
                 return taconite;
             }
         });
 
         final Radio desktop = new Radio("desktop");
 
-        desktop.addBehavior(new JQBehavior() {
+        desktop.addBehavior(new JQBehavior(JQEvent.CLICK) {
 
             @Override
-            public ActionResult onAction(Control source, JQEvent event) {
+            public ActionResult onAction(Control source, JQEvent eventType) {
                 JQTaconite taconite = new JQTaconite();
-                if (form.contains(desktopFS)) {
-                    return taconite;
-                }
-
-                typeGroup.setValue(desktop.getValue());
-                form.remove(laptopFS);
-                form.add(desktopFS);
-                initDesktop(desktopFS);
+                // Replace the form in the browser with the dynamically built form
                 taconite.replace(form);
+                    // Remove the messagebox element
+                taconite.remove("#messagebox");
                 return taconite;
             }
         });
 
-        type.add(desktop);
-        type.add(laptop);
+        productType.add(desktop);
+        // Use explicit binding to determine if the user selected a desktop
+        ClickUtils.bind(desktop);
+        if (desktop.isChecked()) {
+            // If desktop was selected, build the desktop form
+                buildDesktopForm();
+            }
+
+        productType.add(laptop);
+        // Use explicit binding to determine if the user selected a laptop
+        ClickUtils.bind(laptop);
+        if (laptop.isChecked()) {
+            // If laptop was selected, build the laptop form
+                buildLaptopForm();
+            }
     }
 
-    private void initDesktop(FieldSet fieldSet) {
-        if (!fieldSet.getControls().isEmpty()) {
-            return;
-        }
-        fieldSet.add(new TextField("quantity", true));
+    private void buildDesktopForm() {
+        form.add(desktopFS);
+
+        desktopFS.add(new TextField("quantity", true));
     }
 
-    private void initLaptop(FieldSet fieldSet) {
-        if (!fieldSet.getControls().isEmpty()) {
-            return;
-        }
-        fieldSet.add(new TextField("quantity", true));
-        fieldSet.add(new Checkbox("adapter", "Include adapter?"));
+    private void buildLaptopForm() {
+        form.add(laptopFS);
+
+        laptopFS.add(new TextField("quantity", true));
+        laptopFS.add(new Checkbox("adapter", "Include adapter?"));
     }
 }
