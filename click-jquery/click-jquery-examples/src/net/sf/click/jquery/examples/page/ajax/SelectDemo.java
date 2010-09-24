@@ -24,6 +24,7 @@ import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.ActionResult;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
+import org.apache.click.util.ClickUtils;
 
 public class SelectDemo extends BorderPage {
 
@@ -37,9 +38,6 @@ public class SelectDemo extends BorderPage {
     private Form form = new Form("form");
 
     public SelectDemo() {
-        // Create a stateful page
-        setStateful(true);
-
         addControl(form);
 
         provinceSelect.addBehavior(new JQBehavior(JQEvent.CHANGE) {
@@ -71,13 +69,7 @@ public class SelectDemo extends BorderPage {
     private ActionResult updateCities() {
         JQTaconite actionResult = new JQTaconite();
 
-        // Clear the city options
-        citySelect.getOptionList().clear();
-
-        // Populate the cities
-        populateCities();
-
-        // Update the citySelect
+        // Update citySelect
         actionResult.replace(citySelect);
         return actionResult;
     }
@@ -91,6 +83,10 @@ public class SelectDemo extends BorderPage {
 
     private void populateCities() {
         citySelect.add(Option.EMPTY_OPTION);
+
+        // explicitly bind the province select value so we can determine which
+        // cities to add
+        ClickUtils.bind(provinceSelect);
 
         // Retrieve the selected province
         String provinceCode = provinceSelect.getValue();
