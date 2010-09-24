@@ -297,6 +297,15 @@
             <fileset dir="click-jquery/src/META-INF/resources/click-jquery/template"/>
             <globmapper from="*.js" to="*.js.txt"/>
         </copy>
+
+        <delete quiet="false" failonerror="false">
+             <fileset dir="../site/javadoc" includes="**/*"/>
+        </delete>
+
+        <copy todir="../site/javadoc" overwrite="true">
+            <fileset dir="docs"/>
+        </copy>
+
     </target>
 
     <target name="build-all" depends="clean, build, build-examples, javadoc"
