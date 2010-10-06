@@ -215,10 +215,11 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
             addModel(templateModel, "format", format, page, context);
         }
 
+        Map messages = getMessages();
         if (page != null) {
-            addModel(templateModel, "pageMessages", page.getMessages(), page, context);
+            messages.putAll(page.getMessages());
         }
-        addModel(templateModel, "messages", getMessages(), page, context);
+        addModel(templateModel, "messages", messages, page, context);
 
         String localCssSelector = getCssSelector();
         if (localCssSelector == null) {
