@@ -184,7 +184,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
     /**
      * Create a default data model for the Ajax {@link #template}.
      * <p/>
-     * The following values are added:
+     * The following values are automatically added to the model:
      * <ul>
      * <li>"context" - the request context path e.g: '/myapp'</li>
      * <li>"{@link #bindings}" - the JavaScript bindings for events</li>
