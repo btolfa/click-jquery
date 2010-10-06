@@ -142,12 +142,11 @@ public class JSONWriter {
                 addedSomething = true;
             }
         } catch (IllegalAccessException iae) {
-            iae.printStackTrace();
+            throw new RuntimeException(iae);
         } catch (InvocationTargetException ite) {
-            ite.getCause().printStackTrace();
-            ite.printStackTrace();
+            throw new RuntimeException(ite);
         } catch (IntrospectionException ie) {
-            ie.printStackTrace();
+            throw new RuntimeException(ie);
         }
         add("}");
     }
