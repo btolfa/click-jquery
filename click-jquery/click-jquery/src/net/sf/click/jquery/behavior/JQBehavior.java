@@ -38,6 +38,20 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * TODO: Describe how to set a custom setupScript.
+ * <p/>
+ * This behavior has an associated JavaScript template that can be modified
+ * according to your needs.
+ * <p/>
+ The jQuery-Click templates are provided in the JavaScript file
+ * <a href="../../../../../js/template/jquery.templates.js.txt">jquery.templates.js</a>.
+ * This behavior's template is <tt>Template 1</tt> and the JavaScript function is
+ * called <tt>Click.jq.ajaxTemplate</tt>.
+ * <p/>
+ * If you rename the JavaScript function or change the function's arguments, you
+ * will also have to customize the {@link #setSetupScript(org.apache.click.element.JsScript) setupScript},
+ * otherwise the Behavior will still generate the old JavaScript function signature.
+ *
+ * * @see JQTemplateBehavior if you want to create a new custom template instead.
  */
 public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
@@ -168,18 +182,18 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     /**
-     * Return the template to render for this helper.
+     * Return the template to render for this behavior.
      *
-     * @return the template to render for this helper
+     * @return the template to render for this behavior
      */
     public String getTemplatesPath() {
         return templatesPath;
     }
 
     /**
-     * Set the template to render for this helper.
+     * Set the template to render for this behavior.
      *
-     * @param templatesPath the template to render for this helper
+     * @param templatesPath the template to render for this behavior
      */
     public void setTemplatesPath(String templatesPath) {
         this.templatesPath = templatesPath;
@@ -360,9 +374,10 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      * values will be passed to the JsScript if the script {@link org.apache.click.element.JsScript#setTemplate(java.lang.String) template}
      * is set.
      * <p/>
-     * <b>Please note:</b> specifying your own setup script implies that the
-     * Behavior {@link #templatesPath} should not be rendered and thus the
-     * {@link #templatesPath} will be set to null by this method.
+     * <b>Please note:</b> specifying your own setup script implies using your
+     * own JavaScript template, meaning the Behavior {@link #templatesPath}
+     * should not be rendered and thus the {@link #templatesPath} will be set
+     * to null by this method.
      *
      * @param setupScript the behavior setup script to render
      */
@@ -617,27 +632,29 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     /**
      * Create a default data model for the Ajax {@link #template}.
      * <p/>
-     * The following values are added:
+     * The following values are automatically added to the model:
      * <ul>
-     * <li>"context" - the request context path e.g: '/myapp'</li>
-     * <li>"{@link #bindings}" - the JavaScript bindings for events</li>
-     * <li>"{@link #control}" - the target control</li>
-     * <li>"{@link #selector}" - the CSS selector</li>
-     * <li>"{@link #event}" - the event that initiates the Ajax request</li>
+     * <li>"<span color="blue">context</span>" - the request context path e.g: '/myapp'</li>
+     * <li>"<span color="blue">control</span>" - the behavior's source control</li>
+     * <li>"{@link #cssSelector}" - the CSS selector</li>
+     * <li>"{@link #eventType event}" - the event that initiates the Ajax request</li>
      * <li>"<span color="blue">productionMode</span>" - true if Click is running
      * in a production mode (production or profile), false otherwise</li>
      * <li>"{@link #url url}" - the Ajax request URL</li>
      * <li>"{@link #type}" - the type of the Ajax request, eg POST or GET</li>
-     * <li>"{@link #threshold}" - the threshold within which multiple Ajax
-     * requests are merged into a single request.</li>
-     * <li>"{@link #showBusyIndicator}" - flag indicating whether the busy
+     * <li>"{@link #delay}" - the time to wait before making the Ajax request.
+     * If more Ajax requests are fired within this period, they are merged into
+     * a single request.</li>
+     * <li>"{@link #timeout}" - how long to wait before wait before the Ajax
+     * request should be canceled.</li>
+     * <li>"{@link #timeoutRetryLimit}" - the number of times a {@link #timeout timed out}
+     * Ajax request should be retried before giving up.</li>
+     * <li>"{@link #showBusyIndicator}" - flag indicating whether a busy
      * indicator is shown or not</li>
-     * <li>"{@link #indicatorOptions}"</span> - the Ajax indicator options. Note
-     * that {@link #indicatorMessage} is rendered as part of the options</li>
-     * <li>"{@link #indicatorTarget}" - the target element of the Ajax indicator</li>
-     * <li>"{@link #errorMessage}" - the message to display if an Ajax error occurs</li>
-     * <li>"{@link #parameters}" - the Ajax request parameters</li>
-     * <li><span color="blue">"selector"</span> - the CSS {@link #selector}</li>
+     * <li>"{@link #busyIndicatorOptions}"</span> - the Ajax indicator options. Note
+     * that {@link #busyIndicatorMessage} is rendered as part of the options</li>
+     * <li>"{@link #busyIndicatorTarget}" - the target element of the Ajax indicator</li>
+     * <li>"{@link #data}" - the Ajax request parameters</li>
      * </ul>
      *
      * @return the default data model for the Ajax template
@@ -666,10 +683,12 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
             }
         }
 
+        addModel(templateModel, "context", context.getRequest().getContextPath(), page, context);
         addModel(templateModel, "cssSelector", localCssSelector, page, context);
 
         String localBusyIndicatorMessage = getBusyIndicatorMessage();
 
+        // If set, add message to options
         if (localBusyIndicatorMessage != null) {
             getBusyIndicatorOptions().put("message", localBusyIndicatorMessage);
         }
