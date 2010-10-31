@@ -13,7 +13,6 @@
  */
 package net.sf.click.jquery.behavior;
 
-import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.List;
@@ -23,7 +22,7 @@ import java.util.Set;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.Page;
-import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.ajax.DefaultAjaxBehavior;
 import org.apache.click.element.Element;
 import org.apache.click.element.JsScript;
 import org.apache.click.util.ClickUtils;
@@ -33,7 +32,7 @@ import org.apache.click.util.MessagesMap;
 /**
  * Base Abstract jQuery Behavior class.
  */
-public abstract class AbstractJQBehavior extends AjaxBehavior implements Serializable {
+public abstract class AbstractJQBehavior extends DefaultAjaxBehavior {
 
     // Constants --------------------------------------------------------------
 

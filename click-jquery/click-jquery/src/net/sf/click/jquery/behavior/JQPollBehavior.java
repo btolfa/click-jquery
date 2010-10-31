@@ -461,7 +461,7 @@ public class JQPollBehavior extends JQBehavior {
     }
 
     @Override
-    public boolean isRequestTarget(Context context) {
+    public boolean isAjaxTarget(Context context) {
         return true;
     }
 }

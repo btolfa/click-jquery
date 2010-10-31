@@ -187,7 +187,6 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
      * The following values are automatically added to the model:
      * <ul>
      * <li>"context" - the request context path e.g: '/myapp'</li>
-     * <li>"{@link #bindings}" - the JavaScript bindings for events</li>
      * <li>"{@link #control}" - the target control</li>
      * <li>"{@link #selector}" - the CSS selector</li>
      * <li>"{@link #event}" - the event that initiates the Ajax request</li>
@@ -215,11 +214,11 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
             addModel(templateModel, "format", format, page, context);
         }
 
-        Map messages = getMessages();
+        Map localMessages = getMessages();
         if (page != null) {
-            messages.putAll(page.getMessages());
+            localMessages.putAll(page.getMessages());
         }
-        addModel(templateModel, "messages", messages, page, context);
+        addModel(templateModel, "messages", localMessages, page, context);
 
         String localCssSelector = getCssSelector();
         if (localCssSelector == null) {
@@ -242,6 +241,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
 
     // Behavior Methods -------------------------------------------------------
 
+    @Override
     public ActionResult onAction(Control source) {
         return null;
     }

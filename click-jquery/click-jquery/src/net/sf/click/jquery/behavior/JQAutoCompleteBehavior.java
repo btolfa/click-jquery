@@ -234,7 +234,7 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
     }
 
     @Override
-    public boolean isRequestTarget(Context context) {
+    public boolean isAjaxTarget(Context context) {
         // TODO send event from JS to check if this is ajax target
         return true;
     }
