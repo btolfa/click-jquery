@@ -23,7 +23,7 @@ import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.examples.util.JQInlineValidationHelper;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.ActionResult;
-import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.ajax.DefaultAjaxBehavior;
 import org.apache.click.control.Checkbox;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.FileField;
@@ -147,8 +147,9 @@ public class JqueryValidation1Demo extends BorderPage {
         form.add(submit);
 
         // Set AjaxListener on Submit which will be invoked when form is submitted
-        submit.addBehavior(new AjaxBehavior() {
+        submit.addBehavior(new DefaultAjaxBehavior() {
 
+            @Override
             public ActionResult onAction(Control source) {
                 if (form.isValid()) {
                     saveForm();

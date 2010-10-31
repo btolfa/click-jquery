@@ -20,7 +20,7 @@ import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
 import org.apache.click.ActionResult;
-import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.ajax.DefaultAjaxBehavior;
 import org.apache.click.control.Checkbox;
 import org.apache.click.control.FieldSet;
 import org.apache.click.control.Form;
@@ -87,7 +87,7 @@ public class DynamicFormAjax extends BorderPage {
         form.add(save);
 
         // Set Behavior on Submit which will be invoked when form is submitted
-        save.addBehavior(new AjaxBehavior() {
+        save.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {

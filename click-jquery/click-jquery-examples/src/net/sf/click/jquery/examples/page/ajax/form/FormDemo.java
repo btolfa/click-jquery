@@ -20,7 +20,7 @@ import org.apache.click.Control;
 import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.ActionResult;
-import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.ajax.DefaultAjaxBehavior;
 import org.apache.click.control.Form;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextField;
@@ -62,7 +62,7 @@ public class FormDemo extends BorderPage {
         form.add(submit);
 
         // Set Behavior on Submit which will be invoked when form is submitted
-        submit.addBehavior(new AjaxBehavior() {
+        submit.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {
@@ -81,7 +81,7 @@ public class FormDemo extends BorderPage {
         form.add(cancel);
 
         // Set Behavior on Submit which will be invoked when form is submitted
-        cancel.addBehavior(new AjaxBehavior() {
+        cancel.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {

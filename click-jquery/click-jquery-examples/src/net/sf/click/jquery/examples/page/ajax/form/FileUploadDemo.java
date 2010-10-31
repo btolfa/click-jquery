@@ -18,7 +18,7 @@ import net.sf.click.jquery.examples.page.BorderPage;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
 import org.apache.click.ActionResult;
-import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.ajax.DefaultAjaxBehavior;
 import org.apache.click.control.FileField;
 import org.apache.click.control.Form;
 import org.apache.click.control.Submit;
@@ -54,7 +54,7 @@ public class FileUploadDemo extends BorderPage {
         ajaxForm.add(submit);
 
         submit = new Submit("save");
-        submit.addBehavior(new AjaxBehavior() {
+        submit.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {
@@ -82,7 +82,7 @@ public class FileUploadDemo extends BorderPage {
     // NOTE: use an AjaxBehavior as the behavior action handler. Do not use JQBehavior
     // as that is used for binding JS events to controls and here the JQForm does
     // all the binding already
-    class OnSubmitHandler extends AjaxBehavior {
+    class OnSubmitHandler extends DefaultAjaxBehavior {
 
         @Override
         public ActionResult onAction(Control source) {

@@ -29,7 +29,7 @@ import net.sf.click.jquery.examples.services.FileSystemService;
 import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Control;
 import org.apache.click.ActionResult;
-import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.ajax.DefaultAjaxBehavior;
 import org.apache.click.control.Field;
 import org.apache.click.control.HiddenField;
 import org.apache.click.control.Option;
@@ -142,7 +142,7 @@ public class EditableTreeOnServer extends BorderPage {
 
         // Set an Ajax listener on the create button that will be invoked when
         // form is submitted
-        create.addBehavior(new AjaxBehavior() {
+        create.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {
@@ -158,7 +158,7 @@ public class EditableTreeOnServer extends BorderPage {
         });
 
         // Set an Ajax listener on the create button
-        save.addBehavior(new AjaxBehavior() {
+        save.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {
@@ -230,7 +230,7 @@ public class EditableTreeOnServer extends BorderPage {
         });
 
         // Set an Ajax listener on the delete button
-        delete.addBehavior(new AjaxBehavior() {
+        delete.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {
@@ -249,7 +249,7 @@ public class EditableTreeOnServer extends BorderPage {
         });
 
         // Set an Ajax listener on the close
-        cancel.addBehavior(new AjaxBehavior() {
+        cancel.addBehavior(new DefaultAjaxBehavior() {
 
             @Override
             public ActionResult onAction(Control source) {
@@ -271,15 +271,15 @@ public class EditableTreeOnServer extends BorderPage {
     }
 
     private void updateJSTreeNode(JQTaconite actionResult) {
-        Map<String, Object> model = new HashMap<String, Object>();
-        JsScript script = new JsScript("/ajax/tree/editable-tree-on-server-partial.js", model);
+        Map<String, Object> localModel = new HashMap<String, Object>();
+        JsScript script = new JsScript("/ajax/tree/editable-tree-on-server-partial.js", localModel);
         actionResult.eval(script);
     }
 
     private void createJSTreeNode(JQTaconite actionResult, String nodeId) {
-        Map<String, Object> model = new HashMap<String, Object>();
+        Map<String, Object> localModel = new HashMap<String, Object>();
         model.put("nodeId", nodeId);
-        JsScript script = new JsScript("/ajax/tree/editable-tree-on-server-partial.js", model);
+        JsScript script = new JsScript("/ajax/tree/editable-tree-on-server-partial.js", localModel);
         actionResult.eval(script);
     }
 
