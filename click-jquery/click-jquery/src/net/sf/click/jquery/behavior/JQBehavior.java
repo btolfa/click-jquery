@@ -557,7 +557,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     @Override
-    public boolean isRequestTarget(Context context) {
+    public boolean isAjaxTarget(Context context) {
         String eventTypeParam = context.getRequestParameter("event");
         if (StringUtils.isBlank(eventTypeParam) && StringUtils.isBlank(getEventType())) {
             return true;
