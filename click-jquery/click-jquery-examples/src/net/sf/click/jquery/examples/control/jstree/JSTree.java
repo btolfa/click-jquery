@@ -31,7 +31,7 @@ import net.sf.click.jquery.taconite.JQTaconite;
 import org.apache.click.Context;
 import org.apache.click.Control;
 import org.apache.click.ActionResult;
-import org.apache.click.ajax.AjaxBehavior;
+import org.apache.click.ajax.DefaultAjaxBehavior;
 import org.apache.click.control.AbstractControl;
 import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
@@ -352,16 +352,16 @@ public class JSTree extends AbstractControl {
         buffer.closeTag();
         buffer.append("\n");
 
-        JSTreeNode rootNode = getRootNode();
+        JSTreeNode localTootNode = getRootNode();
         if (isRootNodeDisplayed()) {
             buffer.elementStart("ul");
             buffer.closeTag();
             buffer.append("\n");
-            rootNode.render(buffer);
+            localTootNode.render(buffer);
             buffer.elementEnd("ul");
             buffer.append("\n");
         } else {
-            rootNode.renderNodes(buffer, rootNode.getChildren());
+            localTootNode.renderNodes(buffer, localTootNode.getChildren());
         }
 
         buffer.elementEnd("div");
@@ -430,7 +430,7 @@ public class JSTree extends AbstractControl {
         }
     }
 
-    private class JSTreeListener extends AjaxBehavior {
+    private class JSTreeListener extends DefaultAjaxBehavior {
 
         @Override
         public ActionResult onAction(Control source) {
