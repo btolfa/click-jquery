@@ -37,8 +37,8 @@ public class Counter extends BorderPage {
         link.addBehavior(new JQBehavior(JQEvent.CLICK) {
 
             @Override
-            protected void addHeadElements(Control source) {
-                super.addHeadElements(source);
+            protected void addHeadElementsOnce(Control source) {
+                super.addHeadElementsOnce(source);
             }
 
             @Override
