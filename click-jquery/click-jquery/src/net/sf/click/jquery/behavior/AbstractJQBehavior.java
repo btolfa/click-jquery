@@ -114,14 +114,14 @@ public abstract class AbstractJQBehavior extends DefaultAjaxBehavior {
     // Callback Methods -------------------------------------------------------
 
     @Override
-    public void preGetHeadElements(Control source) {
+    public void preRenderHeadElements(Control source) {
         if (page == null) {
             // Try and retrieve page from source. If source parent page is not
             // set, page will be null
             page = ClickUtils.getParentPage(source);
         }
 
-        super.preGetHeadElements(source);
+        super.preRenderHeadElements(source);
     }
 
     // Protected Methods ------------------------------------------------------

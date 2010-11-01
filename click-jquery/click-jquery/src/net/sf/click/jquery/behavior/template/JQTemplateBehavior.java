@@ -256,7 +256,7 @@ public class JQTemplateBehavior extends AbstractJQBehavior implements Serializab
      * scripts to enable Ajax requests
      */
     @Override
-    protected void addHeadElements(Control source) {
+    protected void addHeadElementsOnce(Control source) {
 
         List<Element> headElements = source.getHeadElements();
 

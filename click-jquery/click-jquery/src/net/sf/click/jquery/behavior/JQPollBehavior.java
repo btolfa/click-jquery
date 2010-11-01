@@ -429,8 +429,8 @@ public class JQPollBehavior extends JQBehavior {
     }
 
     @Override
-    protected void addHeadElements(Control source) {
-        super.addHeadElements(source);
+    protected void addHeadElementsOnce(Control source) {
+        super.addHeadElementsOnce(source);
 
         List<Element> headElements = source.getHeadElements();
 

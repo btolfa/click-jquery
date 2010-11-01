@@ -338,7 +338,7 @@ public abstract class JQAutoCompleteBehavior extends JQBehavior {
      * scripts to enable AutoComplete functionality
      */
     @Override
-    protected void addHeadElements(Control source) {
+    protected void addHeadElementsOnce(Control source) {
         List<Element> headElements = source.getHeadElements();
 
         JsImport jsImport = new JsImport(jqueryPath);

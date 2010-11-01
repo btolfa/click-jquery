@@ -566,13 +566,13 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
     }
 
     @Override
-    public void preGetHeadElements(Control source) {
+    public void preRenderHeadElements(Control source) {
         // If headElements should be skipped, exit early
         if (isSkipHeadElements()) {
             return;
         }
 
-        super.preGetHeadElements(source);
+        super.preRenderHeadElements(source);
 
         // If setup script should be skipped, exit early
         if (!isSkipSetupScript()) {
@@ -737,7 +737,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
      * scripts to enable Ajax requests
      */
     @Override
-    protected void addHeadElements(Control source) {
+    protected void addHeadElementsOnce(Control source) {
 
         List<Element> headElements = source.getHeadElements();
 

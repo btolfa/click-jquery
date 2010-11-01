@@ -200,8 +200,8 @@ public class JQFormBehavior extends JQBehavior {
     // Protected Methods ------------------------------------------------------
 
     @Override
-    protected void addHeadElements(Control source) {
-        super.addHeadElements(source);
+    protected void addHeadElementsOnce(Control source) {
+        super.addHeadElementsOnce(source);
 
         List<Element> headElements = source.getHeadElements();
 
