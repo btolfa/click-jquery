@@ -673,7 +673,7 @@ public class JQCommand {
             buffer.append("<![CDATA[ ");
         }
 
-        for (Object o : getContent()) {
+        for (Object content : getContent()) {
             if (content instanceof Control) {
                 ((Control) content).render(buffer);
             } else if (content instanceof JsScript) {
