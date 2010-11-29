@@ -18,11 +18,12 @@ import net.sf.click.jquery.examples.services.ApplicationRegistry;
 import net.sf.click.jquery.examples.services.CustomerService;
 import net.sf.click.jquery.examples.services.PostCodeService;
 import net.sf.click.jquery.examples.util.JQUILibrary;
+
+import org.apache.click.Context;
 import org.apache.click.Page;
 import org.apache.click.extras.control.Menu;
 import org.apache.click.extras.control.MenuFactory;
 import org.apache.click.util.ClickUtils;
-import org.apache.click.util.HtmlStringBuffer;
 
 public class BorderPage extends Page {
 
@@ -69,15 +70,12 @@ public class BorderPage extends Page {
 
     private void addSourceCodeMenus(final Menu rootMenu, final String srcPath) {
 
-        final String contextPath = getContext().getRequest().getContextPath();
+    	Context context = getContext();
 
         // Add menu for Java Source code
-        DesktopMenu pageJavaMenu = new DesktopMenu("pageJava", " Page Java") {
-            @Override
-            protected void renderMenuHref(HtmlStringBuffer buffer) {
-                buffer.appendAttribute("href", contextPath + "/source-viewer.htm?filename=WEB-INF/classes/" + srcPath);
-            }
-        };
+        DesktopMenu pageJavaMenu = new DesktopMenu("pageJava", " Page Java");
+        pageJavaMenu.setPath("source-viewer.htm?filename=WEB-INF/classes/" + srcPath);
+        pageJavaMenu.setAccessController(rootMenu.getAccessController());
 
         if (!rootMenu.contains(pageJavaMenu)) {
             pageJavaMenu.setImageSrc("/assets/images/lightbulb1.png");
@@ -87,13 +85,9 @@ public class BorderPage extends Page {
         }
 
         // Add menu for Html Source code
-        DesktopMenu pageHtmlMenu = new DesktopMenu("pageHtml", " Page HTML") {
-            @Override
-            protected void renderMenuHref(HtmlStringBuffer buffer) {
-                // Render the path of the page
-                buffer.appendAttribute("href", contextPath + "/source-viewer.htm?filename=" + BorderPage.this.getPath());
-            }
-        };
+        DesktopMenu pageHtmlMenu = new DesktopMenu("pageHtml", " Page HTML");
+        pageHtmlMenu.setPath("source-viewer.htm?filename=" + context.getPagePath(getClass()));
+        pageHtmlMenu.setAccessController(rootMenu.getAccessController());
 
         if (!rootMenu.contains(pageHtmlMenu)) {
             pageHtmlMenu.setTitle("Page Content source");
