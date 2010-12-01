@@ -77,7 +77,10 @@
     // Add any parameters passed in from the Page
     var defaultParams=Click.jq.parameterStrToArray(opts.data);
     if (defaultParams && defaultParams!="") {
-      params.push(defaultParams);
+      // Copy array
+      for (var i=0;i<defaultParams.length;i++) {
+          params.push(defaultParams[i]);
+      }
     }
 
     // Invoke the Ajax request
@@ -290,7 +293,10 @@
       // Add any parameters passed in from the Page
       var defaultParams=Click.jq.parameterStrToArray(ajaxOpts.data);
       if (defaultParams && defaultParams!="") {
-        params.push(defaultParams);
+        // Copy array
+        for (var i=0;i<defaultParams.length;i++) {
+          params.push(defaultParams[i]);
+        }
       }
       ajaxOpts.data=params;
     }else{
