@@ -443,6 +443,7 @@ public class JQPollBehavior extends JQBehavior {
     @Override
     protected void setupScript(JsScript script, Control source) {
         Map templateModel = createTemplateModel(page, source, getContext());
+        templateModel.remove("context");
         String templateJson = new JSONWriter().write(templateModel);
 
         Map pollModel = createPollModel(page, source, getContext());

@@ -832,6 +832,7 @@ public class JQBehavior extends AbstractJQBehavior implements Serializable {
 
     protected void setupScript(JsScript script, Control source) {
         Map templateModel = createTemplateModel(page, source, getContext());
+        templateModel.remove("context");
         String json = new JSONWriter().write(templateModel);
 
         HtmlStringBuffer buffer = new HtmlStringBuffer();

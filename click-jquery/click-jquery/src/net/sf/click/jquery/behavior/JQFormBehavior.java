@@ -232,6 +232,7 @@ public class JQFormBehavior extends JQBehavior {
     protected void setupScript(JsScript script, Control source) {
         Map templateModel = createTemplateModel(page, source, getContext());
         String json = new JSONWriter().write(templateModel);
+        templateModel.remove("context");
 
         HtmlStringBuffer buffer = new HtmlStringBuffer();
         buffer.append("jQuery(document).ready(function(){");
