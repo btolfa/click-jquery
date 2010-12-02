@@ -299,8 +299,6 @@
         }
       }
       ajaxOpts.data=params;
-    }else{
-      ajaxOpts.data=ajaxOpts.data;
     }
 
     var poll=$.poll(ajaxOpts, pollOpts, !pollOpts.auto_start);
