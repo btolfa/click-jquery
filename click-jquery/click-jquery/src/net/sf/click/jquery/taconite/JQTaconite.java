@@ -1605,7 +1605,7 @@ public class JQTaconite extends ActionResult {
      * to the DOM yet.
      */
     protected void processHeadElements() {
-        if (commands.size() == 0) {
+        if (commands.isEmpty()) {
             return;
         }
 
